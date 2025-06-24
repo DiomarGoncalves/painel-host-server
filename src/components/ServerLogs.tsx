@@ -23,6 +23,7 @@ const ServerLogs: React.FC = () => {
   const [categoryFilter, setCategoryFilter] = useState('ALL');
   const [autoScroll, setAutoScroll] = useState(true);
   const [isLive, setIsLive] = useState(true);
+  const [showClearModal, setShowClearModal] = useState(false);
 
   // Real-time logs from backend
   useEffect(() => {
@@ -77,10 +78,15 @@ const ServerLogs: React.FC = () => {
   };
 
   const clearLogs = () => {
-    if (confirm('Tem certeza de que deseja limpar todos os logs?')) {
-      setLogs([]);
-    }
+    setShowClearModal(true);
   };
+
+  const confirmClearLogs = () => {
+    setLogs([]);
+    setShowClearModal(false);
+  };
+
+  const cancelClearLogs = () => setShowClearModal(false);
 
   const downloadLogs = () => {
     const logContent = filteredLogs.map(log => 
@@ -103,6 +109,34 @@ const ServerLogs: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {/* Modal de confirmação de limpar logs */}
+      {showClearModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 w-full max-w-md">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              Limpar Logs
+            </h3>
+            <p className="mb-4 text-gray-700 dark:text-gray-300">
+              Tem certeza que deseja limpar todos os logs?
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={cancelClearLogs}
+                className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={confirmClearLogs}
+                className="flex-1 px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md"
+              >
+                Limpar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>

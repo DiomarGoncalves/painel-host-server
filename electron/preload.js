@@ -37,7 +37,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   addons: {
     list: (type) => ipcRenderer.invoke('addons:list', type),
     install: (type) => ipcRenderer.invoke('addons:install', type),
-    toggle: (type, addonId, enabled) => ipcRenderer.invoke('addons:toggle', type, addonId, enabled),
+    toggle: (type, addonId, enabled, worldName) => ipcRenderer.invoke('addons:toggle', type, addonId, enabled, worldName),
     delete: (type, addonId) => ipcRenderer.invoke('addons:delete', type, addonId),
   },
 

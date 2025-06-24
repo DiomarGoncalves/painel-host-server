@@ -14,16 +14,25 @@ const WorldConfig: React.FC<WorldConfigProps> = ({ worldName, onClose }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!api) {
+      setLoading(true);
+      return;
+    }
     loadWorldConfig();
-  }, [worldName]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [api, worldName]);
 
   const loadWorldConfig = async () => {
-    if (!api) return;
+    if (!api) {
+      setLoading(true);
+      return;
+    }
     setLoading(true);
     try {
       const worldConfig = await api.worlds.getConfig(worldName);
       setConfig(worldConfig);
     } catch (error) {
+      setConfig(null);
       console.error('Failed to load world config:', error);
     } finally {
       setLoading(false);
@@ -58,6 +67,40 @@ const WorldConfig: React.FC<WorldConfigProps> = ({ worldName, onClose }) => {
   const handleReset = () => {
     loadWorldConfig();
     setHasChanges(false);
+  };
+
+  const renderRuleInput = (section: string, key: string, value: any) => {
+    if (typeof value === 'boolean') {
+      return (
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            checked={value}
+            onChange={e => handleInputChange(section, key, e.target.checked)}
+            className="switch-input"
+          />
+          <span className="ml-2">{value ? 'Sim' : 'Não'}</span>
+        </label>
+      );
+    }
+    if (typeof value === 'number') {
+      return (
+        <input
+          type="number"
+          value={value}
+          onChange={e => handleInputChange(section, key, Number(e.target.value))}
+          className="w-20 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+        />
+      );
+    }
+    return (
+      <input
+        type="text"
+        value={value}
+        onChange={e => handleInputChange(section, key, e.target.value)}
+        className="w-32 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+      />
+    );
   };
 
   if (loading) {
@@ -198,9 +241,9 @@ const WorldConfig: React.FC<WorldConfigProps> = ({ worldName, onClose }) => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {config.gameRules && Object.entries(config.gameRules).map(([key, value]) => (
-                <div key={key} className="flex items-center justify-between">
-                  <span className="text-sm text-gray-700 dark:text-gray-300">{key}</span>
-                  <span className="text-sm text-gray-900 dark:text-white">{String(value)}</span>
+                <div key={key} className="flex items-center justify-between gap-4 p-2 bg-gray-100 dark:bg-gray-800 rounded">
+                  <span className="text-sm font-medium text-gray-900 dark:text-white">{key}</span>
+                  {renderRuleInput('gameRules', key, value)}
                 </div>
               ))}
             </div>
@@ -216,9 +259,9 @@ const WorldConfig: React.FC<WorldConfigProps> = ({ worldName, onClose }) => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {config.experiments && Object.entries(config.experiments).map(([key, value]) => (
-                <div key={key} className="flex items-center justify-between">
-                  <span className="text-sm text-gray-700 dark:text-gray-300">{key}</span>
-                  <span className="text-sm text-gray-900 dark:text-white">{String(value)}</span>
+                <div key={key} className="flex items-center justify-between gap-4 p-2 bg-gray-100 dark:bg-gray-800 rounded">
+                  <span className="text-sm font-medium text-gray-900 dark:text-white">{key}</span>
+                  {renderRuleInput('experiments', key, value)}
                 </div>
               ))}
             </div>

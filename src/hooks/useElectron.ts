@@ -37,7 +37,7 @@ declare global {
       addons: {
         list: (type: string) => Promise<any[]>;
         install: (type: string) => Promise<{ success: boolean; message: string }>;
-        toggle: (type: string, addonId: string, enabled: boolean) => Promise<{ success: boolean; message?: string }>;
+        toggle: (type: string, addonId: string, enabled: boolean, worldName?: string) => Promise<{ success: boolean; message?: string }>;
         delete: (type: string, addonId: string) => Promise<{ success: boolean; message?: string }>;
       };
       playit: {
@@ -60,13 +60,24 @@ declare global {
 
 export const useElectron = () => {
   const [isElectron, setIsElectron] = useState(false);
+  const [api, setApi] = useState<any>(null);
 
   useEffect(() => {
-    setIsElectron(typeof window !== 'undefined' && !!window.electronAPI);
+    const check = () => {
+      const available = typeof window !== 'undefined' && !!window.electronAPI;
+      setIsElectron(available);
+      setApi(available ? window.electronAPI : null);
+    };
+    check();
+    // Tenta novamente caso o preload demore para expor a API
+    const interval = setInterval(check, 100);
+    // Para de tentar após 2 segundos
+    setTimeout(() => clearInterval(interval), 2000);
+    return () => clearInterval(interval);
   }, []);
 
   return {
     isElectron,
-    api: isElectron ? window.electronAPI : null
+    api
   };
 };

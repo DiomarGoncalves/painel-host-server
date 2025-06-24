@@ -1,7 +1,0 @@
-// CODENAME: REVOLUTION, BY @LUKASPAH (https://twitter.com/LukasPAH) //
-
-{
-  "special_render": {
-    "ignored": "(not $show_real_debug_screen_on_beta_versions)"
-  }
-}

@@ -22,6 +22,8 @@ const BackupManager: React.FC = () => {
   const [backupInterval, setBackupInterval] = useState(24);
   const [maxBackups, setMaxBackups] = useState(10);
   const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [pendingDelete, setPendingDelete] = useState<string | null>(null);
+  const [pendingRestore, setPendingRestore] = useState<string | null>(null);
 
   useEffect(() => {
     if (!api) return;
@@ -36,20 +38,30 @@ const BackupManager: React.FC = () => {
     setIsCreatingBackup(false);
   };
 
-  const restoreBackup = async (backupId: string) => {
-    if (!api) return;
-    if (confirm('Tem certeza de que deseja restaurar este backup?')) {
-      await api.backups.restore(backupId);
-    }
+  const deleteBackup = async (backupId: string) => {
+    setPendingDelete(backupId);
   };
 
-  const deleteBackup = async (backupId: string) => {
-    if (!api) return;
-    if (confirm('Tem certeza de que deseja excluir este backup?')) {
-      await api.backups.delete(backupId);
-      api.backups.list().then(setBackups);
-    }
+  const confirmDeleteBackup = async () => {
+    if (!api || !pendingDelete) return;
+    await api.backups.delete(pendingDelete);
+    api.backups.list().then(setBackups);
+    setPendingDelete(null);
   };
+
+  const cancelDeleteBackup = () => setPendingDelete(null);
+
+  const restoreBackup = async (backupId: string) => {
+    setPendingRestore(backupId);
+  };
+
+  const confirmRestoreBackup = async () => {
+    if (!api || !pendingRestore) return;
+    await api.backups.restore(pendingRestore);
+    setPendingRestore(null);
+  };
+
+  const cancelRestoreBackup = () => setPendingRestore(null);
 
   const downloadBackup = async (backupId: string) => {
     if (!api) return;
@@ -69,6 +81,61 @@ const BackupManager: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {/* Modal de confirmação de exclusão */}
+      {pendingDelete && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 w-full max-w-md">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              Excluir Backup
+            </h3>
+            <p className="mb-4 text-gray-700 dark:text-gray-300">
+              Tem certeza que deseja excluir o backup <span className="font-bold">{pendingDelete}</span>?
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={cancelDeleteBackup}
+                className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={confirmDeleteBackup}
+                className="flex-1 px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md"
+              >
+                Excluir
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Modal de confirmação de restauração */}
+      {pendingRestore && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 w-full max-w-md">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              Restaurar Backup
+            </h3>
+            <p className="mb-4 text-gray-700 dark:text-gray-300">
+              Tem certeza que deseja restaurar o backup <span className="font-bold">{pendingRestore}</span>?
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={cancelRestoreBackup}
+                className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={confirmRestoreBackup}
+                className="flex-1 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md"
+              >
+                Restaurar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>

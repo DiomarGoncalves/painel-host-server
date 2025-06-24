@@ -1,9 +1,0 @@
-// CODENAME: REVOLUTION, BY @LUKASPAH (https://twitter.com/LukasPAH) //
-
-{
-  "$minecraft_game_version": "",
-  "$show_real_debug_screen_on_beta_versions": false,
-  "$render_hud_while_in_inventory": false, // may cause lag
-  "$use_experimental_rendering": false, // do not touch this if you are not having any issues.
-  "$show_coordinates_all_the_time": false // experimental and slightly broken. use at your own risk.
-}

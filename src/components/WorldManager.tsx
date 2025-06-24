@@ -22,27 +22,17 @@ const WorldManager: React.FC = () => {
   const [selectedWorld, setSelectedWorld] = useState<string | null>(null);
   const [showConfigModal, setShowConfigModal] = useState(false);
   const [activeWorld, setActiveWorld] = useState<string | null>(null);
+  const [pendingDelete, setPendingDelete] = useState<string | null>(null);
 
   useEffect(() => {
-    // Log para depuração do preload e api
-    if (typeof window !== 'undefined') {
-      if (window.electronAPI) {
-        console.log('[WorldManager] window.electronAPI está disponível:', window.electronAPI);
-      } else {
-        console.error('[WorldManager] window.electronAPI NÃO está disponível!');
-      }
-    } else {
-      console.error('[WorldManager] window NÃO está definido!');
+    if (api) {
+      loadWorlds();
     }
-    // Logue o valor de api explicitamente
-    console.log('[WorldManager] Valor de api no useEffect:', api);
-    loadWorlds();
-    console.debug('[WorldManager] useEffect mounted');
   }, [api]);
 
   useEffect(() => {
-    // Buscar mundo ativo (level-name do server.properties)
     if (api) {
+      // Buscar mundo ativo (level-name do server.properties)
       api.config.getServerProperties().then(props => {
         setActiveWorld(props['level-name'] || null);
       });
@@ -50,17 +40,10 @@ const WorldManager: React.FC = () => {
   }, [api]);
 
   const loadWorlds = async () => {
-    // Logue o valor de api toda vez que loadWorlds for chamado
-    console.log('[WorldManager] Valor de api em loadWorlds:', api);
-    if (!api) {
-      console.error('[WorldManager] API não disponível. Valor de api:', api);
-      return;
-    }
+    if (!api) return;
     setLoading(true);
-    console.debug('[WorldManager] Chamando api.worlds.list()');
     try {
       const worldList = await api.worlds.list();
-      console.debug('[WorldManager] Mundos recebidos do backend:', worldList);
       setWorlds(worldList);
     } catch (error) {
       console.error('[WorldManager] Erro ao carregar mundos:', error);
@@ -84,25 +67,23 @@ const WorldManager: React.FC = () => {
   };
 
   const handleDeleteWorld = async (worldId: string) => {
-    if (!api) return;
-    if (confirm(`Tem certeza de que deseja excluir o mundo "${worldId}"? Esta ação não pode ser desfeita.`)) {
-      try {
-        const result = await api.worlds.delete(worldId);
-        if (result.success) {
-          await loadWorlds();
-        } else {
-          console.error('[WorldManager] Falha ao excluir mundo:', result.message);
-        }
-      } catch (error) {
-        console.error('[WorldManager] Falha ao excluir mundo:', error);
-      }
-    }
+    setPendingDelete(worldId);
   };
+
+  const confirmDeleteWorld = async () => {
+    if (!api || !pendingDelete) return;
+    const result = await api.worlds.delete(pendingDelete);
+    if (result.success) {
+      await loadWorlds();
+    }
+    setPendingDelete(null);
+  };
+
+  const cancelDeleteWorld = () => setPendingDelete(null);
 
   const handleConfigureWorld = (worldId: string) => {
     setSelectedWorld(worldId);
     setShowConfigModal(true);
-    console.debug('[WorldManager] Abrindo configuração do mundo:', worldId);
   };
 
   const handleDownloadWorld = async (worldId: string) => {
@@ -129,7 +110,6 @@ const WorldManager: React.FC = () => {
   };
 
   if (loading) {
-    console.debug('[WorldManager] Carregando mundos...');
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-center py-12">
@@ -141,6 +121,34 @@ const WorldManager: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {/* Modal de confirmação de exclusão */}
+      {pendingDelete && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 w-full max-w-md">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              Excluir Mundo
+            </h3>
+            <p className="mb-4 text-gray-700 dark:text-gray-300">
+              Tem certeza que deseja excluir o mundo <span className="font-bold">{pendingDelete}</span>?
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={cancelDeleteWorld}
+                className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={confirmDeleteWorld}
+                className="flex-1 px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md"
+              >
+                Excluir
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -269,6 +277,19 @@ const WorldManager: React.FC = () => {
           }}
         />
       )}
+
+      {/* 
+        Observação para desenvolvedores:
+        As configurações de cada mundo (como semente, dificuldade, regras de jogo, experimentos, etc.)
+        são exibidas no modal de configuração (WorldConfig). Atualmente, os dados são mockados no backend.
+        Para implementar leitura/escrita real:
+          - level.dat armazena propriedades como seed, randomSeed, isHardcore, difficulty, educationFeaturesEnabled.
+          - As regras de jogo (gameRules) e experimentos (experiments) são objetos com chave/valor.
+          - Exemplos de gameRules: commandblockoutput, doDaylightCycle, keepInventory, etc.
+          - Exemplos de experiments: data_driven_biomes, gametest, jigsaw_structures, etc.
+        Para ler/escrever essas propriedades de verdade, use uma biblioteca como 'prismarine-nbt' no backend.
+        Veja o prompt para exemplos de nomes e valores.
+      */}
     </div>
   );
 };
