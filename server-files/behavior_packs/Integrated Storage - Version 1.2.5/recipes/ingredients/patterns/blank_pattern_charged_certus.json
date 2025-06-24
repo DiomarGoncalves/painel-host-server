@@ -1,0 +1,28 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "ae2be:blank_pattern_charged_certus"
+        },
+        "tags": ["crafting_table"],
+        "pattern": ["GgG", "gQg", "III"],
+        "key": {
+            "I": {
+                "item": "minecraft:iron_ingot"
+            },
+            "G": {
+                "item": "ae2be:quartz_glass"
+            },
+            "Q": {
+                "item": "ae2be:charged_certus_quartz_crystal"
+            },
+            "g": {
+                "item": "minecraft:glowstone_dust"
+            }
+        },
+        "result": {
+            "item": "ae2be:blank_pattern",
+            "count": 4
+        }
+    }
+}

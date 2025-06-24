@@ -32,6 +32,7 @@ import AddonManager from './components/AddonManager';
 import PlayitIntegration from './components/PlayitIntegration';
 import BackupManager from './components/BackupManager';
 import ServerLogs from './components/ServerLogs';
+import PlayerManager from './components/PlayerManager';
 import { useElectron } from './hooks/useElectron';
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
     { id: 'config', label: 'Configuração do Servidor', icon: Settings },
     { id: 'worlds', label: 'Gerenciador de Mundos', icon: Globe },
     { id: 'addons', label: 'Gerenciador de Addons', icon: Package },
+    { id: 'players', label: 'Jogadores Online', icon: Users },
     { id: 'playit', label: 'Playit.gg', icon: Wifi },
     { id: 'backups', label: 'Backups', icon: Shield },
     { id: 'logs', label: 'Logs do Servidor', icon: FolderOpen },
@@ -139,6 +141,8 @@ function App() {
         return <WorldManager />;
       case 'addons':
         return <AddonManager />;
+      case 'players':
+        return <PlayerManager />;
       case 'playit':
         return <PlayitIntegration playitStatus={playitStatus} setPlayitStatus={setPlayitStatus} />;
       case 'backups':

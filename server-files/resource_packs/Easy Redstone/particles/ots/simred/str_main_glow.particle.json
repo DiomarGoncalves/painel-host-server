@@ -1,0 +1,45 @@
+{
+	"format_version": "1.10.0",
+	"particle_effect": {
+		"description": {
+			"identifier": "ots_simred:str_main_glow",
+			"basic_render_parameters": {
+				"material": "particles_add",
+				"texture": "textures/ots/simred/particle/sparkler"
+			}
+		},
+		"components": {
+			"minecraft:emitter_initialization": {
+				"per_update_expression": "v.size = 0.3;"
+			},
+			"minecraft:emitter_local_space": {
+				"position": true,
+				"rotation": false
+			},
+			"minecraft:emitter_rate_instant": {
+				"num_particles": 1
+			},
+			"minecraft:emitter_lifetime_expression": {
+				"activation_expression": 1
+			},
+			"minecraft:emitter_shape_point": {
+				"direction": ["math.random(-0.15,0.15)", 1, "math.random(-0.15,0.15)"]
+			},
+			"minecraft:particle_lifetime_expression": {},
+			"minecraft:particle_initial_speed": "v.particle_random_2*5",
+			"minecraft:particle_appearance_billboard": {
+				"size": ["v.size", "v.size"],
+				"facing_camera_mode": "lookat_xyz",
+				"uv": {
+					"texture_width": 64,
+					"texture_height": 32,
+					"uv": [32, 0],
+					"uv_size": [32, 32]
+				}
+			},
+			"minecraft:particle_appearance_tinting": {
+				"color": [1, 0.15686, 0.15686, 1]
+			}
+		}
+	}
+}

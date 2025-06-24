@@ -1,0 +1,28 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "ae2be:32k_storage_cell_normal"
+        },
+        "tags": ["crafting_table"],
+        "pattern": ["QRQ", "RKR", "III"],
+        "key": {
+            "Q": {
+                "item": "ae2be:quartz_glass"
+            },
+            "R": {
+                "item": "minecraft:redstone"
+            },
+            "I": {
+                "item": "minecraft:iron_ingot"
+            },
+            "K": {
+                "item": "ae2be:32k_storage_part"
+            }
+        },
+        "result": {
+            "item": "ae2be:32k_storage_cell",
+            "count": 1
+        }
+    }
+}

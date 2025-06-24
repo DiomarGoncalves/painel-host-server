@@ -1,0 +1,66 @@
+{
+  "format_version": "1.20.20",
+  "sound_definitions": {
+    "ots_simred:drafting_table": {
+      "__use_legacy_max_distance": true,
+      "max_distance": null,
+      "min_distance": null,
+      "category": "ambient",
+      "sounds": ["sounds/ots/simred/drafting_table"]
+    },
+    "ots_simred:drafting_table_on": {
+      "category": "block",
+      "max_distance": null,
+      "min_distance": null,
+      "sounds": [
+        {
+          "name": "sounds/block/iron_trapdoor/open1",
+          "volume": 0.45,
+          "pitch": 1.25
+        },
+        {
+          "name": "sounds/block/iron_trapdoor/open2",
+          "volume": 0.45,
+          "pitch": 1.25
+        },
+        {
+          "name": "sounds/block/iron_trapdoor/open3",
+          "volume": 0.45,
+          "pitch": 1.25
+        },
+        {
+          "name": "sounds/block/iron_trapdoor/open4",
+          "volume": 0.45,
+          "pitch": 1.25
+        }
+      ]
+    },
+    "ots_simred:drafting_table_off": {
+      "category": "block",
+      "max_distance": null,
+      "min_distance": null,
+      "sounds": [
+        {
+          "name": "sounds/block/iron_trapdoor/close1",
+          "volume": 0.45,
+          "pitch": 1.25
+        },
+        {
+          "name": "sounds/block/iron_trapdoor/close2",
+          "volume": 0.45,
+          "pitch": 1.25
+        },
+        {
+          "name": "sounds/block/iron_trapdoor/close3",
+          "volume": 0.45,
+          "pitch": 1.25
+        },
+        {
+          "name": "sounds/block/iron_trapdoor/close4",
+          "volume": 0.45,
+          "pitch": 1.25
+        }
+      ]
+    }
+  }
+}

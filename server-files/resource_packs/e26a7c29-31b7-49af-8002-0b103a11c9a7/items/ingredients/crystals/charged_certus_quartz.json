@@ -1,0 +1,12 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:item": {
+        "description": {
+            "identifier": "ae2be:charged_certus_quartz_crystal"
+        },
+        "components": {
+            "minecraft:icon": "ae2be_charged_certus_quartz"
+            
+        }
+    }
+}

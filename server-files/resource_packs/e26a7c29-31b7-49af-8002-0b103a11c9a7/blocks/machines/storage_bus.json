@@ -1,0 +1,106 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:block": {
+        "description": {
+            "identifier": "ae2be:storage_bus",
+            "traits": {
+                "minecraft:placement_direction": {
+                    "enabled_states": ["minecraft:facing_direction"]
+                }
+            },
+            "states": {
+                "ae2be:up": [false, true],
+                "ae2be:down": [false, true],
+                "ae2be:north": [false, true],
+                "ae2be:east": [false, true],
+                "ae2be:south": [false, true],
+                "ae2be:west": [false, true]
+            },
+            "menu_category": {
+                "category": "construction"
+            }
+        },
+        "components": {
+            "tag:ae2be:network_connectable": {},
+            "tag:ae2be:network_events": {},
+            "tag:ae2be:network_cable": {},
+            "minecraft:custom_components": [
+                "ae2be:ticking_block_entity",
+                "ae2be:network_connectable"
+            ],
+            "minecraft:geometry": {
+                "identifier": "geometry.ae2be.storage_bus",
+                "bone_visibility": {
+                    "b_north": "q.block_state('ae2be:north')",
+                    "b_east": "q.block_state('ae2be:east')",
+                    "b_west": "q.block_state('ae2be:west')",
+                    "b_up": "q.block_state('ae2be:up')",
+                    "b_down": "q.block_state('ae2be:down')"
+                }
+            },
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 2
+            },
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "ae2be_storage_bus",
+                    "render_method": "alpha_test_single_sided"
+                }
+            },
+            "minecraft:tick": {
+                "looping": true,
+                "interval_range": [5, 5]
+            }
+        },
+        "permutations": [
+            {
+                "condition": "q.block_state('minecraft:facing_direction') == 'up'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [-90, 0, 0]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:facing_direction') == 'down'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [90, 0, 0]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:facing_direction') == 'north'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 180, 0]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:facing_direction') == 'south'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 0, 0]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:facing_direction') == 'east'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 90, 0]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:facing_direction') == 'west'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 270, 0]
+                    }
+                }
+            }
+        ]
+    }
+}

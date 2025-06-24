@@ -58,4 +58,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
     delete: (backupId) => ipcRenderer.invoke('backups:delete', backupId),
     download: (backupId) => ipcRenderer.invoke('backups:download', backupId),
   },
+
+  // Player Management
+  players: {
+    list: () => ipcRenderer.invoke('players:list'),
+    op: (playerName) => ipcRenderer.invoke('players:op', playerName),
+    deop: (playerName) => ipcRenderer.invoke('players:deop', playerName),
+  },
 });

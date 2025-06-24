@@ -1,0 +1,215 @@
+{
+	"format_version": "1.10.0",
+	"animations": {
+		"animation.ots_simred.board.setup": {
+			"loop": true,
+			"bones": {
+				"mat_main": {
+					"position": [29, 31, -5.1]
+				},
+				"mat2": {
+					"position": [0, -5.5, 0]
+				},
+				"mat3": {
+					"position": [0, -11, 0]
+				},
+				"mat4": {
+					"position": [0, -16.5, 0]
+				},
+				"mat5": {
+					"position": [15, 0, 0]
+				},
+				"mat6": {
+					"position": [15, -5.5, 0]
+				},
+				"mat7": {
+					"position": [15, -11, 0]
+				},
+				"mat8": {
+					"position": [15, -16.5, 0]
+				},
+				"mat9": {
+					"position": [30, 0, 0]
+				},
+				"mat10": {
+					"position": [30, -5.5, 0]
+				},
+				"block1": {
+					"scale": [1, 1, 0.01]
+				},
+				"block2": {
+					"scale": [1, 1, 0.01]
+				},
+				"block3": {
+					"scale": [1, 1, 0.01]
+				},
+				"block4": {
+					"scale": [1, 1, 0.01]
+				},
+				"block5": {
+					"scale": [1, 1, 0.01]
+				},
+				"block6": {
+					"scale": [1, 1, 0.01]
+				},
+				"block7": {
+					"scale": [1, 1, 0.01]
+				},
+				"block8": {
+					"scale": [1, 1, 0.01]
+				},
+				"block9": {
+					"scale": [1, 1, 0.01]
+				},
+				"block10": {
+					"scale": [1, 1, 0.01]
+				},
+				"maxmat1": {
+					"position": [3, -0.4, 0],
+					"scale": 0.75
+				},
+				"num1": {
+					"position": [-1.5, 0, 0],
+					"scale": 1.5
+				},
+				"maxmat2": {
+					"position": [3, -0.4, 0],
+					"scale": 0.75
+				},
+				"num2": {
+					"position": [-1.5, 0, 0],
+					"scale": 1.5
+				},
+				"maxmat3": {
+					"position": [3, -0.4, 0],
+					"scale": 0.75
+				},
+				"num3": {
+					"position": [-1.5, 0, 0],
+					"scale": 1.5
+				},
+				"maxmat4": {
+					"position": [3, -0.4, 0],
+					"scale": 0.75
+				},
+				"num4": {
+					"position": [-1.5, 0, 0],
+					"scale": 1.5
+				},
+				"maxmat5": {
+					"position": [3, -0.4, 0],
+					"scale": 0.75
+				},
+				"num5": {
+					"position": [-1.5, 0, 0],
+					"scale": 1.5
+				},
+				"maxmat6": {
+					"position": [3, -0.4, 0],
+					"scale": 0.75
+				},
+				"num6": {
+					"position": [-1.5, 0, 0],
+					"scale": 1.5
+				},
+				"maxmat7": {
+					"position": [3, -0.4, 0],
+					"scale": 0.75
+				},
+				"num7": {
+					"position": [-1.5, 0, 0],
+					"scale": 1.5
+				},
+				"maxmat8": {
+					"position": [3, -0.4, 0],
+					"scale": 0.75
+				},
+				"num8": {
+					"position": [-1.5, 0, 0],
+					"scale": 1.5
+				},
+				"maxmat9": {
+					"position": [3, -0.4, 0],
+					"scale": 0.75
+				},
+				"num9": {
+					"position": [-1.5, 0, 0],
+					"scale": 1.5
+				},
+				"maxmat10": {
+					"position": [3, -0.4, 0],
+					"scale": 0.75
+				},
+				"num10": {
+					"position": [-1.5, 0, 0],
+					"scale": 1.5
+				}
+			}
+		},
+		"animation.ots_simred.board.material": {
+			"loop": true,
+			"bones": {
+				"item1": {
+					"scale": "v.mat1 == 0 ? 0 : 1"
+				},
+				"block1": {
+					"scale": "v.mat1 == 0 ? 1 : 0"
+				},
+				"item2": {
+					"scale": "v.mat2 == 0 ? 0 : 1"
+				},
+				"block2": {
+					"scale": "v.mat2 == 0 ? 1 : 0"
+				},
+				"item3": {
+					"scale": "v.mat3 == 0 ? 0 : 1"
+				},
+				"block3": {
+					"scale": "v.mat3 == 0 ? 1 : 0"
+				},
+				"item4": {
+					"scale": "v.mat4 == 0 ? 0 : 1"
+				},
+				"block4": {
+					"scale": "v.mat4 == 0 ? 1 : 0"
+				},
+				"item5": {
+					"scale": "v.mat5 == 0 ? 0 : 1"
+				},
+				"block5": {
+					"scale": "v.mat5 == 0 ? 1 : 0"
+				},
+				"item6": {
+					"scale": "v.mat6 == 0 ? 0 : 1"
+				},
+				"block6": {
+					"scale": "v.mat6 == 0 ? 1 : 0"
+				},
+				"item7": {
+					"scale": "v.mat7 == 0 ? 0 : 1"
+				},
+				"block7": {
+					"scale": "v.mat7 == 0 ? 1 : 0"
+				},
+				"item8": {
+					"scale": "v.mat8 == 0 ? 0 : 1"
+				},
+				"block8": {
+					"scale": "v.mat8 == 0 ? 1 : 0"
+				},
+				"item9": {
+					"scale": "v.mat9 == 0 ? 0 : 1"
+				},
+				"block9": {
+					"scale": "v.mat9 == 0 ? 1 : 0"
+				},
+				"item10": {
+					"scale": "v.mat10 == 0 ? 0 : 1"
+				},
+				"block10": {
+					"scale": "v.mat10 == 0 ? 1 : 0"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:item": {
+        "description": {
+            "identifier": "ae2be:engineering_processor_print"
+        },
+        "components": {
+            "minecraft:icon": "ae2be_engineering_processor_print"
+        }
+    }
+}

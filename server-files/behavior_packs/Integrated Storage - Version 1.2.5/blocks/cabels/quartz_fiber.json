@@ -1,0 +1,35 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:block": {
+        "description": {
+            "identifier": "ae2be:quartz_fiber"
+        },
+        "components": {
+            "minecraft:placement_filter": {
+                "conditions": [
+                    {
+                        "allowed_faces": [],
+                        "block_filter": []
+                    }
+                ]
+            },
+            "minecraft:geometry": {
+                "identifier": "geometry.ae2be.network_cable",
+                "bone_visibility": {
+                    "b_north": "false",
+                    "b_east": "false",
+                    "b_south": "false",
+                    "b_west": "false",
+                    "b_up": "false",
+                    "b_down": "false"
+                }
+            },
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "ae2be_quartz_fiber",
+                    "render_method": "alpha_test_single_sided"
+                }
+            }
+        }
+    }
+}

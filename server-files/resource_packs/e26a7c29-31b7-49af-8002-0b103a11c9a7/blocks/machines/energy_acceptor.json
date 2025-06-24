@@ -1,0 +1,30 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:block": {
+        "description": {
+            "identifier": "ae2be:energy_acceptor",
+            "menu_category": {
+                "category": "construction"
+            }
+        },
+        "components": {
+            "tag:ae2be:network_connectable": {},
+            "tag:ae2be:network_events": {},
+
+            "minecraft:geometry": {
+                "identifier": "minecraft:geometry.full_block"
+            },
+
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 2
+            },
+
+            "minecraft:custom_components": ["ae2be:network_connectable"],
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "ae2be_energy_acceptor"
+                }
+            }
+        }
+    }
+}

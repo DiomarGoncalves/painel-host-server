@@ -1,0 +1,57 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.ots_simred.redstone_x.geo",
+				"texture_width": 16,
+				"texture_height": 16,
+				"visible_bounds_width": 39,
+				"visible_bounds_height": 65523,
+				"visible_bounds_offset": [0, 32742.5, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "body",
+					"parent": "root",
+					"pivot": [120, 0, 120]
+				},
+				{
+					"name": "str",
+					"parent": "body",
+					"pivot": [120, 0, 120],
+					"cubes": [
+						{
+							"origin": [68, 1, 33],
+							"size": [110, 16, 19],
+							"uv": {
+								"north": {"uv": [3, 0], "uv_size": [0.5, 0.5]},
+								"east": {"uv": [3, 0], "uv_size": [0.5, 0.5]},
+								"south": {"uv": [3, 0], "uv_size": [0.5, 0.5]},
+								"west": {"uv": [3, 0], "uv_size": [0.5, 0.5]},
+								"up": {"uv": [3.5, 0.5], "uv_size": [-0.5, -0.5]},
+								"down": {"uv": [3.5, 0.5], "uv_size": [-0.5, -0.5]}
+							}
+						},
+						{
+							"origin": [115, 1, 52],
+							"size": [16, 16, 81],
+							"uv": {
+								"north": {"uv": [3, 0], "uv_size": [0.5, 0.5]},
+								"east": {"uv": [3, 0], "uv_size": [0.5, 0.5]},
+								"south": {"uv": [3, 0], "uv_size": [0.5, 0.5]},
+								"west": {"uv": [3, 0], "uv_size": [0.5, 0.5]},
+								"up": {"uv": [3.5, 0.5], "uv_size": [-0.5, -0.5]},
+								"down": {"uv": [3.5, 0.5], "uv_size": [-0.5, -0.5]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

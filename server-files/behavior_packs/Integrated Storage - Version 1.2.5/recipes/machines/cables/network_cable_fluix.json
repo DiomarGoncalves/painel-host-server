@@ -1,0 +1,14 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shapeless": {
+        "description": {
+            "identifier": "ae2be:network_cable_fluix"
+        },
+        "tags": ["crafting_table"],
+        "ingredients": ["ae2be:quartz_fiber", "ae2be:fluix_crystal"],
+        "result": {
+            "item": "ae2be:network_cable",
+            "count": 4
+        }
+    }
+}

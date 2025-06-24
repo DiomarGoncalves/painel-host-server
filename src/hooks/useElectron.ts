@@ -54,6 +54,11 @@ declare global {
         delete: (backupId: string) => Promise<{ success: boolean; message?: string }>;
         download: (backupId: string) => Promise<{ success: boolean; message?: string }>;
       };
+      players: {
+        list: () => Promise<{ name: string, lastSeen: string, status: string }[]>;
+        op: (playerName: string) => Promise<{ success: boolean; message?: string }>;
+        deop: (playerName: string) => Promise<{ success: boolean; message?: string }>;
+      };
     };
   }
 }

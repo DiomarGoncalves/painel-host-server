@@ -1,0 +1,16 @@
+// CODENAME: REVOLUTION, BY @LUKASPAH (https://twitter.com/LukasPAH) //
+
+{
+  "messages_text/text": {
+    "bindings": [
+      {
+        "binding_name": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(((#text < '§7§o[§r§r§r§r:') or (#text > '§7§o[§r§r§r§r;')) and ((#text < 'debug_screen') or (#text > 'debug_screen/')))",
+        "target_property_name": "#visible" 
+      }
+    ]
+  }
+}

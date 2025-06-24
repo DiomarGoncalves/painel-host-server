@@ -1,0 +1,239 @@
+pack.name=Easy Redstone Add-On by skupka
+pack.description=By Overtales Studio
+
+###Form Guidebook
+ots_simred:form.guidebook.main.title=Easy Redstone Add-On Guidebook
+ots_simred:form.guidebook.accept=Accept
+ots_simred:form.guidebook.back=Back
+
+ots_simred:form.guidebook.intro.title=Introduce
+ots_simred:form.guidebook.intro.body=%1§l§bWelcome to the Easy Redstone Add-On Guidebook!§r%1%1This guide will help you get started with our Add-On, which makes §gbuilding Redstone contraptions§r in Minecraft §geasier §rand §gmore fun.§r With just a few simple steps, you'll be able to create amazing structures!%1%1§l§bKey Features:§r%1- §gEasy to Use:§r The drafting table does most of the work for you. Whether building, moving, or customizing structures.%1- §gVariety of Redstone Contraptions:§r Choose from 50 different structures, available in small, medium, and large sizes.%1- §gThoughtful Design:§r Each structure includes a well-planned workspace, making it easy to use.%1- §gHologolems:§r Their cuteness is special, don't you think?%1%1§i----------------§r%1%1§l§bGetting Started:§r%1Follow this §g5-step guide§r to quickly learn the basics:%1%1§gStep 1:§r Craft the Drafting Table%1You'll need the following materials and arranged them like this:%1%1§f[1] §2[2] §f[1]%1§f[1] §6[3] §f[1]%1§r§3[4] §c[5] §3[4]§r%1%11. §fPlank§r%12. §2Book§r%13. §6Crafting Table§r%14. §3Iron Ingot§r%15. §cBlock of Redstone§r%1%1§gStep 2:§r Choose Your Structure%1Use the drafting table to select the Redstone contraption you want to build.%1%1§gStep 3:§r Prepare the Area%1Clear or prepare the space where your structure will be built. The size depends on the structure you choose.%1%1§gStep 4:§r Add the Materials%1Gather and insert the required materials to complete the build.%1%1§gStep 5:§r Enjoy Your Creation!%1%1§i----------------§r%1%1§l§bHelpful Tips:§r%11. §gCheck Requirements:§r Some structures have specific conditions. Make sure to read the instructions carefully.%12. §gSkip Steps:§r You can bypass step 3 in the Add-On settings.%13. §gReset if Needed:§r If something goes wrong, reset the structure using the drafting table.%14. §gRead Before You Start:§r Always read the instructions for smooth gameplay.%1%1%1%1With this guide, you'll be building complex Redstone contraptions in no time! §2Enjoy the process and have fun experimenting with all the possibilities this Add-On offers!§r%1%1
+
+ots_simred:form.guidebook.redstone.title=List of Redstone contraption structure
+ots_simred:form.guidebook.redstone.body=%1This is the full list of Redstone contraptions in the Add-On.%1%1§l§bSmall size (10x10):§r%1- Automatic Armadillo Scute Farm%1- Automatic Bamboo or Sugar cane Farm%1- Automatic Bone Meal Maker%1- Automatic Cactus Farm%1- Automatic Cooked Beef Farm%1- Automatic Cooked Chicken Farm%1- Automatic Cooked Mutton Farm%1- Automatic Cooked Porkchop Farm%1- Automatic Crops Farm%1- Automatic Egg Farm%1- Automatic Flower Farm%1- Automatic Honeycomb Farm%1- Automatic Kelp Farm%1- Automatic Melon or Pumpkin Farm%1- Automatic Potion Brewer%1- Automatic Smelter%1- Automatic Storage Sorter%1- Automatic Stone Generator%1- Automatic Tall Flower Farm%1- Automatic Wool Farm%1- Fast Automatic Bamboo or Sugar cane Farm%1- Lava Farm%1%1§l§bMedium size (18x18):§r%1- Automatic Bamboo or Sugar cane Farm%1- Automatic Cactus Farm%1- Automatic Concrete Maker%1- Automatic Cooked Meat Farm%1- Automatic Crops Farm%1- Automatic Iron Farm%1- Automatic Kelp Farm%1- Automatic Melon or Pumpkin Farm%1- Automatic Moss Farm%1- Automatic Nether Wart Farm%1- Automatic Oak Tree Farm%1- Automatic Potion Brewer%1- Automatic Silverfish XP Farm%1- Automatic Slime Farm%1- Automatic Stone Generator%1- Automatic Storage Sorter%1- Automatic Super Smelter%1- Automatic Wool Farm%1- Skeleton and Zombie XP Farm%1- Spider and Spider Cave XP Farm%1%1§l§bLarge size (34x34):§r%1- Automatic Bamboo and Sugar cane Farm%1- Automatic Dried Kelp Block Farm%1- Automatic Melon and Pumpkin Farm%1- Automatic Mixed Crop Farm%1- Automatic Pumpkin Pie Farm%1- Automatic Storage Sorter%1- Mixed Mob XP Farm%1- Zombified Piglin XP Farm%1%1
+
+ots_simred:form.guidebook.setting.title=Add-on Settings
+ots_simred:form.guidebook.setting.body=§e[ ! ] These settings will change your gameplay experience and may cause some issues. Please read the details below before proceeding.§r%1%1§lIgnore Blocks:§r When §gturned on§r, this option allows you to build even if the areas are not empty.%1%1Use the toggle on the next page to turn these settings on or off as needed.%1%1
+ots_simred:form.guidebook.setting.material=§r
+ots_simred:form.guidebook.setting.air=Ignore Blocks
+
+ots_simred:form.guidebook.debug.title=Debug
+ots_simred:form.guidebook.debug.done=§eSuccessfully§r
+ots_simred:form.guidebook.debug.body=§e[ ! ] If the Drafting Table is not working properly or cannot be interacted with, please press "§6Accept§e".%1%1§rThe system will automatically troubleshoot and fix the issue within a 64-block radius of your coordinates.
+
+ots_simred:form.guidebook.log.title=About
+ots_simred:form.guidebook.log.body=%1§l§bAll Feedback is Welcome§r%1Your thoughts and feedback are important to us. Please let us know how we can improve or what you loved about our Add-On.%1%1Feel free to contact us through any platform or directly via email.%1%1Email us at:%1§gcontact@overtalesstudio.com§r%1%1§i----------------§r%1%1§l§bLoved this Add-On?§r%1Share it with your friends and give us a §e5-star rating!§r%1%1§i----------------§r%1%1§l§bConnect With Us§r%1§gWebsite:§r overtales-studio.com%1§gYouTube:§r @OvertalesStudio%1§gTwitter/X:§r @OvertalesStudio%1%1§iCreated by: MrSwtz, Catachi, Phichy§r%1%1
+
+###Form Redstone
+ots_simred:form.menu.main.body=Choose structure size%1%1
+ots_simred:form.menu.small.title=Small Size [10x10]
+ots_simred:form.menu.medium.title=Medium Size [18x18]
+ots_simred:form.menu.large.title=Large Size [34x34]
+ots_simred:form.menu.size.body=Select a Redstone contraption%1%1
+ots_simred:form.menu.remove=Remove Drafting table
+ots_simred:form.menu.accept=Accept
+ots_simred:form.menu.back=Back
+
+ots_simred:form.rotate.title=Rotate Structure
+
+ots_simred:form.remove.title=Remove Menu
+ots_simred:form.remove.redstone.title=Remove Structure
+ots_simred:form.remove.redstone.body=§e[ ! ] This will remove all your progress. If you continue, all materials you added will be returned to you in a chest.§r%1%1Are you sure you want to remove this Redstone contraption?%1%1
+ots_simred:form.remove.redstone.body2=§e[ ! ] This will remove EVERYTHING within the bounding box area. Please check all container blocks (such as chests, barrels, hoppers, Furnaces, etc.) to ensure they are empty.%1%1If you continue, all materials used to build this structure will be returned to you in a chest.§r%1%1Are you sure you want to remove this Redstone contraption?%1%1
+ots_simred:form.remove.permanent.title=Set Permanent
+ots_simred:form.remove.permanent.body=§e[ ! ] Setting this structure as permanent will §6remove the drafting table§e and §6lock the structure in place.§e You will no longer be able to make any changes to it.§r%1%1Are you sure you want to set this Redstone contraption as permanent?%1%1
+ots_simred:form.remove.accept=Accept
+ots_simred:form.remove.back=Back
+
+ots_simred:form.setting.title=Settings
+ots_simred:form.setting.redstone.display=Structure Overlay
+ots_simred:form.setting.golem.display=Hologolems Overlay
+ots_simred:form.setting.material.display=Material List Board
+ots_simred:form.setting.border.display=Bounding Box
+ots_simred:form.setting.border.xray=X-Ray Bounding Box
+ots_simred:form.setting.apply=Apply Settings
+
+ots_simred:form.reset.title=Reset Structure
+ots_simred:form.reset.body=§e[ ! ] This will reset EVERYTHING within the bounding box area to its §6default state.§e Please check all container blocks (such as chests, barrels, hoppers, furnaces, etc.) to ensure they are empty.§r%1%1Are you sure you want to reset this Redstone contraption?%1%1
+ots_simred:form.reset.accept=Accept
+ots_simred:form.reset.back=Back
+
+ots_simred:form.build.title=Build Structure
+ots_simred:form.build.info=§eGather§r and §einsert materials§r into the Drafting Table to build this structure
+ots_simred:form.build.accept=Insert Materials
+ots_simred:form.build.back=Back
+
+ots_simred:form.reeds.title=Selection Menu
+ots_simred:form.reeds.body=Select your resource%1%1
+ots_simred:form.reeds.1=Sugar Canes
+ots_simred:form.reeds.2=Bamboo
+
+ots_simred:form.crops.title=Selection Menu
+ots_simred:form.crops.body=Select your resource%1%1
+ots_simred:form.crops.1=Wheat
+ots_simred:form.crops.2=Potato
+ots_simred:form.crops.3=Carrot
+ots_simred:form.crops.4=Beetroot
+
+ots_simred:form.fruits.title=Selection Menu
+ots_simred:form.fruits.body=Select your resource%1%1
+ots_simred:form.fruits.1=Melon
+ots_simred:form.fruits.2=Pumpkin
+
+ots_simred:form.theme.title=Change Color Scheme
+ots_simred:form.theme.body=Select your favorite color%1%1
+ots_simred:form.theme.1=White
+ots_simred:form.theme.2=Black
+ots_simred:form.theme.3=Red
+ots_simred:form.theme.4=Orange
+ots_simred:form.theme.5=Yellow
+ots_simred:form.theme.6=Green
+ots_simred:form.theme.7=Cyan
+ots_simred:form.theme.8=Blue
+ots_simred:form.theme.9=Magenta
+
+###player Actionbar
+ots_simred:text.item_add=§aMaterials inserted§r
+ots_simred:text.item_fail=§cYou don't have the required materials in your inventory§r
+ots_simred:text.build=§aBuild complete!§r
+ots_simred:text.rotate=§eRotate 90 degrees§r
+ots_simred:text.settings=§eSettings updated§r
+ots_simred:text.theme=§eColor scheme changed§r
+ots_simred:text.clear_area=§eNeed to clear §c%1 more blocks%2§iTotal empty space %3 blocks§r
+ots_simred:select_redstone=%1 selected! §aReady to build§r
+ots_simred:text.chunk_unload=§l§c[!] Warning:§r §eThe build failed due to an unloaded chunk. To resolve this:%1§f- Increase the §6Simulation Distance§r to §6higher than 4.§r%1§f- §6Stand inside the bounding box§r before using the Drafting Table.
+
+ots_simred:interact.use=Use
+
+###Redstone Info
+ots_simred:redstone_1.info=Automatic bamboo or sugar cane harvesting farm%1%1
+ots_simred:redstone_2.info=Automatic pumpkin or melon harvesting farm%1%1
+ots_simred:redstone_3.info=Automatic crop harvesting farm. Comes with 4 choices of crop:%1- Wheat%1- Potato%1- Carrot%1- Beetroot%1%1
+ots_simred:redstone_4.info=Automatic small flower generating and harvesting farm%1%1
+ots_simred:redstone_5.info=Automatic egg collection farm%1%1
+ots_simred:redstone_6.info=Automatic bamboo or sugar cane harvesting farm%1%1
+ots_simred:redstone_7.info=Automatic pumpkin or melon harvesting farm%1%1
+ots_simred:redstone_8.info=Automatic crop harvesting farm. Comes with 4 choices of crop:%1- Wheat%1- Potato%1- Carrot%1- Beetroot%1%1
+ots_simred:redstone_9.info=XP farm powered by silverfish spawned from several allays affected by potion of infestation%1%1
+ots_simred:redstone_10.info=Automatic slimeball collection farm powered by slimes spawned from several zombies affected by Potion of Oozing%1%1
+ots_simred:redstone_11.info=Automatic bamboo and sugar cane harvesting farm with product processing%1%1
+ots_simred:redstone_12.info=Automatic pumpkin and melon harvesting farm with product processing%1%1
+ots_simred:redstone_13.info=Automatic crop harvesting farm with product processing. Comes with 4 types of crop:%1- Wheat%1- Potato%1- Carrot%1- Beetroot%1%1
+ots_simred:redstone_14.info=Automatic pumpkin pie factory%1%1
+ots_simred:redstone_15.info=Monster loot and XP farm powered by 4 different types of spawner%1- Zombie%1- Creeper%1- Skeleton%1- Drowned%1%1
+ots_simred:redstone_16.info=Automatic honeycomb harvesting farm%1%1
+ots_simred:redstone_17.info=Automatic bamboo or sugar cane growing and harvesting farm%1%1
+ots_simred:redstone_18.info=Automatic bone meal maker%1%1
+ots_simred:redstone_19.info=Automatic colored sheep shearing farm%1%1
+ots_simred:redstone_20.info=Automatic cactus collection farm%1%1
+ots_simred:redstone_21.info=Automatic stone and cobblestone generator%1%1
+ots_simred:redstone_22.info=Automatic tall flower growing and harvesting farm%1%1
+ots_simred:redstone_23.info=Automatic stone generator%1%1
+ots_simred:redstone_24.info=Automatic moss block generator%1%1
+ots_simred:redstone_25.info=Automatic item sorting storage chamber%1%1
+ots_simred:redstone_26.info=Automatic kelp harvesting farm%1%1
+ots_simred:redstone_27.info=Automatic concrete powder to concrete converter%1%1
+ots_simred:redstone_28.info=Automatic iron ingot collection farm powered by iron golems%1%1
+ots_simred:redstone_29.info=XP and automatic gold farm powered by zombified piglins%1%1
+ots_simred:redstone_30.info=Automatic kelp harvesting farm with dried kelp block processing%1%1
+ots_simred:redstone_31.info=Automatic nether wart harvesting farm%1%1
+ots_simred:redstone_32.info=Lava generation farm%1%1
+ots_simred:redstone_33.info=Automatic cooked chicken farm%1%1
+ots_simred:redstone_34.info=Automatic cactus collection farm%1%1
+ots_simred:redstone_35.info=Automatic sheep shearing farm%1%1
+ots_simred:redstone_36.info=Automatic kelp harvesting farm%1%1
+ots_simred:redstone_37.info=Automatic smelting chamber%1%1
+ots_simred:redstone_38.info=Automatic XP farms powered by zombie and skeleton spawners%1%1
+ots_simred:redstone_39.info=Automatic cooked beef farm%1%1
+ots_simred:redstone_40.info=Automatic cooked mutton farm%1%1
+ots_simred:redstone_41.info=Automatic cooked porkchop farm%1%1
+ots_simred:redstone_42.info=Automatic potion brewer%1%1
+ots_simred:redstone_43.info=Automatic smelting chamber%1%1
+ots_simred:redstone_44.info=Automatic item sorting storage chamber%1%1
+ots_simred:redstone_45.info=Automatic cooked meat farm%1%1
+ots_simred:redstone_46.info=Automatic potion brewer%1%1
+ots_simred:redstone_47.info=Automatic XP farms powered by spider and cave spider spawners%1%1
+ots_simred:redstone_48.info=Automatic item sorting storage chamber%1%1
+ots_simred:redstone_49.info=Automatic growing oak tree and collects oak logs%1%1
+ots_simred:redstone_50.info=Automatic armadillo scute collection farm%1%1
+
+ots_simred:redstone.reqmat=§bList of Required Materials:§r%1
+ots_simred:redstone.req.0=%1
+ots_simred:redstone.req.1=%1§e[ ! ] Requirements:§r §gRandom tick speed§r should be enabled%1%1
+ots_simred:redstone.req.9=%1§e[ ! ] Requirements:§r%1- Please §gslowly press button/lever§r to prevent redstone malfunctioning%1- Please be §gmindful about entity amounts§r as it affects the §gperformance§r%1- §gRandom tick speed§r should be enabled%1%1
+ots_simred:redstone.req.10=%1§e[ ! ] Requirements:§r%1- §gMob spawning§r should be enabled, and the §gdifficulty§r is not set to §gpeaceful§r%1- Please be §gmindful about entity amounts§r as it affects the §gperformance§r%1%1
+ots_simred:redstone.req.15=%1§e[ ! ] Requirements:§r%1- §gMob spawning§r should be enabled, and the §gdifficulty§r is not set to §gpeaceful§r%1- Please be §gmindful about entity amounts§r as it affects the §gperformance§r%1%1
+ots_simred:redstone.req.28=%1§e[ ! ] Requirements:§r%1- Please build this contraption more than §g128 blocks away from Villager village§r%1- Please build this contraption §ghigher than Y=0 world height§r%1- §gMob spawning§r should be enabled, and the §gdifficulty§r is not set to §gpeaceful§r%1- §gDaylight cycle§r should be enabled%1- §gRandom tick speed§r should be enabled%1- §gIf the Iron Golem doesn't spawn, please build this contraption in the same biome as the village§r%1%1
+ots_simred:redstone.req.29=%1§e[ ! ] Requirements:§r%1- Please build this contraption §ghigher than Y=0 world height§r%1- Please be §gmindful about entity amounts§r as it affects the §gperformance§r%1- §gMob spawning§r should be enabled, and the §gdifficulty§r is not set to §gpeaceful§r%1- §gRandom tick speed§r should be enabled%1%1
+ots_simred:redstone.req.38=%1§e[ ! ] Requirements:§r%1- §gMob spawning§r should be enabled, and the §gdifficulty§r is not set to §gpeaceful§r%1- Please be §gmindful about entity amounts§r as it affects the §gperformance§r%1%1
+ots_simred:redstone.req.47=%1§e[ ! ] Requirements:§r%1- §gMob spawning§r should be enabled, and the §gdifficulty§r is not set to §gpeaceful§r%1- Please be §gmindful about entity amounts§r as it affects the §gperformance§r%1%1
+
+###Custom Block
+tile.ots_simred:structure.name=Drafting Table
+
+###Custom Item
+item.ots_simred:guidebook.name=Easy Redstone Guidebook
+
+###Entity Name
+entity.ots_simred:structure.name=Drafting Table
+entity.ots_simred:effect_build.name=Build Effect
+entity.ots_simred:effect_select.name=Select Effect
+
+entity.ots_simred:redstone_1.name=Automatic Bamboo or Sugar Cane Farm
+entity.ots_simred:redstone_2.name=Automatic Melon or Pumpkin Farm
+entity.ots_simred:redstone_3.name=Automatic Crops Farm
+entity.ots_simred:redstone_4.name=Automatic Flower Farm
+entity.ots_simred:redstone_5.name=Automatic Egg Farm
+entity.ots_simred:redstone_6.name=Automatic Bamboo or Sugar Cane Farm
+entity.ots_simred:redstone_7.name=Automatic Melon or Pumpkin Farm
+entity.ots_simred:redstone_8.name=Automatic Crops Farm
+entity.ots_simred:redstone_9.name=Automatic Silverfish XP Farm
+entity.ots_simred:redstone_10.name=Automatic Slime Farm
+entity.ots_simred:redstone_11.name=Automatic Bamboo and Sugar Cane Farm
+entity.ots_simred:redstone_12.name=Automatic Pumpkin and Melon Farm
+entity.ots_simred:redstone_13.name=Automatic Mixed Crops Farm
+entity.ots_simred:redstone_14.name=Automatic Pumpkin Pie Farm
+entity.ots_simred:redstone_15.name=Mixed Mob XP Farm
+entity.ots_simred:redstone_16.name=Automatic Honeycomb Farm
+entity.ots_simred:redstone_17.name=Fast Automatic Bamboo or Sugar Cane Farm
+entity.ots_simred:redstone_18.name=Automatic Bone Meal Maker
+entity.ots_simred:redstone_19.name=Automatic Wool Farm
+entity.ots_simred:redstone_20.name=Automatic Cactus Farm
+entity.ots_simred:redstone_21.name=Automatic Stone Generator
+entity.ots_simred:redstone_22.name=Automatic Tall Flower Farm
+entity.ots_simred:redstone_23.name=Automatic Stone Generator
+entity.ots_simred:redstone_24.name=Automatic Moss Farm
+entity.ots_simred:redstone_25.name=Automatic Sorter Storage
+entity.ots_simred:redstone_26.name=Automatic Kelp Farm
+entity.ots_simred:redstone_27.name=Automatic Concrete Maker
+entity.ots_simred:redstone_28.name=Automatic Iron Farm
+entity.ots_simred:redstone_29.name=Zombified Piglin XP Farm
+entity.ots_simred:redstone_30.name=Automatic Dried Kelp Block Farm
+entity.ots_simred:redstone_31.name=Automatic Nether Wart Farm
+entity.ots_simred:redstone_32.name=Lava Farm
+entity.ots_simred:redstone_33.name=Automatic Cooked Chicken Farm
+entity.ots_simred:redstone_34.name=Automatic Cactus Farm
+entity.ots_simred:redstone_35.name=Automatic Wool Farm
+entity.ots_simred:redstone_36.name=Automatic Kelp Farm
+entity.ots_simred:redstone_37.name=Automatic Super Smelter
+entity.ots_simred:redstone_38.name=Skeleton and Zombie XP Farm
+entity.ots_simred:redstone_39.name=Automatic Cooked Beef Farm
+entity.ots_simred:redstone_40.name=Automatic Cooked Mutton Farm
+entity.ots_simred:redstone_41.name=Automatic Cooked Porkchop Farm
+entity.ots_simred:redstone_42.name=Automatic Potion Brewer
+entity.ots_simred:redstone_43.name=Automatic Smelter
+entity.ots_simred:redstone_44.name=Automatic Storage Sorter
+entity.ots_simred:redstone_45.name=Automatic Cooked Meat Farm
+entity.ots_simred:redstone_46.name=Automatic Potion Brewer
+entity.ots_simred:redstone_47.name=Spider and Spider Cave Xp Farm
+entity.ots_simred:redstone_48.name=Automatic Storage Sorter
+entity.ots_simred:redstone_49.name=Automatic Oak Tree Farm
+entity.ots_simred:redstone_50.name=Automatic Armadillo Scute Farm
+
+###version 1.0.1
+ots_simred:form.sort.title=Selection Menu
+ots_simred:form.sort.body=Select your sorting type%1%1
+ots_simred:form.sort.1=Blocks
+ots_simred:form.sort.2=Ores
+ots_simred:form.sort.3=Crops
+ots_simred:form.sort.4=Consumables

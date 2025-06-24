@@ -9,6 +9,7 @@ const childProcess = require('child_process');
 const spawn = childProcess.spawn;
 const extract = require('extract-zip');
 const fsExtra = require('fs');
+const AdmZip = require('adm-zip'); // Adicione no topo para extração zip/mcpack
 
 let mainWindow;
 let serverProcess = null;
@@ -626,16 +627,37 @@ ipcMain.handle('addons:toggle', async (_event, type, addonId, enabled, worldName
     const folder = type === 'behavior' ? 'behavior_packs' : 'resource_packs';
     const packsPath = path.join(serverPath, folder);
     const entries = await fs.readdir(packsPath, { withFileTypes: true });
-    const allPacks = entries
-      .filter(entry =>
-        (entry.isDirectory() || entry.name.endsWith('.mcpack') || entry.name.endsWith('.mcaddon') || entry.name.endsWith('.zip'))
-      )
-      .map(entry => entry.name);
 
-    // Só ativa se existir fisicamente
-    if (enabled && !allPacks.includes(addonId)) {
-      return { success: false, message: 'Addon/Pacote não encontrado na pasta do servidor.' };
+    // Busca o uuid e versão real do manifest.json do addon selecionado
+    let packUuid = null;
+    let packVersion = [0, 0, 1];
+    let packName = addonId;
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue;
+      if (entry.name === addonId) {
+        const manifestPath = path.join(packsPath, entry.name, 'manifest.json');
+        console.log('[ADDONS:TOGGLE] Lendo manifest:', manifestPath);
+        if (fsExtra.existsSync(manifestPath)) {
+          try {
+            const manifest = JSON.parse(fsExtra.readFileSync(manifestPath, 'utf-8'));
+            console.log('[ADDONS:TOGGLE] Manifest lido:', manifest);
+            if (manifest.header) {
+              if (manifest.header.uuid) packUuid = manifest.header.uuid;
+              if (Array.isArray(manifest.header.version)) packVersion = manifest.header.version;
+              if (manifest.header.name) packName = manifest.header.name;
+              console.log('[ADDONS:TOGGLE] uuid:', packUuid, 'version:', packVersion, 'name:', packName);
+            }
+          } catch (err) {
+            console.log('[ADDONS:TOGGLE] Erro ao ler manifest:', err);
+          }
+        } else {
+          console.log('[ADDONS:TOGGLE] manifest.json não encontrado em', manifestPath);
+        }
+        break;
+      }
     }
+    // Se não encontrou uuid, tenta usar o nome da pasta (addonId) como fallback
+    if (!packUuid) packUuid = addonId;
 
     // Lê o arquivo JSON atual ou inicia vazio
     let packsJson = [];
@@ -645,30 +667,88 @@ ipcMain.handle('addons:toggle', async (_event, type, addonId, enabled, worldName
       packsJson = [];
     }
 
-    // Remove o pack se já existe
-    packsJson = packsJson.filter(p => p.pack_id !== addonId);
+    // Remove o pack se já existe (por uuid, por nome da pasta ou por name do manifest)
+    packsJson = packsJson.filter(
+      p =>
+        p.pack_id !== packUuid &&
+        p.pack_id !== addonId &&
+        p.pack_id !== packName
+    );
 
-    // Adiciona se for para habilitar
+    // Adiciona se for para habilitar (agora sempre salva pelo uuid, se existir, senão pelo name)
     if (enabled) {
-      // Busca versão real do manifest.json
-      let version = [0,0,1];
-      try {
-        const manifestPath = path.join(packsPath, addonId, 'manifest.json');
-        if (fsExtra.existsSync(manifestPath)) {
-          const manifest = JSON.parse(fsExtra.readFileSync(manifestPath, 'utf-8'));
-          if (manifest.header && Array.isArray(manifest.header.version)) {
-            version = manifest.header.version;
-          }
-        }
-      } catch (e) {
-        // Se não conseguir ler, mantém [0,0,1]
-      }
-      packsJson.push({ pack_id: addonId, version });
+      // O Bedrock exige uuid, mas se não houver, salva pelo name (fallback)
+      console.log('[ADDONS:TOGGLE] Adicionando pack_id:', packUuid || packName, 'version:', packVersion);
+      packsJson.push({
+        pack_id: packUuid || packName,
+        version: packVersion
+      });
     }
 
     await fs.writeFile(jsonFile, JSON.stringify(packsJson, null, 2), 'utf-8');
     return { success: true };
   } catch (error) {
+    console.log('[ADDONS:TOGGLE] Erro:', error);
+    return { success: false, message: error.message };
+  }
+});
+
+// Handler para instalar addon/pack (agora extrai e valida)
+ipcMain.handle('addons:install', async (_event, type) => {
+  try {
+    const folder = type === 'behavior' ? 'behavior_packs' : 'resource_packs';
+    const packsPath = path.join(serverPath, folder);
+    await fs.mkdir(packsPath, { recursive: true }); // Garante que a pasta existe
+    const { canceled, filePaths } = await dialog.showOpenDialog(mainWindow, {
+      title: 'Instalar Addon/Pack',
+      properties: ['openFile'],
+      filters: [
+        { name: 'Addons/Packs', extensions: ['mcpack', 'mcaddon', 'zip'] }
+      ]
+    });
+    if (canceled || !filePaths || filePaths.length === 0) {
+      console.log('[ADDONS:INSTALL] Instalação cancelada');
+      return { success: false, message: 'Instalação cancelada' };
+    }
+    const src = filePaths[0];
+    let manifest = null;
+    try {
+      const zip = new AdmZip(src);
+      // Procura manifest.json em qualquer subpasta
+      let manifestEntry = zip.getEntry('manifest.json');
+      if (!manifestEntry) {
+        const candidates = zip.getEntries().filter(e => e.entryName.toLowerCase().endsWith('manifest.json'));
+        if (candidates.length > 0) manifestEntry = candidates[0];
+      }
+      if (!manifestEntry) {
+        console.log('[ADDONS:INSTALL] manifest.json não encontrado no addon');
+        return { success: false, message: 'manifest.json não encontrado no addon.' };
+      }
+      manifest = JSON.parse(zip.readAsText(manifestEntry));
+      console.log('[ADDONS:INSTALL] Manifest extraído:', manifest);
+      if (!manifest.header || !manifest.header.uuid || !manifest.header.name) {
+        console.log('[ADDONS:INSTALL] manifest.json inválido:', manifest);
+        return { success: false, message: 'manifest.json inválido (uuid ou name não encontrado).' };
+      }
+      // Usa o nome do manifest como nome da pasta (sanitize para evitar problemas)
+      let folderName = manifest.header.name.replace(/[<>:"/\\|?*\x00-\x1F]/g, '').trim();
+      if (!folderName) folderName = manifest.header.uuid;
+      const destFolder = path.join(packsPath, folderName);
+      // Se já existe, remove para evitar conflitos
+      if (fsExtra.existsSync(destFolder)) {
+        console.log('[ADDONS:INSTALL] Removendo pasta existente:', destFolder);
+        await fs.rm(destFolder, { recursive: true, force: true });
+      }
+      console.log('[ADDONS:INSTALL] Extraindo para:', destFolder);
+      zip.extractAllTo(destFolder, true);
+      try { await fs.unlink(src); } catch {}
+      return { success: true, message: 'Addon/Pack instalado com sucesso' };
+    } catch (e) {
+      console.log('[ADDONS:INSTALL] Falha ao extrair ou ler manifest.json:', e);
+      return { success: false, message: 'Falha ao extrair ou ler manifest.json: ' + e.message };
+    }
+  } catch (error) {
+    console.log('[ADDONS:INSTALL] Erro:', error);
     return { success: false, message: error.message };
   }
 });
@@ -684,72 +764,120 @@ ipcMain.handle('addons:list', async (_event, type) => {
 
     // Nomes padrão a serem ignorados
     const IGNORE_BEHAVIOR = [
-      'vanilla', 'vanilla_behavior_packs', 'chemistry', 'education', 'sample_behavior_pack',
-      'experimental', 'persona', 'persona_behavior', 'persona_content', 'persona_emotes',
-      'persona_packs', 'persona_textures', 'persona_themes', 'persona_ui', 'persona_ui_textures',
-      'persona_ui_themes', 'persona_ui_fonts', 'persona_ui_icons', 'persona_ui_sounds'
+      'chemistry',
+      'chemistry_1.20.50',
+      'chemistry_1.20.60',
+      'chemistry_1.21.0',
+      'chemistry_1.21.10',
+      'chemistry_1.21.20',
+      'chemistry_1.21.30',
+      'editor',
+      'experimental_creator_cameras',
+      'experimental_jigsaw_structures',
+      'experimental_villager_trade',
+      'server_editor_library',
+      'vanilla',
+      'vanilla_1.14',
+      'vanilla_1.15',
+      'vanilla_1.16',
+      'vanilla_1.16.100',
+      'vanilla_1.16.200',
+      'vanilla_1.16.210',
+      'vanilla_1.16.220',
+      'vanilla_1.17.0',
+      'vanilla_1.17.10',
+      'vanilla_1.17.20',
+      'vanilla_1.17.30',
+      'vanilla_1.17.40',
+      'vanilla_1.18.0',
+      'vanilla_1.18.10',
+      'vanilla_1.18.20',
+      'vanilla_1.18.30',
+      'vanilla_1.19.0',
+      'vanilla_1.19.10',
+      'vanilla_1.19.20',
+      'vanilla_1.19.30',
+      'vanilla_1.19.40',
+      'vanilla_1.19.50',
+      'vanilla_1.19.60',
+      'vanilla_1.19.70',
+      'vanilla_1.19.80',
+      'vanilla_1.20.0',
+      'vanilla_1.20.10',
+      'vanilla_1.20.20',
+      'vanilla_1.20.30',
+      'vanilla_1.20.40',
+      'vanilla_1.20.50',
+      'vanilla_1.20.60',
+      'vanilla_1.20.70',
+      'vanilla_1.20.80',
+      'vanilla_1.21.0',
+      'vanilla_1.21.10',
+      'vanilla_1.21.20',
+      'vanilla_1.21.30',
+      'vanilla_1.21.40',
+      'vanilla_1.21.50',
+      'vanilla_1.21.60',
+      'vanilla_1.21.70',
+      'vanilla_1.21.80',
+      'vanilla_1.21.90',
+      'vanilla_1.21.92'
     ];
+
     const IGNORE_RESOURCE = [
-      'vanilla', 'vanilla_resource_packs', 'chemistry', 'education', 'sample_resource_pack',
-      'persona', 'persona_content', 'persona_emotes', 'persona_packs', 'persona_texturas',
-      'persona_themes', 'persona_ui', 'persona_ui_texturas', 'persona_ui_themes',
-      'persona_ui_fonts', 'persona_ui_icons', 'persona_ui_sounds'
+      'chemistry',
+      'editor',
+      'vanilla'
     ];
+
     const ignoreList = type === 'behavior' ? IGNORE_BEHAVIOR : IGNORE_RESOURCE;
 
     const entries = await fs.readdir(packsPath, { withFileTypes: true });
     const packs = [];
     for (const entry of entries) {
-      // Ignora pastas/arquivos padrão
+      // Só considera pastas (cada addon extraído é uma pasta com uuid)
+      if (!entry.isDirectory()) continue;
+      // Ignora nomes padrão
       if (ignoreList.includes(entry.name)) continue;
-      if (entry.isDirectory() || entry.name.endsWith('.mcpack') || entry.name.endsWith('.mcaddon') || entry.name.endsWith('.zip')) {
-        const packPath = path.join(packsPath, entry.name);
-        let stats;
-        try {
-          stats = await fs.stat(packPath);
-        } catch {
-          continue;
-        }
-        packs.push({
-          id: entry.name,
-          name: entry.name,
-          version: '', // Opcional: parsear de manifest.json se desejar
-          description: '',
-          author: '',
-          size: formatBytes(stats.size),
-          enabled: true // Opcional: implemente lógica real se desejar ativar/desativar
-        });
+      const packPath = path.join(packsPath, entry.name);
+      let stats;
+      try {
+        stats = await fs.stat(packPath);
+      } catch {
+        continue;
       }
+      // Lê manifest.json para pegar nome, versão, descrição, autor
+      let manifest = null;
+      let name = entry.name, version = '', description = '', author = '';
+      try {
+        const manifestPath = path.join(packPath, 'manifest.json');
+        if (fsExtra.existsSync(manifestPath)) {
+          manifest = JSON.parse(fsExtra.readFileSync(manifestPath, 'utf-8'));
+          name = manifest.header?.name || entry.name;
+          version = manifest.header?.version?.join('.') || '';
+          description = manifest.header?.description || '';
+          author = (manifest.metadata?.authors && manifest.metadata.authors.join(', ')) || '';
+          console.log('[ADDONS:LIST] manifest:', manifestPath, 'name:', name, 'version:', version);
+        } else {
+          console.log('[ADDONS:LIST] manifest.json não encontrado em', manifestPath);
+        }
+      } catch (err) {
+        console.log('[ADDONS:LIST] Erro ao ler manifest:', err);
+      }
+      packs.push({
+        id: entry.name,
+        name,
+        version,
+        description,
+        author,
+        size: formatBytes(stats.size),
+        enabled: true // Opcional: implemente lógica real se desejar ativar/desativar
+      });
     }
     return packs;
   } catch (error) {
-    console.error('[Addons] Erro ao listar addons:', error);
+    console.log('[ADDONS:LIST] Erro:', error);
     return [];
-  }
-});
-
-// Handler para instalar addon/pack (mock simples)
-ipcMain.handle('addons:install', async (_event, type) => {
-  try {
-    const folder = type === 'behavior' ? 'behavior_packs' : 'resource_packs';
-    const packsPath = path.join(process.cwd(), 'server-files', folder);
-    await fs.mkdir(packsPath, { recursive: true }); // Garante que a pasta existe
-    const { canceled, filePaths } = await dialog.showOpenDialog(mainWindow, {
-      title: 'Instalar Addon/Pack',
-      properties: ['openFile'],
-      filters: [
-        { name: 'Addons/Packs', extensions: ['mcpack', 'mcaddon', 'zip'] }
-      ]
-    });
-    if (canceled || !filePaths || filePaths.length === 0) {
-      return { success: false, message: 'Instalação cancelada' };
-    }
-    const src = filePaths[0];
-    const dest = path.join(packsPath, path.basename(src));
-    await fs.copyFile(src, dest);
-    return { success: true, message: 'Addon/Pack instalado com sucesso' };
-  } catch (error) {
-    return { success: false, message: error.message };
   }
 });
 
@@ -929,6 +1057,45 @@ ipcMain.handle('worlds:save-config', async (_event, worldName, config) => {
     return { success: true };
   } catch (error) {
     console.error('[Worlds] Erro ao salvar config do mundo:', error);
+    return { success: false, message: error.message };
+  }
+});
+
+// Handler para listar jogadores online
+ipcMain.handle('players:list', async () => {
+  return connectedPlayers.filter(p => p.status === 'online');
+});
+
+// Handler para dar OP a um jogador
+ipcMain.handle('players:op', async (_event, playerName) => {
+  try {
+    const opsPath = path.join(serverPath, 'ops.txt');
+    let ops = '';
+    try {
+      ops = await fs.readFile(opsPath, 'utf-8');
+    } catch { ops = ''; }
+    if (!ops.split('\n').map(l => l.trim()).includes(playerName)) {
+      ops += (ops.endsWith('\n') ? '' : '\n') + playerName + '\n';
+      await fs.writeFile(opsPath, ops, 'utf-8');
+    }
+    return { success: true };
+  } catch (error) {
+    return { success: false, message: error.message };
+  }
+});
+
+// Handler para remover OP de um jogador
+ipcMain.handle('players:deop', async (_event, playerName) => {
+  try {
+    const opsPath = path.join(serverPath, 'ops.txt');
+    let ops = '';
+    try {
+      ops = await fs.readFile(opsPath, 'utf-8');
+    } catch { ops = ''; }
+    const newOps = ops.split('\n').filter(l => l.trim() && l.trim() !== playerName).join('\n') + '\n';
+    await fs.writeFile(opsPath, newOps, 'utf-8');
+    return { success: true };
+  } catch (error) {
     return { success: false, message: error.message };
   }
 });

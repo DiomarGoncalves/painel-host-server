@@ -1,0 +1,25 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "ae2be:storage_housing"
+        },
+        "tags": ["crafting_table"],
+        "pattern": ["QRQ", "R R", "III"],
+        "key": {
+            "Q": {
+                "item": "ae2be:quartz_glass"
+            },
+            "R": {
+                "item": "minecraft:redstone"
+            },
+            "I": {
+                "item": "minecraft:iron_ingot"
+            }
+        },
+        "result": {
+            "item": "ae2be:storage_housing",
+            "count": 1
+        }
+    }
+}

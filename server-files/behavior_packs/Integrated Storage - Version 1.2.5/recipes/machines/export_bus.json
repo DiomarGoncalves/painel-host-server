@@ -1,0 +1,25 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "ae2be:export_bus"
+        },
+        "tags": ["crafting_table"],
+        "pattern": ["IFI", " P "],
+        "key": {
+            "I": {
+                "item": "minecraft:iron_ingot"
+            },
+            "P": {
+                "item": "minecraft:sticky_piston"
+            },
+            "F": {
+                "item": "ae2be:formation_core"
+            }
+        },
+        "result": {
+            "item": "ae2be:export_bus",
+            "count": 1
+        }
+    }
+}

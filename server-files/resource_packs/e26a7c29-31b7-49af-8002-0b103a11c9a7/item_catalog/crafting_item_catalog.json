@@ -1,0 +1,132 @@
+{
+    "format_version": "1.21.60",
+    "minecraft:crafting_items_catalog": {
+        "categories": [
+            {
+                "category_name": "construction",
+                "groups": [
+                    {
+                        "group_identifier": {
+                            "icon": "ae2be:disk_drive",
+                            "name": "ae2be:itemGroup.name.machines"
+                        },
+                        "items": [
+                            "ae2be:disk_drive",
+                            "ae2be:terminal",
+                            "ae2be:wireless_access_point",
+                            "ae2be:charger",
+                            "ae2be:inscriber",
+                            "ae2be:interface",
+                            "ae2be:bright_illuminated_panel",
+                            "ae2be:dark_illuminated_panel",
+                            "ae2be:illuminated_panel",
+                            "ae2be:network_cable",
+                            "ae2be:quartz_grindstone"
+                        ]
+                    },
+                    {
+                        "group_identifier": {
+                            "icon": "ae2be:import_bus",
+                            "name": "ae2be:itemGroup.name.experimental"
+                        },
+                        "items": [
+                            "ae2be:energy_acceptor",
+                            "ae2be:export_bus",
+                            "ae2be:import_bus",
+                            "ae2be:pattern_terminal",
+                            "ae2be:request_terminal",
+                            "ae2be:1k_crafting_cpu"
+                        ]
+                    },
+                    {
+                        "group_identifier": {
+                            "icon": "ae2be:sky_stone",
+                            "name": "ae2be:itemGroup.name.blocks"
+                        },
+                        "items": [
+                            "ae2be:sky_stone",
+                            "ae2be:quartz_glass",
+                            "ae2be:certus_quartz_ore",
+                            "ae2be:charged_certus_quartz_ore"
+                        ]
+                    }
+                ]
+            },
+            {
+                "category_name": "items",
+                "groups": [
+                    {
+                        "group_identifier": {
+                            "icon": "ae2be:certus_quartz_crystal",
+                            "name": "ae2be:itemGroup.name.ingredients"
+                        },
+                        "items": [
+                            "ae2be:certus_quartz_crystal",
+                            "ae2be:charged_certus_quartz_crystal",
+                            "ae2be:fluix_crystal",
+
+                            "ae2be:annihilation_core",
+                            "ae2be:formation_core",
+                            "ae2be:calculation_processor",
+                            "ae2be:engineering_processor",
+                            "ae2be:logic_processor",
+
+                            "ae2be:calculation_processor_print",
+                            "ae2be:engineering_processor_print",
+                            "ae2be:logic_processor_print",
+                            "ae2be:silicon_print",
+
+                            "ae2be:silicon",
+                            "ae2be:wooden_gear",
+
+                            "ae2be:certus_quartz_dust",
+                            "ae2be:ender_dust",
+                            "ae2be:fluix_dust",
+                            "ae2be:gold_dust",
+                            "ae2be:iron_dust",
+                            "ae2be:nether_quartz_dust",
+                            "ae2be:sky_stone_dust",
+                            "ae2be:quartz_fiber",
+                            "ae2be:fluix_pearl",
+                            "ae2be:wireless_receiver"
+                        ]
+                    },
+                    {
+                        "group_identifier": {
+                            "icon": "ae2be:1k_storage_cell",
+                            "name": "ae2be:itemGroup.name.cells"
+                        },
+                        "items": [
+                            "ae2be:1k_storage_cell",
+                            "ae2be:1k_storage_part",
+                            "ae2be:4k_storage_cell",
+                            "ae2be:4k_storage_part",
+                            "ae2be:16k_storage_cell",
+                            "ae2be:16k_storage_part",
+                            "ae2be:32k_storage_cell",
+                            "ae2be:32k_storage_part",
+                            "ae2be:storage_housing"
+                        ]
+                    },
+                    {
+                        "group_identifier": {
+                            "icon": "ae2be:blank_pattern",
+                            "name": "ae2be:itemGroup.name.misc"
+                        },
+                        "items": [
+                            "ae2be:blank_pattern",
+                            "ae2be:encoded_pattern",
+                            "ae2be:calculation_processor_press",
+                            "ae2be:engineering_processor_press",
+                            "ae2be:logic_processor_press",
+                            "ae2be:silicon_press",
+                            "ae2be:wireless_booster_card",
+                            "ae2be:infinite_wireless_booster_card",
+                            "ae2be:wireless_terminal"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

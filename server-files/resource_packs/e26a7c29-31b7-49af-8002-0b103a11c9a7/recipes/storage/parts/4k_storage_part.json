@@ -1,0 +1,28 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "ae2be:4k_storage_part"
+        },
+        "tags": ["crafting_table"],
+        "pattern": ["RCR", "KGK", "RKR"],
+        "key": {
+            "R": {
+                "item": "minecraft:redstone"
+            },
+            "G": {
+                "item": "ae2be:quartz_glass"
+            },
+            "K": {
+                "item": "ae2be:1k_storage_part"
+            },
+            "C": {
+                "item": "ae2be:calculation_processor"
+            }
+        },
+        "result": {
+            "item": "ae2be:4k_storage_part",
+            "count": 1
+        }
+    }
+}

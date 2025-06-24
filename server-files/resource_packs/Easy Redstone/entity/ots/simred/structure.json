@@ -1,0 +1,53 @@
+{
+	"format_version": "1.20.50",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "ots_simred:structure",
+			"geometry": {
+				"default": "geometry.ots_simred.drafting_table.geo",
+				"outline": "geometry.ots_simred.drafting_table_outline.geo"
+			},
+			"textures": {
+				"default": "textures/ots/simred/entity/drafting_table",
+				"outline": "textures/ots/simred/entity/outline"
+			},
+			"materials": {
+				"default": "entity_alphatest",
+				"outline": "ots_simred.outline",
+				"redstone": "entity_emissive",
+				"light_outline": "ots_simred.light_outline",
+				"light": "ots_simred.light"
+			},
+			"render_controllers": [
+				"controller.render.ots_simred.structure",
+				"controller.render.ots_simred.outline"
+			],
+			"animations": {
+				"angle": "animation.ots_simred.assets.angle",
+				"idle": "animation.ots_simred.structure.idle",
+				"switch.on": "animation.ots_simred.structure.switch.on",
+				"switch.off": "animation.ots_simred.structure.switch.off",
+				"ac": "controller.animation.ots_simred.structure"
+			},
+			"scripts": {
+				"pre_animation": [
+					"v.rotation_to_camera_0 = -Math.atan2(-q.distance_from_camera * Math.sin(q.rotation_to_camera(0)) - 0.625, q.distance_from_camera * Math.cos(q.rotation_to_camera(0)));",
+					"v.look_at_entity = Math.abs(Math.abs(q.rotation_to_camera(1) - q.camera_rotation(1)) - 180) < (40 / q.distance_from_camera) && Math.abs(v.rotation_to_camera_0 + q.camera_rotation(0)) < (52.5 / q.distance_from_camera);"
+				],
+				"animate": [
+					"angle",
+					"idle",
+					"ac"
+				]
+			},
+			"particle_effects": {
+				"str_main_glow": "ots_simred:str_main_glow",
+				"str_main_dot": "ots_simred:str_main_dot"
+			},
+			"sound_effects": {
+				"open": "ots_simred:drafting_table_on",
+				"close": "ots_simred:drafting_table_off"
+			}
+		}
+	}
+}

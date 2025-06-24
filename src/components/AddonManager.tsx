@@ -37,33 +37,32 @@ const AddonManager: React.FC = () => {
   const [activeBehaviorIds, setActiveBehaviorIds] = useState<string[]>([]);
   const [activeResourceIds, setActiveResourceIds] = useState<string[]>([]);
 
+  // Atualiza packs ativos sempre que selectedWorld ou packs mudam
   useEffect(() => {
     if (!api || !selectedWorld) return;
-    api.worlds.getConfig(selectedWorld).then(worldConfig => {
-      setActiveBehaviorIds(
-        (worldConfig?.behaviorPacks || worldConfig?.world_behavior_packs || []).map((p: any) => p.pack_id || p.id || p.name)
-      );
-      setActiveResourceIds(
-        (worldConfig?.resourcePacks || worldConfig?.world_resource_packs || []).map((p: any) => p.pack_id || p.id || p.name)
-      );
-    });
-  }, [api, selectedWorld]);
+    const updateActive = async () => {
+      const worldConfig = await api.worlds.getConfig(selectedWorld);
+      // O JSON pode ser world_behavior_packs.json/world_resource_packs.json ou behaviorPacks/resourcePacks
+      const behavior = (worldConfig?.world_behavior_packs || worldConfig?.behaviorPacks || []);
+      const resource = (worldConfig?.world_resource_packs || worldConfig?.resourcePacks || []);
+      setActiveBehaviorIds(behavior.map((p: any) => p.pack_id || p.id || p.name));
+      setActiveResourceIds(resource.map((p: any) => p.pack_id || p.id || p.name));
+    };
+    updateActive();
+  }, [api, selectedWorld, behaviorPacks, resourcePacks]);
 
   // Função para ativar/desativar pack para o mundo selecionado
   const toggleAddon = async (id: string) => {
     if (!api || !selectedWorld) return;
     const enabled = getCurrentActiveIds().includes(id);
-    // PASSE selectedWorld como quarto argumento:
+    // Aguarda a promise para garantir atualização correta
     await api.addons.toggle(activeTab, id, !enabled, selectedWorld);
-    // Atualiza estado local após alteração
-    api.worlds.getConfig(selectedWorld).then(worldConfig => {
-      setActiveBehaviorIds(
-        (worldConfig?.behaviorPacks || worldConfig?.world_behavior_packs || []).map((p: any) => p.pack_id || p.id || p.name)
-      );
-      setActiveResourceIds(
-        (worldConfig?.resourcePacks || worldConfig?.world_resource_packs || []).map((p: any) => p.pack_id || p.id || p.name)
-      );
-    });
+    // Atualiza packs ativos após alteração
+    const worldConfig = await api.worlds.getConfig(selectedWorld);
+    const behavior = (worldConfig?.world_behavior_packs || worldConfig?.behaviorPacks || []);
+    const resource = (worldConfig?.world_resource_packs || worldConfig?.resourcePacks || []);
+    setActiveBehaviorIds(behavior.map((p: any) => p.pack_id || p.id || p.name));
+    setActiveResourceIds(resource.map((p: any) => p.pack_id || p.id || p.name));
     // Só mostra aviso se o servidor estiver online
     if (api.server && api.server.getStatus) {
       const status = await api.server.getStatus();
@@ -391,7 +390,7 @@ const AddonManager: React.FC = () => {
                   onChange={e => setUploadType(e.target.value as 'behavior' | 'resource')}
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
                 >
-                  <option value="behavior">Addon (Behavior Pack)</option>
+                  <option value="behavior">Behavior Pack</option>
                   <option value="resource">Resource Pack</option>
                 </select>
               </div>
@@ -399,7 +398,7 @@ const AddonManager: React.FC = () => {
               <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center">
                 <Package className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400 mb-2">
-                  Clique em "Instalar" e selecione o arquivo .mcpack, .mcaddon ou .zip
+                  Clique em "Instalar" e selecione o arquivo .mcpack
                 </p>
                 <p className="text-sm text-gray-500 dark:text-gray-500">
                   O arquivo será copiado para a pasta correta do servidor.

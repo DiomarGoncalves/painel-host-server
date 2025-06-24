@@ -1,0 +1,14 @@
+{
+    "format_version": "1.20.80",
+    "minecraft:item": {
+        "description": {
+            "identifier": "ae2be:fluix_pearl",
+            "menu_category": {
+                "category": "items"
+            }
+        },
+        "components": {
+            "minecraft:icon": "ae2be_fluix_pearl"
+        }
+    }
+}

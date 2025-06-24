@@ -1,0 +1,14 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:recipe_shapeless": {
+        "description": {
+            "identifier": "ae2be:illuminated_panel_convert"
+        },
+        "tags": ["crafting_table"],
+        "ingredients": ["ae2be:dark_illuminated_panel"],
+        "result": {
+            "item": "ae2be:illuminated_panel",
+            "count": 1
+        }
+    }
+}

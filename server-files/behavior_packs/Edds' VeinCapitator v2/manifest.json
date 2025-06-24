@@ -1,0 +1,68 @@
+{
+	"format_version": 2,
+	"metadata": {
+		"authors": [
+			"Alien Edds Gaming"
+		]
+	},
+	"header": {
+		"name": "Edds' VeinCapitator v2",
+		"description": "Adds simple vein miner and tree capitator.",
+		"min_engine_version": [
+			1,
+			21,
+			0
+		],
+		"uuid": "e8dfb03f-4e3b-4e67-b2d3-c90168740f0a",
+		"version": [
+			2,
+			0,
+			0
+		]
+	},
+	"modules": [
+		{
+			"type": "data",
+			"uuid": "3543f4b1-a4ce-4f8e-91a6-72927dfa6d0c",
+			"version": [
+				2,
+				0,
+				0
+			]
+		},
+		{
+			"type": "script",
+			"language": "javascript",
+			"uuid": "4847044a-7282-4528-9560-cbfb90f5f9e8",
+			"entry": "scripts/main.js",
+			"version": [
+				2,
+				0,
+				0
+			]
+		}
+	],
+	"dependencies": [
+		{
+			"module_name": "@minecraft/server",
+			"version": "1.11.0"
+		}
+	],
+	"subpacks": [
+		{
+			"folder_name": "veinminer",
+			"memory_tier": 0,
+			"name": "§cVein Miner"
+		},
+		{
+			"folder_name": "treecapitator",
+			"memory_tier": 1,
+			"name": "§aTree Capitator"
+		},
+		{
+			"folder_name": "veincapitator",
+			"memory_tier": 2,
+			"name": "§cVein Miner §f& §aTree Capitator"
+		}
+	]
+}

@@ -1,0 +1,78 @@
+{
+    "pools": [
+        {
+            "rolls": 2,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "ae2be:calculation_processor_press"
+                },
+                {
+                    "type": "item",
+                    "name": "ae2be:engineering_processor_press"
+                },
+                {
+                    "type": "item",
+                    "name": "ae2be:logic_processor_press"
+                },
+                {
+                    "type": "item",
+                    "name": "ae2be:silicon_press"
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:iron_nugget",
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 9
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "rolls": 3,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:iron_ingot",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:gold_ingot",
+                    "weight": 5
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:bread",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:apple",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:iron_sword",
+                    "weight": 3
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:bone",
+                    "weight": 12
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:bucket",
+                    "weight": 6
+                }
+            ]
+        }
+    ]
+}

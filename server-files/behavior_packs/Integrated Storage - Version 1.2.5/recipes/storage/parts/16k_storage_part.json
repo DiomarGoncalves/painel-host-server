@@ -1,0 +1,28 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "ae2be:16k_storage_part"
+        },
+        "tags": ["crafting_table"],
+        "pattern": ["GCG", "KgK", "GKG"],
+        "key": {
+            "G": {
+                "item": "minecraft:glowstone_dust"
+            },
+            "g": {
+                "item": "ae2be:quartz_glass"
+            },
+            "K": {
+                "item": "ae2be:4k_storage_part"
+            },
+            "C": {
+                "item": "ae2be:calculation_processor"
+            }
+        },
+        "result": {
+            "item": "ae2be:16k_storage_part",
+            "count": 1
+        }
+    }
+}

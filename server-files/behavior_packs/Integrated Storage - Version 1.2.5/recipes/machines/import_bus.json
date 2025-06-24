@@ -1,0 +1,25 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "ae2be:import_bus"
+        },
+        "tags": ["crafting_table"],
+        "pattern": [" A ", "IPI"],
+        "key": {
+            "I": {
+                "item": "minecraft:iron_ingot"
+            },
+            "P": {
+                "item": "minecraft:sticky_piston"
+            },
+            "A": {
+                "item": "ae2be:annihilation_core"
+            }
+        },
+        "result": {
+            "item": "ae2be:import_bus",
+            "count": 1
+        }
+    }
+}

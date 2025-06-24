@@ -75,7 +75,9 @@ const Dashboard: React.FC<DashboardProps> = ({ serverStatus, playitStatus }) => 
     },
     {
       title: 'Uso de Memória',
-      value: serverStatus === 'online' ? `${stats.memory} GB` : '0 GB',
+      value: serverStatus === 'online'
+        ? `${(Number(stats.memory) / 1024).toFixed(2)} GB`
+        : '0 GB',
       icon: HardDrive,
       color: 'bg-green-500',
       change: serverStatus === 'online' ? '' : 'Servidor offline'

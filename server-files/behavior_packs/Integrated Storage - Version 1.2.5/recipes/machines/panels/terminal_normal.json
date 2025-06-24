@@ -1,0 +1,19 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:recipe_shapeless": {
+        "description": {
+            "identifier": "ae2be:terminal_normal"
+        },
+        "tags": ["crafting_table"],
+        "ingredients": [
+            "ae2be:annihilation_core",
+            "ae2be:formation_core",
+            "ae2be:illuminated_panel",
+            "ae2be:logic_processor"
+        ],
+        "result": {
+            "item": "ae2be:terminal",
+            "count": 1
+        }
+    }
+}
