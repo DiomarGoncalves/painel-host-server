@@ -1,0 +1,59 @@
+// CODENAME: REVOLUTION, BY @LUKASPAH (https://twitter.com/LukasPAH) //
+
+{
+  "format_version": 2,
+  "header": {
+    "description": "by LukasPAH",
+    "name": "Java Debug Screen for Bedrock [R]",
+    "uuid": "ce4187a4-7d7f-4ae1-aba1-e9dcaeab9ba5",
+    "version": [ 2, 0, 1 ],
+    "pack_scope": "world",
+    "min_engine_version": [ 1, 16, 100 ]
+  },
+  "modules": [
+    {
+      "description": "by LukasPAH",
+      "type": "resources",
+      "uuid": "5358e40b-bbcf-4074-92d4-0647ea67d80f",
+      "version": [ 2, 0, 1 ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "e5b61a0f-ffce-4fe0-adcf-4caa725cc34b",
+      "version": [ 2, 0, 1 ]
+    }
+  ],
+  "subpacks": [
+    {
+      "folder_name": "512",
+			"name": "Use this option with 512x512 texture packs",
+			"memory_tier": 0
+    },
+    {
+      "folder_name": "256",
+			"name": "Use this option with 256x256 texture packs",
+			"memory_tier": 0
+    },
+    {
+      "folder_name": "128",
+			"name": "Use this option with 128x128 texture packs",
+			"memory_tier": 0
+    },
+    {
+      "folder_name": "64",
+			"name": "Use this option with 64x64 texture packs",
+			"memory_tier": 0
+    },
+    {
+      "folder_name": "32",
+			"name": "Use this option with 32x32 texture packs",
+			"memory_tier": 0
+    },
+    {
+      "folder_name": "16",
+			"name": "Use this option with 16x16 texture packs",
+			"memory_tier": 0
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+// CODENAME: REVOLUTION, BY @LUKASPAH (https://twitter.com/LukasPAH) //
+
+{
+  "inverse_option_toggle_control@settings_common.option_toggle_control": {
+    "$unchecked_control": "settings_common.option_toggle_on",
+    "$checked_control": "settings_common.option_toggle_off",
+    "$unchecked_hover_control": "settings_common.option_toggle_on_hover",
+    "$checked_hover_control": "settings_common.option_toggle_off_hover",
+    "$unchecked_locked_control": "settings_common.option_toggle_on_locked",
+    "$unchecked_locked_hover_control": "settings_common.option_toggle_on_locked",
+    "$checked_locked_control": "settings_common.option_toggle_off_locked",
+    "$checked_locked_hover_control": "settings_common.option_toggle_off_locked"
+  },
+
+  "inverse_option_toggle@settings_common.option_toggle": {
+    "$control_name": "settings_common.inverse_option_toggle_control"
+  }
+}

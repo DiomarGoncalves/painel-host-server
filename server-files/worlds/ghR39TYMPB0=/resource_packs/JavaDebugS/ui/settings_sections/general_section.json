@@ -1,0 +1,17 @@
+// CODENAME: REVOLUTION, BY @LUKASPAH (https://twitter.com/LukasPAH) //
+
+{
+  "video_section/hide_paperdoll_toggle": {
+    "alpha": 0,
+    "controls": [
+      {
+        "actual_toggle@settings_common.inverse_option_toggle": {
+          "$option_label": "options.hidepaperdoll",
+          "$option_binding_name": "#hide_paperdoll",
+          "$option_enabled_binding_name": "#hide_paperdoll_enabled",
+          "$toggle_name": "hide_paperdoll"
+        }
+      }
+    ]
+  }
+}

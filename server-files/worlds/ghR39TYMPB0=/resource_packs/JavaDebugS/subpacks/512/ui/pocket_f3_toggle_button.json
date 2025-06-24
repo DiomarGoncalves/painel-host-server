@@ -1,0 +1,153 @@
+{
+  "namespace": "pocket_f3_toggle_button",
+
+  "f3_touch_image": {
+    "type": "panel",
+    "size": [ 18, 18 ],
+    "controls": [
+      {
+        "f3_touch_image_left@pocket_f3_toggle_button.f3_touch_image_left": {}
+      },
+      {
+        "f3_touch_image_top@pocket_f3_toggle_button.f3_touch_image_top": {}
+      },
+      {
+        "f3_touch_image_right@pocket_f3_toggle_button.f3_touch_image_right": {}
+      },
+      {
+        "f3_touch_image_bottom@pocket_f3_toggle_button.f3_touch_image_bottom": {}
+      },
+      {
+        "f3_image_bg_color1@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 2, 0]
+        }
+      },
+      {
+        "f3_image_bg_color2@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 3, 0]
+        }
+      },
+      {
+        "f3_image_bg_color3@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 4, 0]
+        }
+      },
+      {
+        "f3_image_bg_color4@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 5, 0]
+        }
+      },
+      {
+        "f3_image_bg_color5@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 6, 0]
+        }
+      },
+      {
+        "f3_image_bg_color5.5@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 6.5, 0]
+        }
+      },
+      {
+        "f3_image_bg_color6@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 7, 0]
+        }
+      },
+      {
+        "f3_image_bg_color7@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 8, 0]
+        }
+      },
+      {
+        "f3_image_bg_color8@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 9, 0]
+        }
+      },
+      {
+        "f3_image_bg_color9@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 10, 0]
+        }
+      },
+      {
+        "f3_image_bg_color10@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 11, 0]
+        }
+      },
+      {
+        "f3_image_bg_color11@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 12, 0]
+        }
+      },
+      {
+        "f3_image_bg_color12@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 13, 0]
+        }
+      },
+      {
+        "f3_image_bg_color13@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 14, 0]
+        }
+      },
+      {
+        "f3_image_bg_color14@pocket_f3_toggle_button.f3_image_bg_color": {
+          "offset": [ 15, 0]
+        }
+      }
+    ]
+  },
+
+  "f3_image_bg_color": {
+    "type": "image",
+    "texture": "textures/gui/gui",
+    "uv": [ 6496, 2112 ],
+    "uv_size": [ 32, 448 ],
+    "size": [ 1, 14 ],
+    "layer": 300,
+    "anchor_from": "left_middle",
+    "anchor_to": "left_middle"
+  },
+
+  "f3_touch_image_left": {
+    "type": "image",
+    "texture": "textures/gui/gui",
+    "uv": [ 6400, 2048 ],
+    "uv_size": [ 64, 512 ],
+    "size": [ 2, 16 ],
+    "layer": 300,
+    "anchor_from": "top_left",
+    "anchor_to": "top_left"
+  },
+
+  "f3_touch_image_top": {
+    "type": "image",
+    "texture": "textures/gui/gui",
+    "uv": [ 6464, 2048 ],
+    "uv_size": [ 512, 64 ],
+    "size": [ 16, 2 ],
+    "layer": 300,
+    "anchor_from": "top_right",
+    "anchor_to": "top_right"
+  },
+
+  "f3_touch_image_right": {
+    "type": "image",
+    "texture": "textures/gui/gui",
+    "uv": [ 6912, 2112 ],
+    "uv_size": [ 64, 512 ],
+    "size": [ 2, 16 ],
+    "layer": 300,
+    "anchor_from": "bottom_right",
+    "anchor_to": "bottom_right"
+  },
+
+  "f3_touch_image_bottom": {
+    "type": "image",
+    "texture": "textures/gui/gui",
+    "uv": [ 6400, 2560 ],
+    "offset": [ 0.05, 0 ],
+    "uv_size": [ 512, 64 ],
+    "size": [ 16, 2 ],
+    "layer": 300,
+    "anchor_from": "bottom_left",
+    "anchor_to": "bottom_left"
+  }
+}

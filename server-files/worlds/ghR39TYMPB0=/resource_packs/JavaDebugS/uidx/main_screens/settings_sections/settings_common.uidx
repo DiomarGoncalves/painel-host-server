@@ -1,0 +1,46 @@
+// CODENAME: REVOLUTION, BY @LUKASPAH (https://twitter.com/LukasPAH) //
+// UIDX FILES MODIFIED WITH PERMISSION BY @CRISXOLT (https://twitter.com/CrisXolt) //
+
+{
+  "inverse_option_toggle_control_alt": {
+    "type": "panel",
+    "size": [ "100%", 20 ],
+    "controls": [
+      {
+        "button_label@common_buttons_dx.button_label": {
+          "offset": [ 1, -1 ],
+          "color": [ 1.0, 1.0, 1.0 ],
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "size": [ "100%-46px", "default" ],
+          "layer": 10,
+          "shadow": false,
+          "visible": "$show_option_label",
+          "text": "$option_label",
+          "bindings": "$label_bindings"
+        }
+      },
+      {
+        "option_toggle_control_alt@settings_common.option_toggle_control": {
+          "size": [ 44, 20 ],
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "$only_bindings": true,
+          "$unchecked_control": "settings_common_dx.checked_control",
+          "$checked_control": "common_buttons_dx.default",
+          "$unchecked_hover_control": "settings_common_dx.checked_control_hover",
+          "$checked_hover_control": "common_buttons_dx.hover",
+          "$unchecked_locked_control": "settings_common_dx.checked_control_locked",
+          "$unchecked_locked_hover_control": "settings_common_dx.checked_control_locked_hover",
+          "$checked_locked_control": "common_buttons_dx.locked",
+          "$checked_locked_hover_control": "common_buttons_dx.locked_hover",
+          "$button_content": "common_buttons_dx.button_label_toggle"
+        }
+      }
+    ]
+  },
+
+  "inverse_option_toggle_alt@settings_common_dx.option_toggle_alt": {
+    "$control_name": "settings_common_dx.inverse_option_toggle_control_alt"
+  }
+}

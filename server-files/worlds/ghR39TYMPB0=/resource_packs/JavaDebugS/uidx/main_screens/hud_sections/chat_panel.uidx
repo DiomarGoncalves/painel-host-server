@@ -1,0 +1,20 @@
+// CODENAME: REVOLUTION, BY @LUKASPAH (https://twitter.com/LukasPAH) //
+// UIDX FILES MODIFIED WITH PERMISSION BY @CRISXOLT (https://twitter.com/CrisXolt) //
+
+{
+  "chat_stack_panel/pocket_padding_panel": {
+    "ignored": true
+  },
+
+  "chat_stack_panel/panel": {
+    "ignored": true
+  },
+
+  "chat_stack_panel/paper_doll_padding": {
+    "ignored": true
+  },
+
+  "chat_stack_panel/player_position": {
+    "ignored": true
+  }
+}

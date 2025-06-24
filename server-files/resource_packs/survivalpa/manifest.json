@@ -1,0 +1,20 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "Bedrock Tweaks §aResource Packs§r by §5DrAv0011§r",
+        "name": "survival pack",
+        "uuid": "733d4a92-ecd2-47ca-a465-ca1a62cde592",
+        "version": [1, 0, 0],
+        "min_engine_version": [1, 18, 0]
+    },
+    "modules": [
+        {
+            "type": "resources",
+            "uuid": "01430b33-6360-42fc-9dff-14397b5942ca",
+            "version": [1, 0, 0]
+        }
+    ],
+    "metadata":{
+        "authors":[ "Bedrock Tweaks", "DrAv0011" ]
+    }
+}
