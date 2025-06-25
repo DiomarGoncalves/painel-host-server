@@ -1,0 +1,28 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "ae2be:empty_card"
+        },
+        "tags": ["crafting_table"],
+        "pattern": ["DI ", "RCI", "DI"],
+        "key": {
+            "I": {
+                "item": "minecraft:iron_ingot"
+            },
+            "D": {
+                "item": "minecraft:diamond"
+            },
+            "R": {
+                "item": "minecraft:redstone"
+            },
+            "C": {
+                "item": "ae2be:calculation_processor"
+            }
+        },
+        "result": {
+            "item": "ae2be:empty_card",
+            "count": 2
+        }
+    }
+}

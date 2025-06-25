@@ -8,18 +8,10 @@ declare global {
         stop: () => Promise<{ success: boolean; message: string }>;
         restart: () => Promise<{ success: boolean; message: string }>;
         getStatus: () => Promise<string>;
+        executeCommand: (command: string) => Promise<{ success: boolean; message?: string }>;
         onStatusChanged: (callback: (event: any, status: string) => void) => void;
         onLog: (callback: (event: any, log: any) => void) => void;
-        getIp: () => Promise<string>;
-        onIpChanged: (callback: (event: any, ip: string) => void) => void;
-        getStats: () => Promise<{
-          playersOnline: number;
-          memory: string;
-          cpu: string;
-          uptime: number;
-        }>;
-        onStats: (callback: (event: any, stats: any) => void) => void;
-        onRecentPlayers: (callback: (event: any, players: any[]) => void) => void;
+        removeAllListeners: () => void;
       };
       config: {
         getServerProperties: () => Promise<Record<string, any>>;
@@ -31,14 +23,18 @@ declare global {
         saveConfig: (worldName: string, config: any) => Promise<{ success: boolean; message?: string }>;
         import: () => Promise<{ success: boolean; message: string }>;
         delete: (worldName: string) => Promise<{ success: boolean; message?: string }>;
-        download: (worldName: string) => Promise<{ success: boolean; message?: string }>;
-        setActive: (worldName: string) => Promise<{ success: boolean; message?: string }>; // NOVO
+        getAddons: (worldName: string) => Promise<{ behavior: any[]; resource: any[] }>;
+        installAddon: (worldName: string, type: string) => Promise<{ success: boolean; message: string }>;
+        toggleAddon: (worldName: string, type: string, addonId: string, enabled: boolean) => Promise<{ success: boolean; message?: string }>;
+        deleteAddon: (worldName: string, type: string, addonId: string) => Promise<{ success: boolean; message?: string }>;
       };
-      addons: {
-        list: (type: string) => Promise<any[]>;
-        install: (type: string) => Promise<{ success: boolean; message: string }>;
-        toggle: (type: string, addonId: string, enabled: boolean, worldName?: string) => Promise<{ success: boolean; message?: string }>;
-        delete: (type: string, addonId: string) => Promise<{ success: boolean; message?: string }>;
+      players: {
+        list: () => Promise<any[]>;
+        addToAllowlist: (playerName: string) => Promise<{ success: boolean; message?: string }>;
+        removeFromAllowlist: (playerName: string) => Promise<{ success: boolean; message?: string }>;
+      };
+      performance: {
+        getStats: () => Promise<any>;
       };
       playit: {
         start: () => Promise<{ success: boolean; message?: string }>;
@@ -46,18 +42,21 @@ declare global {
         getStatus: () => Promise<string>;
         onStatusChanged: (callback: (event: any, status: string) => void) => void;
         onLog: (callback: (event: any, log: string) => void) => void;
+        removeAllListeners: () => void;
       };
       backups: {
         list: () => Promise<any[]>;
         create: (name?: string) => Promise<{ success: boolean; message: string }>;
         restore: (backupId: string) => Promise<{ success: boolean; message: string }>;
         delete: (backupId: string) => Promise<{ success: boolean; message?: string }>;
-        download: (backupId: string) => Promise<{ success: boolean; message?: string }>;
       };
-      players: {
-        list: () => Promise<{ name: string, lastSeen: string, status: string }[]>;
-        op: (playerName: string) => Promise<{ success: boolean; message?: string }>;
-        deop: (playerName: string) => Promise<{ success: boolean; message?: string }>;
+      files: {
+        list: (path: string) => Promise<any[]>;
+        read: (filePath: string) => Promise<string>;
+        write: (filePath: string, content: string) => Promise<{ success: boolean; message?: string }>;
+        delete: (filePath: string) => Promise<{ success: boolean; message?: string }>;
+        createDirectory: (dirPath: string) => Promise<{ success: boolean; message?: string }>;
+        download: (filePath: string) => Promise<{ success: boolean; message?: string }>;
       };
     };
   }
@@ -65,24 +64,13 @@ declare global {
 
 export const useElectron = () => {
   const [isElectron, setIsElectron] = useState(false);
-  const [api, setApi] = useState<any>(null);
 
   useEffect(() => {
-    const check = () => {
-      const available = typeof window !== 'undefined' && !!window.electronAPI;
-      setIsElectron(available);
-      setApi(available ? window.electronAPI : null);
-    };
-    check();
-    // Tenta novamente caso o preload demore para expor a API
-    const interval = setInterval(check, 100);
-    // Para de tentar após 2 segundos
-    setTimeout(() => clearInterval(interval), 2000);
-    return () => clearInterval(interval);
+    setIsElectron(typeof window !== 'undefined' && !!window.electronAPI);
   }, []);
 
   return {
     isElectron,
-    api
+    api: isElectron ? window.electronAPI : null
   };
 };

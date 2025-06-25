@@ -1,0 +1,276 @@
+{
+    "format_version": "1.21.1",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "ots_simred:redstone_7",
+            "is_spawnable": false,
+            "is_summonable": true,
+            "is_experimental": false,
+            "properties": {
+                "ots_simred:structure.direction": {
+                    "type": "enum",
+                    "values": ["north", "south", "east", "west"],
+                    "default": "north",
+                    "client_sync": true
+                },
+                "ots_simred:structure.rotate": {
+                    "type": "int",
+                    "range": [0,3],
+                    "default": 0,
+                    "client_sync": true
+                },
+                "ots_simred:structure.height":{
+                    "type": "int",
+                    "range": [0,64],
+                    "default": 7,
+                    "client_sync": true
+                },
+                "ots_simred:structure.width":{
+                    "type": "int",
+                    "range": [0,50],
+                    "default": 18,
+                    "client_sync": true
+                },
+                "ots_simred:structure.display":{
+                    "type": "bool",
+                    "default": true,
+                    "client_sync": true
+                },
+                "ots_simred:structure.border":{
+                    "type": "bool",
+                    "default": true,
+                    "client_sync": true
+                },
+                "ots_simred:structure.border.red":{
+                    "type": "bool",
+                    "default": false,
+                    "client_sync": true
+                },
+                "ots_simred:structure.border.xray":{
+                    "type": "bool",
+                    "default": false,
+                    "client_sync": true
+                },
+                "ots_simred:structure.border.xyz":{
+                    "type": "int",
+                    "range": [0,1],
+                    "default": 0,
+                    "client_sync": true
+                },
+                "ots_simred:structure.material.display":{
+                    "type": "bool",
+                    "default": false,
+                    "client_sync": true
+                },
+                "ots_simred:structure.golem":{
+                    "type": "bool",
+                    "default": false,
+                    "client_sync": true
+                },
+                "ots_simred:structure.theme":{
+                    "type": "int",
+                    "range": [1,10],
+                    "default": 1,
+                    "client_sync": true
+                },
+
+                
+                "ots_simred:material.1":{
+                    "type": "int",
+                    "range": [0,256],
+                    "default": 0,
+                    "client_sync": true
+                },
+                "ots_simred:material.2":{
+                    "type": "int",
+                    "range": [0,256],
+                    "default": 0,
+                    "client_sync": true
+                },
+                "ots_simred:material.3":{
+                    "type": "int",
+                    "range": [0,256],
+                    "default": 0,
+                    "client_sync": true
+                },
+                "ots_simred:material.4":{
+                    "type": "int",
+                    "range": [0,256],
+                    "default": 0,
+                    "client_sync": true
+                },
+                "ots_simred:material.5":{
+                    "type": "int",
+                    "range": [0,256],
+                    "default": 0,
+                    "client_sync": true
+                },
+                "ots_simred:material.6":{
+                    "type": "int",
+                    "range": [0,256],
+                    "default": 0,
+                    "client_sync": true
+                },
+                "ots_simred:material.7":{
+                    "type": "int",
+                    "range": [0,256],
+                    "default": 0,
+                    "client_sync": true
+                },
+                "ots_simred:material.8":{
+                    "type": "int",
+                    "range": [0,256],
+                    "default": 0,
+                    "client_sync": true
+                }
+            }
+        },
+        "component_groups": {
+            "ots_simred:despawn": {
+                "minecraft:instant_despawn": {},
+                "minecraft:scale": {
+                    "value": 0
+                }
+            },
+            "ots_simred:border":{
+                "minecraft:timer": {
+                    "time": 3,
+                    "looping": false,
+                    "time_down_event": {
+                        "event": "ots_simred:structure.border.red.false"
+                    }
+                }
+            }
+        },
+        "components": {
+            "minecraft:type_family": {
+                "family": [
+                    "ots_simred",
+                    "ots_simred:redstone",
+                    "ots_simred:redstone_7"
+                ]
+            },
+            "minecraft:collision_box": {
+                "width": 0,
+                "height": 0
+            },
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    {
+                        "cause": "all",
+                        "deals_damage": false
+                    }
+                ]
+            },
+            "minecraft:physics": {
+                "has_collision": false,
+                "has_gravity": false,
+                "push_towards_closest_space": false
+            },
+            "minecraft:pushable": {
+                "is_pushable": false,
+                "is_pushable_by_piston": false
+            },
+            "minecraft:health": {
+                "min": 1,
+                "max": 1
+            },
+            "minecraft:persistent": {},
+            "minecraft:knockback_resistance": {
+                "value": 1
+            },
+            "minecraft:fire_immune": {},
+            "minecraft:environment_sensor": {
+                "triggers": [
+                    {
+                        "filters": {
+                            "test": "is_riding",
+                            "subject": "self",
+                            "value": true
+                        },
+                        "event": "ots_simred:drop"
+                    }
+                ]
+            },
+            "minecraft:conditional_bandwidth_optimization": {}
+        },
+        "events": {
+            "minecraft:entity_spawned": {
+                "trigger": "ots_simred:despawn"
+            },
+            "minecraft:entity_born": {
+                "trigger": "ots_simred:despawn"
+            },
+            "ots_simred:despawn": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:despawn"
+                    ]
+                }
+            },
+            "ots_simred:drop": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:despawn"
+                    ]
+                }
+            },
+
+            "ots_simred:direction.north":{
+                "set_property": {
+                    "ots_simred:structure.direction": "north"
+                }
+            },
+            "ots_simred:direction.south":{
+                "set_property": {
+                    "ots_simred:structure.direction": "south"
+                }
+            },
+            "ots_simred:direction.west":{
+                "set_property": {
+                    "ots_simred:structure.direction": "west"
+                }
+            },
+            "ots_simred:direction.east":{
+                "set_property": {
+                    "ots_simred:structure.direction": "east"
+                }
+            },
+
+            "ots_simred:structure.border.red.true":{
+                "set_property": {
+                    "ots_simred:structure.border.red": true
+                },
+                "add": {
+                    "component_groups": [
+                        "ots_simred:border"
+                    ]
+                }
+            },
+            "ots_simred:structure.border.red.false":{
+                "set_property": {
+                    "ots_simred:structure.border.red": false
+                }
+            },
+            
+            "ots_simred:structure.border.xyz.0":{
+                "set_property": {
+                    "ots_simred:structure.border.xyz": 0
+                }
+            },
+            "ots_simred:structure.border.xyz.1":{
+                "set_property": {
+                    "ots_simred:structure.border.xyz": 1
+                }
+            },
+
+            "ots_simred:direction":{
+                "queue_command": {
+                    "command":[
+                        "function ots/simred/direction"
+                    ]
+                }
+            }
+        }
+    }
+}

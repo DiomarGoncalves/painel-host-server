@@ -23,7 +23,10 @@ import {
   Plus,
   Save,
   Eye,
-  EyeOff
+  EyeOff,
+  Activity,
+  UserCheck,
+  Layers
 } from 'lucide-react';
 import Dashboard from './components/Dashboard';
 import ServerConfig from './components/ServerConfig';
@@ -33,6 +36,9 @@ import PlayitIntegration from './components/PlayitIntegration';
 import BackupManager from './components/BackupManager';
 import ServerLogs from './components/ServerLogs';
 import PlayerManager from './components/PlayerManager';
+import PerformanceMonitor from './components/PerformanceMonitor';
+import FileManager from './components/FileManager';
+import ServerInstances from './components/ServerInstances';
 import { useElectron } from './hooks/useElectron';
 
 function App() {
@@ -43,14 +49,17 @@ function App() {
   const [playitStatus, setPlayitStatus] = useState<'disconnected' | 'connected' | 'connecting'>('disconnected');
 
   const navigation = [
-    { id: 'dashboard', label: 'Painel', icon: BarChart3 },
-    { id: 'config', label: 'Configuração do Servidor', icon: Settings },
-    { id: 'worlds', label: 'Gerenciador de Mundos', icon: Globe },
-    { id: 'addons', label: 'Gerenciador de Addons', icon: Package },
-    { id: 'players', label: 'Jogadores Online', icon: Users },
+    { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+    { id: 'instances', label: 'Server Instances', icon: Layers },
+    { id: 'config', label: 'Server Config', icon: Settings },
+    { id: 'worlds', label: 'World Manager', icon: Globe },
+    { id: 'players', label: 'Player Manager', icon: UserCheck },
+    { id: 'addons', label: 'Addon Manager', icon: Package },
+    { id: 'files', label: 'File Manager', icon: FolderOpen },
+    { id: 'performance', label: 'Performance', icon: Activity },
     { id: 'playit', label: 'Playit.gg', icon: Wifi },
     { id: 'backups', label: 'Backups', icon: Shield },
-    { id: 'logs', label: 'Logs do Servidor', icon: FolderOpen },
+    { id: 'logs', label: 'Server Logs', icon: FolderOpen },
   ];
 
   useEffect(() => {
@@ -135,14 +144,20 @@ function App() {
     switch (activeTab) {
       case 'dashboard':
         return <Dashboard serverStatus={serverStatus} playitStatus={playitStatus} />;
+      case 'instances':
+        return <ServerInstances />;
       case 'config':
         return <ServerConfig />;
       case 'worlds':
         return <WorldManager />;
-      case 'addons':
-        return <AddonManager />;
       case 'players':
         return <PlayerManager />;
+      case 'addons':
+        return <AddonManager />;
+      case 'files':
+        return <FileManager />;
+      case 'performance':
+        return <PerformanceMonitor />;
       case 'playit':
         return <PlayitIntegration playitStatus={playitStatus} setPlayitStatus={setPlayitStatus} />;
       case 'backups':
@@ -176,10 +191,10 @@ function App() {
               </div>
               <div>
                 <h1 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                  Painel Bedrock
+                  Bedrock Panel
                 </h1>
                 <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                  {isElectron ? 'Aplicativo Desktop' : 'Versão Web'}
+                  {isElectron ? 'Desktop App' : 'Web Version'}
                 </p>
               </div>
             </div>
@@ -189,15 +204,10 @@ function App() {
               <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'} transition-colors duration-200`}>
                 <div className="flex items-center justify-between mb-3">
                   <span className={`text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                    Status do Servidor
+                    Server Status
                   </span>
                   <span className={`text-sm font-bold capitalize ${getStatusColor()}`}>
-                    {{
-                      online: 'Online',
-                      offline: 'Offline',
-                      starting: 'Iniciando',
-                      stopping: 'Parando'
-                    }[serverStatus] || serverStatus}
+                    {serverStatus}
                   </span>
                 </div>
                 <div className="flex gap-2">
@@ -207,7 +217,7 @@ function App() {
                     className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center justify-center gap-1"
                   >
                     <Play className="w-4 h-4" />
-                    Iniciar
+                    Start
                   </button>
                   <button
                     onClick={stopServer}
@@ -215,7 +225,7 @@ function App() {
                     className="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center justify-center gap-1"
                   >
                     <Square className="w-4 h-4" />
-                    Parar
+                    Stop
                   </button>
                   <button
                     onClick={restartServer}
@@ -265,7 +275,7 @@ function App() {
                   {navigation.find(item => item.id === activeTab)?.label}
                 </h2>
                 <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                  Gerencie seu servidor Minecraft Bedrock
+                  Manage your Minecraft Bedrock server
                 </p>
               </div>
               <div className="flex items-center gap-4">

@@ -7,13 +7,13 @@ contextBridge.exposeInMainWorld('electronAPI', {
     stop: () => ipcRenderer.invoke('server:stop'),
     restart: () => ipcRenderer.invoke('server:restart'),
     getStatus: () => ipcRenderer.invoke('server:status'),
-    getIp: () => ipcRenderer.invoke('server:get-ip'),
-    getStats: () => ipcRenderer.invoke('server:get-stats'),
+    executeCommand: (command) => ipcRenderer.invoke('server:execute-command', command),
     onStatusChanged: (callback) => ipcRenderer.on('server:status-changed', callback),
-    onIpChanged: (callback) => ipcRenderer.on('server:ip-changed', callback),
     onLog: (callback) => ipcRenderer.on('server:log', callback),
-    onStats: (callback) => ipcRenderer.on('server:stats', callback),
-    onRecentPlayers: (callback) => ipcRenderer.on('server:recent-players', callback),
+    removeAllListeners: () => {
+      ipcRenderer.removeAllListeners('server:status-changed');
+      ipcRenderer.removeAllListeners('server:log');
+    }
   },
 
   // Configuration Management
@@ -29,16 +29,22 @@ contextBridge.exposeInMainWorld('electronAPI', {
     saveConfig: (worldName, config) => ipcRenderer.invoke('worlds:save-config', worldName, config),
     import: () => ipcRenderer.invoke('worlds:import'),
     delete: (worldName) => ipcRenderer.invoke('worlds:delete', worldName),
-    download: (worldName) => ipcRenderer.invoke('worlds:download', worldName),
-    setActive: (worldName) => ipcRenderer.invoke('worlds:set-active', worldName), // NOVO
+    getAddons: (worldName) => ipcRenderer.invoke('worlds:get-addons', worldName),
+    installAddon: (worldName, type) => ipcRenderer.invoke('worlds:install-addon', worldName, type),
+    toggleAddon: (worldName, type, addonId, enabled) => ipcRenderer.invoke('worlds:toggle-addon', worldName, type, addonId, enabled),
+    deleteAddon: (worldName, type, addonId) => ipcRenderer.invoke('worlds:delete-addon', worldName, type, addonId),
   },
 
-  // Addon Management
-  addons: {
-    list: (type) => ipcRenderer.invoke('addons:list', type),
-    install: (type) => ipcRenderer.invoke('addons:install', type),
-    toggle: (type, addonId, enabled, worldName) => ipcRenderer.invoke('addons:toggle', type, addonId, enabled, worldName),
-    delete: (type, addonId) => ipcRenderer.invoke('addons:delete', type, addonId),
+  // Player Management
+  players: {
+    list: () => ipcRenderer.invoke('players:list'),
+    addToAllowlist: (playerName) => ipcRenderer.invoke('players:add-to-allowlist', playerName),
+    removeFromAllowlist: (playerName) => ipcRenderer.invoke('players:remove-from-allowlist', playerName),
+  },
+
+  // Performance Monitoring
+  performance: {
+    getStats: () => ipcRenderer.invoke('performance:get-stats'),
   },
 
   // Playit.gg Integration
@@ -48,6 +54,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
     getStatus: () => ipcRenderer.invoke('playit:status'),
     onStatusChanged: (callback) => ipcRenderer.on('playit:status-changed', callback),
     onLog: (callback) => ipcRenderer.on('playit:log', callback),
+    removeAllListeners: () => {
+      ipcRenderer.removeAllListeners('playit:status-changed');
+      ipcRenderer.removeAllListeners('playit:log');
+    }
   },
 
   // Backup Management
@@ -56,13 +66,16 @@ contextBridge.exposeInMainWorld('electronAPI', {
     create: (name) => ipcRenderer.invoke('backups:create', name),
     restore: (backupId) => ipcRenderer.invoke('backups:restore', backupId),
     delete: (backupId) => ipcRenderer.invoke('backups:delete', backupId),
-    download: (backupId) => ipcRenderer.invoke('backups:download', backupId),
   },
 
-  // Player Management
-  players: {
-    list: () => ipcRenderer.invoke('players:list'),
-    op: (playerName) => ipcRenderer.invoke('players:op', playerName),
-    deop: (playerName) => ipcRenderer.invoke('players:deop', playerName),
+  // File Management
+  files: {
+    list: (path) => ipcRenderer.invoke('files:list', path),
+    read: (filePath) => ipcRenderer.invoke('files:read', filePath),
+    write: (filePath, content) => ipcRenderer.invoke('files:write', filePath, content),
+    delete: (filePath) => ipcRenderer.invoke('files:delete', filePath),
+    createDirectory: (dirPath) => ipcRenderer.invoke('files:create-directory', dirPath),
+    download: (filePath) => ipcRenderer.invoke('files:download', filePath),
+    upload: (destPath, fileName, fileBuffer) => ipcRenderer.invoke('files:upload', destPath, fileName, fileBuffer),
   },
 });

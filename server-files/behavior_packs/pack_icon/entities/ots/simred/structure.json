@@ -1,0 +1,1174 @@
+{
+    "format_version": "1.21.1",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "ots_simred:structure",
+            "is_spawnable": false,
+            "is_summonable": true,
+            "is_experimental": false,
+            "properties": {
+                "ots_simred:structure.direction": {
+                    "type": "enum",
+                    "values": [
+                        "north",
+                        "south",
+                        "east",
+                        "west"
+                    ],
+                    "default": "north",
+                    "client_sync": true
+                },
+                "ots_simred:structure.load": {
+                    "type": "bool",
+                    "default": false,
+                    "client_sync": true
+                },
+                "ots_simred:structure.select": {
+                    "type": "bool",
+                    "default": false,
+                    "client_sync": true
+                },
+                "ots_simred:structure.ui": {
+                    "type": "bool",
+                    "default": false,
+                    "client_sync": true
+                }
+            }
+        },
+        "component_groups": {
+            "ots_simred:despawn": {
+                "minecraft:instant_despawn": {}
+            },
+            "ots_simred:drop": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_item": "ots_simred:structure"
+                    }
+                }
+            },
+            "ots_simred:redstone_1": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_1",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_2": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_2",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_3": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_3",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_4": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_4",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_5": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_5",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_6": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_6",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_7": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_7",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_8": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_8",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_9": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_9",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_10": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_10",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_11": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_11",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_12": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_12",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_13": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_13",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_14": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_14",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_15": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_15",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_16": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_16",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_17": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_17",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_18": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_18",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_19": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_19",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_20": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_20",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_21": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_21",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_22": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_22",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_23": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_23",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_24": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_24",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_25": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_25",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_26": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_26",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_27": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_27",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_28": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_28",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_29": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_29",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_30": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_30",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_31": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_31",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_32": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_32",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_33": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_33",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_34": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_34",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_35": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_35",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_36": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_36",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_37": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_37",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_38": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_38",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_39": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_39",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_40": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_40",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_41": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_41",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_42": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_42",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_43": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_43",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_44": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_44",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_45": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_45",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_46": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_46",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_47": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_47",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_48": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_48",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_49": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_49",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            },
+            "ots_simred:redstone_50": {
+                "minecraft:spawn_entity": {
+                    "entities": {
+                        "min_wait_time": 0,
+                        "max_wait_time": 0,
+                        "num_to_spawn": 1,
+                        "single_use": true,
+                        "spawn_entity": "ots_simred:redstone_50",
+                        "spawn_event": "ots_simred:direction"
+                    }
+                }
+            }
+        },
+        "components": {
+            "minecraft:type_family": {
+                "family": [
+                    "ots_simred",
+                    "ots_simred:structure"
+                ]
+            },
+            "minecraft:collision_box": {
+                "width": 0,
+                "height": 0
+            },
+            "minecraft:custom_hit_test": {
+                "hitboxes": [
+                    {
+                        "width": 1,
+                        "height": 1.5,
+                        "pivot": [
+                            0,
+                            0.75,
+                            0
+                        ]
+                    }
+                ]
+            },
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    {
+                        "cause": "all",
+                        "deals_damage": false
+                    }
+                ]
+            },
+            "minecraft:physics": {
+                "has_collision": false,
+                "has_gravity": false,
+                "push_towards_closest_space": false
+            },
+            "minecraft:pushable": {
+                "is_pushable": false,
+                "is_pushable_by_piston": false
+            },
+            "minecraft:health": {
+                "min": 1,
+                "max": 1
+            },
+            "minecraft:persistent": {},
+            "minecraft:knockback_resistance": {
+                "value": 1
+            },
+            "minecraft:fire_immune": {},
+            "minecraft:is_stackable": {},
+            "minecraft:push_through": {
+                "value": 0
+            },
+            "minecraft:interact": {
+                "interactions": [
+                    {
+                        "interact_text": "ots_simred:interact.use",
+                        "swing": true,
+                        "use_item": false,
+                        "cooldown": 1,
+                        "play_sounds": "block.click",
+                        "on_interact": {
+                            "filters": [
+                                {
+                                    "all_of": [
+                                        {
+                                            "test": "is_family",
+                                            "subject": "other",
+                                            "value": "player"
+                                        },
+                                        {
+                                            "test": "bool_property",
+                                            "domain": "ots_simred:structure.ui",
+                                            "subject": "self",
+                                            "operator": "==",
+                                            "value": false
+                                        },
+                                        {
+                                            "test": "has_equipment",
+                                            "domain": "hand",
+                                            "subject": "player",
+                                            "operator": "!=",
+                                            "value": "ots_simred:guidebook"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "event": "ots_simred:command"
+                        }
+                    }
+                ]
+            },
+            "minecraft:environment_sensor": {
+                "triggers": [
+                    {
+                        "filters": {
+                            "test": "is_riding",
+                            "subject": "self",
+                            "value": true
+                        },
+                        "event": "ots_simred:drop"
+                    }
+                ]
+            },
+            "minecraft:conditional_bandwidth_optimization": {}
+        },
+        "events": {
+            "minecraft:entity_spawned": {
+                "trigger": "ots_simred:despawn"
+            },
+            "minecraft:entity_born": {
+                "trigger": "ots_simred:despawn"
+            },
+            "ots_simred:despawn": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:despawn"
+                    ]
+                }
+            },
+            "ots_simred:drop": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:drop",
+                        "ots_simred:despawn"
+                    ]
+                }
+            },
+            "ots_simred:command": {
+                "queue_command": {
+                    "command": [
+                        "scriptevent ots_simred:structure ots_simred_formMain"
+                    ]
+                }
+            },
+            "ots_simred:structure.ui.default": {
+                "set_property": {
+                    "ots_simred:structure.ui": false
+                }
+            },
+            "ots_simred:direction.north": {
+                "set_property": {
+                    "ots_simred:structure.direction": "north"
+                }
+            },
+            "ots_simred:direction.south": {
+                "set_property": {
+                    "ots_simred:structure.direction": "south"
+                }
+            },
+            "ots_simred:direction.west": {
+                "set_property": {
+                    "ots_simred:structure.direction": "west"
+                }
+            },
+            "ots_simred:direction.east": {
+                "set_property": {
+                    "ots_simred:structure.direction": "east"
+                }
+            },
+            "ots_simred:direction": {
+                "queue_command": {
+                    "command": [
+                        "function ots/simred/direction"
+                    ]
+                }
+            },
+            "ots_simred:redstone_1": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_1"
+                    ]
+                }
+            },
+            "ots_simred:redstone_2": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_2"
+                    ]
+                }
+            },
+            "ots_simred:redstone_3": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_3"
+                    ]
+                }
+            },
+            "ots_simred:redstone_4": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_4"
+                    ]
+                }
+            },
+            "ots_simred:redstone_5": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_5"
+                    ]
+                }
+            },
+            "ots_simred:redstone_6": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_6"
+                    ]
+                }
+            },
+            "ots_simred:redstone_7": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_7"
+                    ]
+                }
+            },
+            "ots_simred:redstone_8": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_8"
+                    ]
+                }
+            },
+            "ots_simred:redstone_9": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_9"
+                    ]
+                }
+            },
+            "ots_simred:redstone_10": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_10"
+                    ]
+                }
+            },
+            "ots_simred:redstone_11": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_11"
+                    ]
+                }
+            },
+            "ots_simred:redstone_12": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_12"
+                    ]
+                }
+            },
+            "ots_simred:redstone_13": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_13"
+                    ]
+                }
+            },
+            "ots_simred:redstone_14": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_14"
+                    ]
+                }
+            },
+            "ots_simred:redstone_15": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_15"
+                    ]
+                }
+            },
+            "ots_simred:redstone_16": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_16"
+                    ]
+                }
+            },
+            "ots_simred:redstone_17": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_17"
+                    ]
+                }
+            },
+            "ots_simred:redstone_18": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_18"
+                    ]
+                }
+            },
+            "ots_simred:redstone_19": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_19"
+                    ]
+                }
+            },
+            "ots_simred:redstone_20": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_20"
+                    ]
+                }
+            },
+            "ots_simred:redstone_21": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_21"
+                    ]
+                }
+            },
+            "ots_simred:redstone_22": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_22"
+                    ]
+                }
+            },
+            "ots_simred:redstone_23": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_23"
+                    ]
+                }
+            },
+            "ots_simred:redstone_24": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_24"
+                    ]
+                }
+            },
+            "ots_simred:redstone_25": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_25"
+                    ]
+                }
+            },
+            "ots_simred:redstone_26": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_26"
+                    ]
+                }
+            },
+            "ots_simred:redstone_27": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_27"
+                    ]
+                }
+            },
+            "ots_simred:redstone_28": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_28"
+                    ]
+                }
+            },
+            "ots_simred:redstone_29": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_29"
+                    ]
+                }
+            },
+            "ots_simred:redstone_30": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_30"
+                    ]
+                }
+            },
+            "ots_simred:redstone_31": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_31"
+                    ]
+                }
+            },
+            "ots_simred:redstone_32": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_32"
+                    ]
+                }
+            },
+            "ots_simred:redstone_33": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_33"
+                    ]
+                }
+            },
+            "ots_simred:redstone_34": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_34"
+                    ]
+                }
+            },
+            "ots_simred:redstone_35": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_35"
+                    ]
+                }
+            },
+            "ots_simred:redstone_36": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_36"
+                    ]
+                }
+            },
+            "ots_simred:redstone_37": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_37"
+                    ]
+                }
+            },
+            "ots_simred:redstone_38": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_38"
+                    ]
+                }
+            },
+            "ots_simred:redstone_39": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_39"
+                    ]
+                }
+            },
+            "ots_simred:redstone_40": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_40"
+                    ]
+                }
+            },
+            "ots_simred:redstone_41": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_41"
+                    ]
+                }
+            },
+            "ots_simred:redstone_42": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_42"
+                    ]
+                }
+            },
+            "ots_simred:redstone_43": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_43"
+                    ]
+                }
+            },
+            "ots_simred:redstone_44": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_44"
+                    ]
+                }
+            },
+            "ots_simred:redstone_45": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_45"
+                    ]
+                }
+            },
+            "ots_simred:redstone_46": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_46"
+                    ]
+                }
+            },
+            "ots_simred:redstone_47": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_47"
+                    ]
+                }
+            },
+            "ots_simred:redstone_48": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_48"
+                    ]
+                }
+            },
+            "ots_simred:redstone_49": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_49"
+                    ]
+                }
+            },
+            "ots_simred:redstone_50": {
+                "add": {
+                    "component_groups": [
+                        "ots_simred:redstone_50"
+                    ]
+                }
+            }
+        }
+    }
+}

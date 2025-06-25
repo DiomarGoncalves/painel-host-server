@@ -1,0 +1,27 @@
+{
+    "ui_defs": [
+        "ui/furnator.json",
+        "ui/magmator.json",
+        "ui/battery.json",
+        "ui/common_machinery.json",
+        "ui/thermo_generator.json",
+        "ui/solar_panel.json",
+        "ui/machine_general.json",
+        "ui/machine_general_3x3.json",
+        "ui/basic_machine.json",
+        "ui/machine1x1.json",
+        "ui/infuser.json",
+        "ui/magmatic_chamber.json",
+        "ui/harvester.json",
+        "ui/crusher.json",
+        "ui/electro_press.json",
+        "ui/incinerator.json",
+        "ui/autosieve.json",
+        "ui/seed_synthesizer.json",
+        "ui/block_breaker.json",
+        "ui/block_placer.json",
+        "ui/induction_anvil.json",
+        "ui/assembler.json",
+        "ui/digitizer.json"
+    ]
+}
