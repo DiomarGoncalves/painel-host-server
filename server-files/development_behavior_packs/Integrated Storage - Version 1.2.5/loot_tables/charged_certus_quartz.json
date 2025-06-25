@@ -1,0 +1,94 @@
+{
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "ae2be:charged_certus_quartz_crystal",
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            },
+                            "conditions": [
+                                {
+                                    "condition": "match_tool",
+                                    "enchantments": [
+                                        {
+                                            "enchantment": "fortune",
+                                            "range_max": 1,
+                                            "range_min": 1
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 3
+                            },
+                            "conditions": [
+                                {
+                                    "condition": "match_tool",
+                                    "enchantments": [
+                                        {
+                                            "enchantment": "fortune",
+                                            "range_max": 2,
+                                            "range_min": 2
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 4
+                            },
+                            "conditions": [
+                                {
+                                    "condition": "match_tool",
+                                    "enchantments": [
+                                        {
+                                            "enchantment": "fortune",
+                                            "range_min": 4
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 0
+                            },
+                            "conditions": [
+                                {
+                                    "condition": "match_tool",
+                                    "item": "minecraft:air"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "match_tool",
+                    "minecraft:match_tool_filter_any": [
+                        "minecraft:iron_tier",
+                        "minecraft:diamond_tier",
+                        "minecraft:netherite_tier"
+                    ]
+                }
+            ]
+        }
+    ]
+}

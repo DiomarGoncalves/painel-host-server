@@ -1,0 +1,28 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "ae2be:interface"
+        },
+        "tags": ["crafting_table"],
+        "pattern": ["IGI", "A F", "IGI"],
+        "key": {
+            "I": {
+                "item": "minecraft:iron_ingot"
+            },
+            "G": {
+                "item": "minecraft:glass"
+            },
+            "A": {
+                "item": "ae2be:annihilation_core"
+            },
+            "F": {
+                "item": "ae2be:formation_core"
+            }
+        },
+        "result": {
+            "item": "ae2be:interface",
+            "count": 1
+        }
+    }
+}

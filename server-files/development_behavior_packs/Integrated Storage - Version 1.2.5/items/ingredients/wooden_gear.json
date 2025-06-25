@@ -1,0 +1,11 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:item": {
+        "description": {
+            "identifier": "ae2be:wooden_gear"
+        },
+        "components": {
+            "minecraft:icon": "ae2be_wooden_gear"
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shapeless": {
+        "description": {
+            "identifier": "ae2be:wireless_terminal"
+        },
+        "tags": ["crafting_table"],
+        "ingredients": [
+            "ae2be:terminal",
+            "ae2be:engineering_processor"
+        ],
+        "result": {
+            "item": "ae2be:wireless_terminal",
+            "count": 1
+        }
+    }
+}

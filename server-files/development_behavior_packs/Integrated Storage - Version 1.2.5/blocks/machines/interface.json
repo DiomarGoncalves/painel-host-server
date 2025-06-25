@@ -1,0 +1,43 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:block": {
+        "description": {
+            "identifier": "ae2be:interface",
+            "traits": {
+                "minecraft:placement_direction": {
+                    "enabled_states": ["minecraft:facing_direction"]
+                }
+            },
+            "menu_category": {
+                "category": "construction"
+            }
+        },
+        "components": {
+            "tag:ae2be:network_connectable": {},
+            "tag:ae2be:network_events": {},
+            "minecraft:custom_components": [
+                "ae2be:ticking_block_entity",
+                "ae2be:network_connectable"
+            ],
+
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 2
+            },
+
+            "minecraft:geometry": {
+                "identifier": "minecraft:geometry.full_block"
+            },
+
+            "minecraft:tick": {
+                "looping": true,
+                "interval_range": [5, 5]
+            },
+
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "ae2be_interface"
+                }
+            }
+        }
+    }
+}

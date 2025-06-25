@@ -1,0 +1,11 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:item": {
+        "description": {
+            "identifier": "ae2be:ui_progress"
+        },
+        "components": {
+            "minecraft:icon": "ae2be_ui_down_arrow"
+        }
+    }
+}

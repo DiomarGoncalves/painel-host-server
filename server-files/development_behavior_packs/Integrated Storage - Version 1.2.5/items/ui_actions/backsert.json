@@ -1,0 +1,12 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:item": {
+        "description": {
+            "identifier": "ae2be:backsert"
+        },
+        "components": {
+            "minecraft:icon": "ae2be_ui_down_arrow",
+            "minecraft:max_stack_size": 1
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shapeless": {
+        "description": {
+            "identifier": "ae2be:capacity_card_charged_certus_quartz"
+        },
+        "tags": ["crafting_table"],
+
+        "ingredients": [
+            "ae2be:empty_card",
+            "ae2be:charged_certus_quartz_crystal"
+        ],
+
+        "result": {
+            "item": "ae2be:capacity_card",
+            "count": 1
+        }
+    }
+}

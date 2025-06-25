@@ -1,0 +1,22 @@
+{
+    "format_version": "1.17.0",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "ae2be:quartz_fiber_certus"
+        },
+        "tags": ["crafting_table"],
+        "pattern": ["GGG", "QQQ", "GGG"],
+        "key": {
+            "G": {
+                "item": "minecraft:glass"
+            },
+            "Q": {
+                "item": "ae2be:certus_quartz_dust"
+            }
+        },
+        "result": {
+            "item": "ae2be:quartz_fiber",
+            "count": 3
+        }
+    }
+}
