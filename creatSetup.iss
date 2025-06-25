@@ -91,14 +91,7 @@ Source: "C:\Users\Diomar\Desktop\server-files\README.md"; DestDir: "{app}"; Flag
 Source: "C:\Users\Diomar\Desktop\server-files\release-notes.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Diomar\Desktop\server-files\server.properties"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Diomar\Desktop\server-files\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\behavior_packs\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Diomar\Desktop\server-files\config\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Diomar\Desktop\server-files\definitions\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Diomar\Desktop\server-files\development_behavior_packs\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Diomar\Desktop\server-files\development_resource_packs\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Diomar\Desktop\server-files\playit\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Diomar\Desktop\server-files\resource_packs\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\Diomar\Desktop\server-files\worlds\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\Diomar\Desktop\server-files\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
