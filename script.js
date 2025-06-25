@@ -1,26 +1,21 @@
 // Navegação móvel
-function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    const navToggle = document.querySelector('.nav-toggle');
-    
-    if (navLinks.style.display === 'flex') {
-        navLinks.style.display = 'none';
-        navToggle.textContent = '☰';
-    } else {
-        navLinks.style.display = 'flex';
-        navLinks.style.flexDirection = 'column';
-        navLinks.style.position = 'absolute';
-        navLinks.style.top = '100%';
-        navLinks.style.left = '0';
-        navLinks.style.right = '0';
-        navLinks.style.background = 'rgba(15, 23, 42, 0.98)';
-        navLinks.style.padding = '1rem';
-        navLinks.style.borderTop = '1px solid var(--border-color)';
-        navToggle.textContent = '✕';
-    }
-}
+const navToggle = document.getElementById('nav-toggle');
+const navMenu = document.getElementById('nav-menu');
 
-// Scroll suave para links de navegação
+navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    navToggle.classList.toggle('active');
+});
+
+// Fechar menu móvel ao clicar em um link
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+    });
+});
+
+// Scroll suave e navegação ativa
 document.addEventListener('DOMContentLoaded', function() {
     // Adicionar evento de clique para todos os links de navegação
     const navLinks = document.querySelectorAll('.nav-link');
@@ -38,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (targetElement) {
                     // Calcular offset para compensar o header fixo
-                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const headerHeight = document.querySelector('.navbar').offsetHeight;
                     const targetPosition = targetElement.offsetTop - headerHeight - 20;
                     
                     window.scrollTo({
@@ -46,53 +41,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         behavior: 'smooth'
                     });
                 }
-                
-                // Fechar menu móvel se estiver aberto
-                const navLinksContainer = document.querySelector('.nav-links');
-                const navToggle = document.querySelector('.nav-toggle');
-                if (navLinksContainer.style.display === 'flex' && window.innerWidth <= 768) {
-                    navLinksContainer.style.display = 'none';
-                    navToggle.textContent = '☰';
-                }
             }
         });
     });
     
-    // Adicionar evento de scroll para destacar seção ativa
+    // Destacar seção ativa na navegação
     window.addEventListener('scroll', highlightActiveSection);
     
-    // Adicionar animações de entrada quando elementos entram na viewport
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    // Inicializar sistema de documentação
+    initDocumentation();
     
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
+    // Inicializar animações
+    initAnimations();
     
-    // Observar elementos para animação
-    const animatedElements = document.querySelectorAll('.feature-card, .screenshot-card, .doc-step, .download-option');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(el);
-    });
-    
-    // Adicionar efeito de digitação no título
-    typewriterEffect();
-    
-    // Adicionar contador animado para estatísticas
-    animateCounters();
-    
-    // Adicionar efeito parallax sutil
-    window.addEventListener('scroll', parallaxEffect);
+    // Inicializar efeitos especiais
+    initSpecialEffects();
 });
 
 // Destacar seção ativa na navegação
@@ -120,70 +83,101 @@ function highlightActiveSection() {
     });
 }
 
-// Efeito de digitação no título
-function typewriterEffect() {
-    const titleElement = document.querySelector('.hero-title');
-    if (!titleElement) return;
+// Sistema de documentação com abas
+function initDocumentation() {
+    const docsTabs = document.querySelectorAll('.docs-tab');
+    const docsPanels = document.querySelectorAll('.docs-panel');
     
-    const originalText = titleElement.innerHTML;
-    titleElement.innerHTML = '';
-    
-    let i = 0;
-    const speed = 50;
-    
-    function typeWriter() {
-        if (i < originalText.length) {
-            titleElement.innerHTML += originalText.charAt(i);
-            i++;
-            setTimeout(typeWriter, speed);
-        }
-    }
-    
-    // Iniciar após um pequeno delay
-    setTimeout(typeWriter, 500);
+    docsTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetTab = tab.getAttribute('data-tab');
+            
+            // Remover classe active de todas as abas e painéis
+            docsTabs.forEach(t => t.classList.remove('active'));
+            docsPanels.forEach(p => p.classList.remove('active'));
+            
+            // Adicionar classe active à aba clicada e painel correspondente
+            tab.classList.add('active');
+            const targetPanel = document.getElementById(targetTab);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+        });
+    });
 }
 
-// Animar contadores
-function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
+// Função para copiar código
+function copyCode(button) {
+    const codeBlock = button.closest('.code-block');
+    const code = codeBlock.querySelector('code').textContent;
     
-    counters.forEach(counter => {
-        const target = counter.textContent;
+    navigator.clipboard.writeText(code).then(() => {
+        const originalIcon = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i>';
+        button.style.color = 'var(--secondary)';
         
-        // Apenas animar números
-        if (!isNaN(target)) {
-            counter.textContent = '0';
-            
-            const increment = target / 100;
-            let current = 0;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    counter.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    counter.textContent = Math.floor(current);
-                }
-            }, 20);
-        }
+        setTimeout(() => {
+            button.innerHTML = originalIcon;
+            button.style.color = '';
+        }, 2000);
+    }).catch(err => {
+        console.error('Erro ao copiar código:', err);
     });
 }
 
-// Efeito parallax sutil
-function parallaxEffect() {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.hero::before');
+// Animações de entrada
+function initAnimations() {
+    // Simular AOS (Animate On Scroll)
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
     
-    parallaxElements.forEach(element => {
-        const speed = 0.5;
-        element.style.transform = `translateY(${scrolled * speed}px)`;
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('aos-animate');
+            }
+        });
+    }, observerOptions);
+    
+    // Observar elementos com data-aos
+    const animatedElements = document.querySelectorAll('[data-aos]');
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
+    
+    // Animação de digitação no console
+    animateConsole();
+}
+
+// Animação do console no hero
+function animateConsole() {
+    const consoleLines = document.querySelectorAll('.console-line');
+    
+    consoleLines.forEach((line, index) => {
+        setTimeout(() => {
+            line.style.opacity = '1';
+            line.style.transform = 'translateY(0)';
+        }, (index + 1) * 1000);
     });
 }
 
-// Adicionar efeito de hover nos cards
-document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.feature-card, .screenshot-card, .download-option');
+// Efeitos especiais
+function initSpecialEffects() {
+    // Efeito parallax sutil no hero
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.hero-particles');
+        
+        parallaxElements.forEach(element => {
+            const speed = 0.5;
+            element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+    });
+    
+    // Efeito de hover nos cards
+    const cards = document.querySelectorAll('.feature-card, .screenshot-item, .download-option');
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
@@ -194,15 +188,12 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.transform = 'translateY(0) scale(1)';
         });
     });
-});
-
-// Adicionar efeito de clique nos botões
-document.addEventListener('DOMContentLoaded', function() {
+    
+    // Efeito ripple nos botões
     const buttons = document.querySelectorAll('.btn');
     
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
-            // Criar efeito ripple
             const ripple = document.createElement('span');
             const rect = this.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
@@ -221,9 +212,92 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 600);
         });
     });
+}
+
+// Contador animado para estatísticas
+function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    counters.forEach(counter => {
+        const target = counter.textContent;
+        
+        // Apenas animar números
+        if (!isNaN(target.replace(/[^0-9]/g, ''))) {
+            const numericTarget = parseInt(target.replace(/[^0-9]/g, ''));
+            counter.textContent = '0';
+            
+            const increment = numericTarget / 100;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= numericTarget) {
+                    counter.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.floor(current) + target.replace(/[0-9]/g, '');
+                }
+            }, 20);
+        }
+    });
+}
+
+// Inicializar contadores quando a seção de download estiver visível
+const downloadSection = document.querySelector('.download');
+if (downloadSection) {
+    const downloadObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                downloadObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    downloadObserver.observe(downloadSection);
+}
+
+// Smooth scroll para navegação
+function smoothScroll(target) {
+    const element = document.querySelector(target);
+    if (element) {
+        const headerHeight = document.querySelector('.navbar').offsetHeight;
+        const targetPosition = element.offsetTop - headerHeight - 20;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Adicionar loading state para links externos
+document.addEventListener('DOMContentLoaded', function() {
+    const externalLinks = document.querySelectorAll('a[target="_blank"]');
+    
+    externalLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abrindo...';
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+            }, 2000);
+        });
+    });
 });
 
-// Adicionar CSS para o efeito ripple
+// Navbar transparente/sólida baseada no scroll
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(15, 15, 35, 0.98)';
+    } else {
+        navbar.style.background = 'rgba(15, 15, 35, 0.95)';
+    }
+});
+
+// Adicionar CSS para efeito ripple
 const style = document.createElement('style');
 style.textContent = `
     .btn {
@@ -247,138 +321,106 @@ style.textContent = `
         }
     }
     
-    .nav-link.active {
-        color: var(--primary-color) !important;
+    /* Animações de entrada personalizadas */
+    .feature-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    .nav-link.active::after {
-        width: 100% !important;
+    .screenshot-item {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .download-option {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Efeito de glow nos elementos interativos */
+    .btn-primary:hover {
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 0 30px rgba(99, 102, 241, 0.4);
+    }
+    
+    .feature-card:hover {
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 0 20px rgba(99, 102, 241, 0.2);
+    }
+    
+    /* Animação de loading para botões */
+    .btn.loading {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+    
+    .btn.loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 16px;
+        height: 16px;
+        margin: -8px 0 0 -8px;
+        border: 2px solid transparent;
+        border-top: 2px solid currentColor;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 `;
 document.head.appendChild(style);
 
-// Adicionar funcionalidade de cópia para código
-document.addEventListener('DOMContentLoaded', function() {
-    const codeBlocks = document.querySelectorAll('.structure-code');
-    
-    codeBlocks.forEach(block => {
-        const copyButton = document.createElement('button');
-        copyButton.textContent = '📋 Copiar';
-        copyButton.className = 'copy-button';
-        copyButton.style.cssText = `
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        `;
-        
-        block.style.position = 'relative';
-        block.appendChild(copyButton);
-        
-        copyButton.addEventListener('click', function() {
-            const code = block.querySelector('code').textContent;
-            navigator.clipboard.writeText(code).then(() => {
-                copyButton.textContent = '✅ Copiado!';
-                setTimeout(() => {
-                    copyButton.textContent = '📋 Copiar';
-                }, 2000);
-            });
-        });
-        
-        copyButton.addEventListener('mouseenter', function() {
-            this.style.background = 'var(--primary-dark)';
-        });
-        
-        copyButton.addEventListener('mouseleave', function() {
-            this.style.background = 'var(--primary-color)';
-        });
-    });
-});
-
-// Adicionar loading state para links externos
-document.addEventListener('DOMContentLoaded', function() {
-    const externalLinks = document.querySelectorAll('a[target="_blank"]');
-    
-    externalLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const originalText = this.innerHTML;
-            this.innerHTML = '<span class="btn-icon">⏳</span> Abrindo...';
-            
-            setTimeout(() => {
-                this.innerHTML = originalText;
-            }, 2000);
-        });
-    });
-});
-
-// Adicionar funcionalidade de busca (se necessário no futuro)
-function initSearch() {
-    const searchInput = document.getElementById('search');
-    if (!searchInput) return;
-    
-    searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase();
-        const sections = document.querySelectorAll('section');
-        
-        sections.forEach(section => {
-            const text = section.textContent.toLowerCase();
-            if (text.includes(query) || query === '') {
-                section.style.display = 'block';
-            } else {
-                section.style.display = 'none';
-            }
-        });
-    });
+// Função para adicionar estado de loading aos botões
+function addLoadingState(button) {
+    button.classList.add('loading');
+    setTimeout(() => {
+        button.classList.remove('loading');
+    }, 2000);
 }
 
-// Adicionar tema claro/escuro (para futuras implementações)
-function initThemeToggle() {
-    const themeToggle = document.getElementById('theme-toggle');
-    if (!themeToggle) return;
-    
-    themeToggle.addEventListener('click', function() {
-        document.body.classList.toggle('light-theme');
-        localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
-    });
-    
-    // Carregar tema salvo
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        document.body.classList.add('light-theme');
+// Adicionar analytics (se necessário)
+function trackEvent(category, action, label) {
+    if (typeof gtag !== 'undefined') {
+        gtag('event', action, {
+            event_category: category,
+            event_label: label
+        });
     }
 }
 
-// Adicionar analytics (Google Analytics, se necessário)
-function initAnalytics() {
-    // Implementar tracking de eventos
-    const trackableElements = document.querySelectorAll('.btn, .nav-link');
+// Rastrear cliques em botões importantes
+document.addEventListener('DOMContentLoaded', function() {
+    const trackableButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
     
-    trackableElements.forEach(element => {
-        element.addEventListener('click', function() {
-            const action = this.textContent.trim();
-            const category = this.classList.contains('btn') ? 'Button' : 'Navigation';
-            
-            // Enviar evento para analytics
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'click', {
-                    event_category: category,
-                    event_label: action
-                });
-            }
+    trackableButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const text = this.textContent.trim();
+            trackEvent('Button', 'click', text);
         });
     });
+});
+
+// Função para detectar dispositivo móvel
+function isMobile() {
+    return window.innerWidth <= 768;
 }
 
-// Inicializar funcionalidades adicionais
+// Ajustar comportamento baseado no dispositivo
+window.addEventListener('resize', function() {
+    if (!isMobile()) {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+    }
+});
+
+// Preloader simples (opcional)
+window.addEventListener('load', function() {
+    document.body.classList.add('loaded');
+});
+
+// Adicionar classe para indicar que a página foi carregada
 document.addEventListener('DOMContentLoaded', function() {
-    initSearch();
-    initThemeToggle();
-    initAnalytics();
+    setTimeout(() => {
+        document.body.classList.add('ready');
+    }, 100);
 });
