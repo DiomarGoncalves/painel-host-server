@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Bedrock Server Manager</title>
+    <meta name="description" content="Interface gráfica moderna e completa para gerenciar servidores Minecraft Bedrock Edition">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <span class="nav-icon">🎮</span>
+                <span class="nav-title">Minecraft Server Manager</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Recursos</a>
+                <a href="#screenshots" class="nav-link">Screenshots</a>
+                <a href="#download" class="nav-link">Download</a>
+                <a href="#docs" class="nav-link">Documentação</a>
+            </div>
+            <div class="nav-mobile">
+                <button class="nav-toggle" onclick="toggleMobileMenu()">☰</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-text">🚀 Versão 2.0 - Controle Total</span>
+            </div>
+            <h1 class="hero-title">
+                Gerencie seu servidor <br>
+                <span class="hero-highlight">Minecraft Bedrock</span> <br>
+                com facilidade
+            </h1>
+            <p class="hero-description">
+                Interface gráfica moderna e completa para gerenciar servidores Minecraft Bedrock Edition. 
+                Controle total do servidor, addons, mundos e jogadores em uma única aplicação.
+            </p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">
+                    <span class="btn-icon">📥</span>
+                    Download Grátis
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    <span class="btn-icon">✨</span>
+                    Ver Recursos
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Gratuito</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">Open</span>
+                    <span class="stat-label">Source</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">Python</span>
+                    <span class="stat-label">Powered</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-mockup">
+                <div class="mockup-window">
+                    <div class="mockup-header">
+                        <div class="mockup-buttons">
+                            <span class="mockup-btn red"></span>
+                            <span class="mockup-btn yellow"></span>
+                            <span class="mockup-btn green"></span>
+                        </div>
+                        <span class="mockup-title">🎮 Minecraft Server Manager</span>
+                    </div>
+                    <div class="mockup-content">
+                        <div class="mockup-status">
+                            <span class="status-item">🟢 Servidor: Online</span>
+                            <span class="status-item">👥 Jogadores: 3/10</span>
+                            <span class="status-item">🌐 IP: 192.168.1.100:19132</span>
+                            <span class="status-item">🟢 Playit: Online</span>
+                        </div>
+                        <div class="mockup-tabs">
+                            <span class="tab active">🎮 Servidor</span>
+                            <span class="tab">⚙️ Config</span>
+                            <span class="tab">🌍 Mundos</span>
+                            <span class="tab">🧩 Addons</span>
+                        </div>
+                        <div class="mockup-body">
+                            <div class="control-section">
+                                <h4>🖥️ Servidor Minecraft</h4>
+                                <div class="control-buttons">
+                                    <button class="control-btn start">▶️ Iniciar</button>
+                                    <button class="control-btn stop">⏹️ Parar</button>
+                                </div>
+                            </div>
+                            <div class="console-section">
+                                <h4>💻 Console do Servidor</h4>
+                                <div class="console">
+                                    <div class="console-line">[14:32:15] 🚀 Servidor iniciado com sucesso!</div>
+                                    <div class="console-line">[14:32:16] 🟢 Player connected: Steve</div>
+                                    <div class="console-line">[14:32:18] 🟢 Player connected: Alex</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">✨ Recursos Principais</h2>
+                <p class="section-description">
+                    Tudo que você precisa para gerenciar seu servidor Minecraft Bedrock
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3 class="feature-title">Controle do Servidor</h3>
+                    <p class="feature-description">
+                        Iniciar/parar servidor, integração com Playit.gg, console em tempo real e status detalhado
+                    </p>
+                    <ul class="feature-list">
+                        <li>✅ Controle completo do servidor</li>
+                        <li>✅ Túnel Playit.gg automático</li>
+                        <li>✅ Console integrado</li>
+                        <li>✅ Status em tempo real</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3 class="feature-title">Configurações Avançadas</h3>
+                    <p class="feature-description">
+                        Editor completo de server.properties e configurações do mundo com interface amigável
+                    </p>
+                    <ul class="feature-list">
+                        <li>✅ Editor de server.properties</li>
+                        <li>✅ Configurações do mundo</li>
+                        <li>✅ Recursos experimentais</li>
+                        <li>✅ Interface intuitiva</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3 class="feature-title">Gerenciamento de Mundos</h3>
+                    <p class="feature-description">
+                        Importe mundos de ZIP ou pastas, ative diferentes mundos e faça backup automático
+                    </p>
+                    <ul class="feature-list">
+                        <li>✅ Importar mundos (ZIP/pasta)</li>
+                        <li>✅ Trocar mundos facilmente</li>
+                        <li>✅ Backup automático</li>
+                        <li>✅ Validação de mundos</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🧩</div>
+                    <h3 class="feature-title">Sistema de Addons</h3>
+                    <p class="feature-description">
+                        Biblioteca de addons inteligente com aplicação seletiva por mundo
+                    </p>
+                    <ul class="feature-list">
+                        <li>✅ Biblioteca centralizada</li>
+                        <li>✅ Aplicação por mundo</li>
+                        <li>✅ Suporte .mcaddon/ZIP</li>
+                        <li>✅ Gerenciamento separado</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">Gerenciamento de Jogadores</h3>
+                    <p class="feature-description">
+                        Visualize jogadores online, gerencie operadores e modere o servidor
+                    </p>
+                    <ul class="feature-list">
+                        <li>✅ Jogadores online em tempo real</li>
+                        <li>✅ Sistema de operadores</li>
+                        <li>✅ Comandos de moderação</li>
+                        <li>✅ Expulsar jogadores</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">Interface Moderna</h3>
+                    <p class="feature-description">
+                        Design responsivo, tema escuro e experiência de usuário otimizada
+                    </p>
+                    <ul class="feature-list">
+                        <li>✅ Interface responsiva</li>
+                        <li>✅ Tema escuro moderno</li>
+                        <li>✅ Fácil de usar</li>
+                        <li>✅ Atualizações em tempo real</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="screenshots">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">📸 Screenshots</h2>
+                <p class="section-description">
+                    Veja a interface em ação
+                </p>
+            </div>
+            
+            <div class="screenshots-grid">
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">
+                        <div class="placeholder-content">
+                            <span class="placeholder-icon">🎮</span>
+                            <h4>Controle do Servidor</h4>
+                            <p>Interface principal com controles do servidor e console integrado</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">
+                        <div class="placeholder-content">
+                            <span class="placeholder-icon">⚙️</span>
+                            <h4>Configurações</h4>
+                            <p>Editor completo de server.properties com interface amigável</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">
+                        <div class="placeholder-content">
+                            <span class="placeholder-icon">🌍</span>
+                            <h4>Gerenciamento de Mundos</h4>
+                            <p>Importe e gerencie diferentes mundos do seu servidor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">
+                        <div class="placeholder-content">
+                            <span class="placeholder-icon">🧩</span>
+                            <h4>Sistema de Addons</h4>
+                            <p>Biblioteca de addons com aplicação seletiva por mundo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="container">
+            <div class="download-content">
+                <div class="download-info">
+                    <h2 class="download-title">📥 Download</h2>
+                    <p class="download-description">
+                        Baixe gratuitamente e comece a gerenciar seu servidor Minecraft Bedrock agora mesmo
+                    </p>
+                    
+                    <div class="download-options">
+                        <div class="download-option">
+                            <div class="option-header">
+                                <span class="option-icon">💻</span>
+                                <h3>Executável Windows</h3>
+                            </div>
+                            <p class="option-description">
+                                Arquivo único, pronto para usar. Apenas baixe e execute.
+                            </p>
+                            <a href="https://github.com/seu-usuario/minecraft-server-manager/releases" class="btn btn-primary" target="_blank">
+                                <span class="btn-icon">📥</span>
+                                Download .exe
+                            </a>
+                        </div>
+                        
+                        <div class="download-option">
+                            <div class="option-header">
+                                <span class="option-icon">🐍</span>
+                                <h3>Código Fonte</h3>
+                            </div>
+                            <p class="option-description">
+                                Para desenvolvedores ou usuários que preferem executar via Python.
+                            </p>
+                            <a href="https://github.com/seu-usuario/minecraft-server-manager" class="btn btn-secondary" target="_blank">
+                                <span class="btn-icon">📂</span>
+                                Ver no GitHub
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="system-requirements">
+                        <h4>📋 Requisitos do Sistema</h4>
+                        <ul>
+                            <li>✅ Windows 10/11 (64-bit)</li>
+                            <li>✅ Servidor Minecraft Bedrock Edition</li>
+                            <li>✅ 4GB RAM (recomendado)</li>
+                            <li>✅ Playit.gg (opcional, para acesso pela internet)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="download-visual">
+                    <div class="download-mockup">
+                        <div class="mockup-folder">
+                            <div class="folder-icon">📁</div>
+                            <span class="folder-name">MinecraftServerManager_Portable</span>
+                        </div>
+                        <div class="mockup-files">
+                            <div class="file-item">
+                                <span class="file-icon">⚙️</span>
+                                <span class="file-name">MinecraftServerManager.exe</span>
+                                <span class="file-size">~25MB</span>
+                            </div>
+                            <div class="file-item">
+                                <span class="file-icon">📄</span>
+                                <span class="file-name">README.md</span>
+                                <span class="file-size">2KB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="docs" class="docs">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">📚 Como Usar</h2>
+                <p class="section-description">
+                    Guia rápido para começar a usar o Minecraft Server Manager
+                </p>
+            </div>
+            
+            <div class="docs-grid">
+                <div class="doc-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">📁 Preparação</h3>
+                        <p class="step-description">
+                            Coloque o executável na pasta do seu servidor Minecraft Bedrock, 
+                            junto com bedrock_server.exe e server.properties
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="doc-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">🚀 Execução</h3>
+                        <p class="step-description">
+                            Execute o MinecraftServerManager.exe. O programa detectará 
+                            automaticamente os arquivos do servidor
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="doc-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">🎮 Gerenciamento</h3>
+                        <p class="step-description">
+                            Use as abas para controlar o servidor, configurar propriedades, 
+                            gerenciar mundos, addons e jogadores
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="doc-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">🌍 Playit (Opcional)</h3>
+                        <p class="step-description">
+                            Para acesso pela internet, baixe o Playit.gg e coloque na pasta 
+                            playit/ dentro do servidor
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="docs-structure">
+                <h3>📁 Estrutura Recomendada</h3>
+                <div class="structure-code">
+                    <pre><code>servidor_minecraft/
+├── MinecraftServerManager.exe  ← Este arquivo
+├── bedrock_server.exe
+├── server.properties
+├── worlds/
+├── development_behavior_packs/
+├── development_resource_packs/
+└── playit/
+    └── playit.exe  ← Para acesso pela internet</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-icon">🎮</span>
+                    <span class="footer-title">Minecraft Server Manager</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/seu-usuario/minecraft-server-manager" target="_blank" class="footer-link">
+                        <span class="link-icon">📂</span>
+                        GitHub
+                    </a>
+                    <a href="https://github.com/seu-usuario/minecraft-server-manager/releases" target="_blank" class="footer-link">
+                        <span class="link-icon">📥</span>
+                        Releases
+                    </a>
+                    <a href="https://github.com/seu-usuario/minecraft-server-manager/issues" target="_blank" class="footer-link">
+                        <span class="link-icon">🐛</span>
+                        Issues
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-text">
+                    🎮 Desenvolvido com ❤️ para a comunidade Minecraft Bedrock • 
+                    <span class="footer-highlight">Open Source</span> • 
+                    <span class="footer-highlight">Gratuito</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
