@@ -1,0 +1,89 @@
+{
+    "resource_pack_name": "ae2be",
+    "texture_name": "atlas.terrain",
+    "texture_data": {
+        "ae2be_charged_certus_quartz_ore": {
+            "textures": "textures/blocks/ores/charged_certus_quartz_ore"
+        },
+        "ae2be_certus_quartz_ore": {
+            "textures": "textures/blocks/ores/certus_quartz_ore"
+        },
+        "ae2be_network_cable_fluix": {
+            "textures": "textures/blocks/network_cables/transparent"
+        },
+        "ae2be_quartz_fiber": {
+            "textures": "textures/blocks/network_cables/quartz_fiber"
+        },
+        "ae2be_interface": {
+            "textures": "textures/blocks/machines/interface"
+        },
+        "ae2be_terminal": {
+            "textures": "textures/blocks/machines/terminal"
+        },
+        "ae2be_request_terminal": {
+            "textures": "textures/blocks/machines/request_terminal"
+        },
+        "ae2be_crafting_terminal": {
+            "textures": "textures/blocks/machines/crafting_terminal"
+        },
+        "ae2be_sky_stone": {
+            "textures": "textures/blocks/misc/sky_stone"
+        },
+        "ae2be_energy_acceptor": {
+            "textures": "textures/blocks/machines/energy_acceptor"
+        },
+        "ae2be_disk_drive": {
+            "textures": "textures/blocks/machines/disk_drive"
+        },
+        "ae2be_empty": {
+            "textures": "textures/items/misc/blank"
+        },
+        "ae2be_quartz_glass": {
+            "textures": [
+                "textures/blocks/misc/quartz_glass/quartz_glass",
+                "textures/blocks/misc/quartz_glass/quartz_glass_a",
+                "textures/blocks/misc/quartz_glass/quartz_glass_b",
+                "textures/blocks/misc/quartz_glass/quartz_glass_c",
+                "textures/blocks/misc/quartz_glass/quartz_glass_d"
+            ]
+        },
+
+        "ae2be_illuminated_panel": {
+            "textures": "textures/blocks/panels/illuminated_panel"
+        },
+        "ae2be_bright_illuminated_panel": {
+            "textures": "textures/blocks/panels/bright_illuminated_panel"
+        },
+        "ae2be_dark_illuminated_panel": {
+            "textures": "textures/blocks/panels/dark_illuminated_panel"
+        },
+
+        "ae2be_charger": {
+            "textures": "textures/blocks/machines/charger"
+        },
+        "ae2be_charger_input": {
+            "textures": "textures/blocks/machines/charger_input"
+        },
+        "ae2be_charger_output": {
+            "textures": "textures/blocks/machines/charger_output"
+        },
+        "ae2be_inscriber": {
+            "textures": "textures/blocks/machines/inscriber"
+        },
+        "ae2be_quartz_grindstone": {
+            "textures": "textures/blocks/machines/quartz_grindstone"
+        },
+        "ae2be_wireless_access_point": {
+            "textures": "textures/blocks/machines/wireless_access_point"
+        },
+        "ae2be_storage_bus": {
+            "textures": "textures/blocks/machines/storage_bus"
+        },
+        "ae2be_import_bus": {
+            "textures": "textures/blocks/machines/storage_bus"
+        },
+        "ae2be_export_bus": {
+            "textures": "textures/blocks/machines/storage_bus"
+        }
+    }
+}

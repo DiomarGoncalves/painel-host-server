@@ -1,0 +1,148 @@
+## Items
+item.ae2be:certus_quartz_crystal=Certus Quartz Crystal
+item.ae2be:charged_certus_quartz_crystal=Charged Certus Quartz Crystal
+
+tile.ae2be:certus_quartz_ore.name=Certus Quartz Ore
+tile.ae2be:charged_certus_quartz_ore.name=Charged Certus Quartz Ore
+
+item.ae2be:certus_quartz_wrench=Certus Quartz Wrench
+item.ae2be:nether_quartz_wrench=Nether Quartz Wrench
+
+item.ae2be:crystal_seed.certus=Certus Quartz Seed
+item.ae2be:crystal_seed.nether=Nether Quartz Seed
+item.ae2be:crystal_seed.fluix=Fluix Seed
+item.ae2be:invalid_type=This Item Is Disabled.
+item.ae2be:advanced_card=Advanced Card
+item.ae2be:annihilation_core=Annihilation Core
+item.ae2be:basic_card=Basic Card
+item.ae2be:blank_pattern=Blank Pattern
+item.ae2be:calculation_processor=Calculation Processor
+item.ae2be:card_capacity=Capacity Card
+item.ae2be:card_fuzzy=Fuzzy Card
+item.ae2be:card_inverter=Inverter Card
+item.ae2be:card_redstone=Redstone Card
+item.ae2be:card_speed=Acceleration Card
+
+item.ae2be:sky_stone_dust=Sky Stone Dust
+tile.ae2be:quartz_fiber.name=Quartz Fiber
+item.ae2be:encoded_pattern=Encoded Pattern
+
+item.ae2be:wireless_receiver=Wireless Receiver
+item.ae2be:wireless_terminal=Wireless Terminal
+item.ae2be:wireless_booster_card=Wireless Booster Card
+item.ae2be:infinite_wireless_booster_card=Infinite Wireless Booster Card
+
+item.ae2be:certus_quartz_dust=Certus Quartz Dust
+item.ae2be:empty_storage_cell=ME Storage Housing
+item.ae2be:ender_dust=Ender Dust
+item.ae2be:engineering_processor=Engineering Processor
+item.ae2be:flour=Flour
+item.ae2be:fluix_crystal=Fluix Crystal
+item.ae2be:fluix_dust=Fluix Dust
+item.ae2be:fluix_pearl=Fluix Pearl
+item.ae2be:formation_core=Formation Core
+item.ae2be:gold_dust=Gold Dust
+item.ae2be:iron_dust=Iron Dust
+item.ae2be:logic_processor=Logic Processor
+item.ae2be:logic_processor_asm=Unfinished Logic Processor
+item.ae2be:matter_ball=Matter Ball
+item.ae2be:nether_quartz_dust=Nether Quartz Dust
+item.ae2be:pure_certus_quartz_crystal=Pure Certus Quartz Crystal
+item.ae2be:pure_fluix=Pure Fluix Crystal
+item.ae2be:pure_nether_quartz=Pure Nether Quartz Crystal
+item.ae2be:quantum_entangled_singularity=Quantum Entangled Singularity
+item.ae2be:silicon=Silicon
+item.ae2be:singularity=Singularity
+item.ae2be:wireless=Wireless Receiver
+item.ae2be:wireless_booster=Wireless Booster
+item.ae2be:wooden_gear=Wooden Gear
+item.ae2be:engineering_processor_press=Inscriber Engineering Press
+item.ae2be:calculation_processor_press=Inscriber Calculation Press
+item.ae2be:logic_processor_press=Inscriber Logic Press
+item.ae2be:engineering_processor_print=Printed Engineering Circuit
+item.ae2be:calculation_processor_print=Printed Calculation Circuit
+item.ae2be:logic_processor_print=Printed Logic Circuit
+item.ae2be:silicon_press=Inscriber Silicon Press
+item.ae2be:silicon_print=Printed Silicon
+item.ae2be:material_press=Inscriber Name Press
+item.ae2be:sky_dust=Sky Stone Dust
+item.ae2be:card_crafting=Crafting Card
+
+## Cells
+item.ae2be:cell2_spatial_part=2³ Spatial Component
+item.ae2be:cell16_spatial_part=16³ Spatial Component
+item.ae2be:cell128_spatial_part=128³ Spatial Component
+
+item.ae2be:1k_storage_cell=1k ME Storage\n §8Bytes:\n  §e0§7/1024\n §8Types:\n  §e0§7/16
+item.ae2be:4k_storage_cell=4k ME Storage\n §8Bytes:\n  §e0§7/4096\n §8Types:\n  §e0§7/32
+item.ae2be:16k_storage_cell=16k ME Storage\n §8Bytes:\n  §e0§7/16384\n §8Types:\n  §e0§7/64
+item.ae2be:32k_storage_cell=32k ME Storage\n §8Bytes:\n  §e0§7/32768\n §8Types:\n  §e0§7/64
+item.ae2be:storage_housing=Storage Housing
+item.ae2be:1k_storage_part=1k ME Storage Component
+item.ae2be:4k_storage_part=4k ME Storage Component
+item.ae2be:16k_storage_part=16k ME Storage Component
+item.ae2be:32k_storage_part=32k ME Storage Component
+
+item.ae2be:fluid_cell1k_part=1k ME Fluid Storage Component
+item.ae2be:fluid_cell4k_part=4k ME Fluid Storage Component
+item.ae2be:fluid_cell16k_part=16k ME Fluid Storage Component
+item.ae2be:fluid_cell64k_part=64k ME Fluid Storage Component
+
+## Upgrades
+item.ae2be:capacity_card=Capacity Card
+item.ae2be:fuzzy_card=Fuzzy Card
+item.ae2be:inverter_card=Inverter Card
+item.ae2be:redstone_card=Redstone Card
+item.ae2be:booster_card=Acceleration Card
+item.ae2be:empty_card=Blank Card
+
+## UI
+item.ae2be:encode_pattern_ui_action=Encode Pattern
+item.ae2be:ui_progress=Progress
+item.ae2be:backsert=Insert Items
+
+## Tiles
+tile.ae2be:network_cable.name=ME Glass Cable
+### Machines
+tile.ae2be:wireless_access_point.name=Wireless Access Point
+tile.ae2be:disk_drive.name=Disk Drive
+tile.ae2be:terminal.name=ME Terminal
+tile.ae2be:request_terminal.name=ME Request Terminal
+tile.ae2be:pattern_terminal.name=ME Pattern Terminal
+tile.ae2be:crafting_terminal.name=ME Crafting Terminal
+tile.ae2be:interface.name=ME Directional Interface\n§7Inserts items from the\ntop container into the system
+tile.ae2be:energy_acceptor.name=Energy Acceptor
+tile.ae2be:inscriber.name=Inscriber
+tile.ae2be:charger.name=Charger
+tile.ae2be:quartz_grindstone.name=Quartz Grindstone
+
+tile.ae2be:export_bus.name=ME Export Bus
+tile.ae2be:import_bus.name=ME Import Bus
+tile.ae2be:storage_bus.name=ME Storage Bus
+
+tile.ae2be:bright_illuminated_panel.name=Bright Illuminated Panel
+tile.ae2be:illuminated_panel.name=Illuminated Panel
+tile.ae2be:dark_illuminated_panel.name=Dark Illuminated Panel
+
+## Automation
+tile.ae2be:1k_crafting_cpu.name=1k Crafting CPU
+
+## Blocks
+tile.ae2be:sky_stone.name=Sky Stone
+tile.ae2be:quartz_glass.name=Quartz Glass
+
+
+## Item Groups
+ae2be:itemGroup.name.machines=AE2BE Machines
+ae2be:itemGroup.name.ingredients=AE2BE Ingredients
+ae2be:itemGroup.name.cells=AE2BE Cells
+ae2be:itemGroup.name.blocks=AE2BE Blocks
+ae2be:itemGroup.name.misc=AE2BE Miscellaneous
+ae2be:itemGroup.name.experimental=AE2BE Experimental\n§c(=BROKEN, DO NOT USE,\nCAN CAUSE ITEM LOSS, LAST WARNING!)
+
+## Error Messages
+ae2be:error_block_interact=§cYou may only access this block from the placed side!
+ae2be:error_block_break=§cYou may only break this block from a different side!
+ae2be:error_item_invalid=§cThis item may not be put into the system!
+ae2be:error_wireless_terminal_unlink=§cThe linked access point is not valid anymore!\nThe Wireless Terminal is now unlinked.
+ae2be:error_wireless_terminal_out_of_range=§cYou are out of range!\nTry adding booster cards to your access point or move closer.

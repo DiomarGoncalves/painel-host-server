@@ -1,0 +1,148 @@
+## Items
+item.ae2be:certus_quartz_crystal=ケルタスクォーツの水晶
+item.ae2be:charged_certus_quartz_crystal=チャージ済のケルタスクォーツの水晶
+
+tile.ae2be:certus_quartz_ore.name=ケルタスクォーツ鉱石
+tile.ae2be:charged_certus_quartz_ore.name=チャージ済のケルタスクォーツ鉱石
+
+item.ae2be:certus_quartz_wrench=ケルタスクォーツのレンチ
+item.ae2be:nether_quartz_wrench=ネザークォーツのレンチ
+
+item.ae2be:crystal_seed.certus=ケルタスクォーツの種
+item.ae2be:crystal_seed.nether=ネザークォーツの種
+item.ae2be:crystal_seed.fluix=フルーシュの種
+item.ae2be:invalid_type=このアイテムは無効になっています
+item.ae2be:advanced_card=上級カード
+item.ae2be:annihilation_core=消滅コア
+item.ae2be:basic_card=基本カード
+item.ae2be:blank_pattern=空のパターン
+item.ae2be:calculation_processor=演算プロセッサ
+item.ae2be:card_capacity=容量カード
+item.ae2be:card_fuzzy=ファジーカード
+item.ae2be:card_inverter=反転カード
+item.ae2be:card_redstone=レッドストーンカード
+item.ae2be:card_speed=加速カード
+
+item.ae2be:sky_stone_dust=スカイストーンダスト
+tile.ae2be:quartz_fiber.name=クォーツファイバー
+item.ae2be:encoded_pattern=エンコードパターン
+
+item.ae2be:wireless_receiver=無線受信機
+item.ae2be:wireless_terminal=無線ターミナル
+item.ae2be:wireless_booster_card=無線ブースター
+item.ae2be:infinite_wireless_booster_card=無限ブースター
+
+item.ae2be:certus_quartz_dust=ケルタスクォーツダスト
+item.ae2be:empty_storage_cell=MEアイテムストレージセル筐体
+item.ae2be:ender_dust=エンダーダスト
+item.ae2be:engineering_processor=情報処理プロセッサ
+item.ae2be:flour=粉
+item.ae2be:fluix_crystal=フルーシュの水晶
+item.ae2be:fluix_dust=フルーシュダスト
+item.ae2be:fluix_pearl=フルーシュパール
+item.ae2be:formation_core=形成コア
+item.ae2be:gold_dust=金の粉
+item.ae2be:iron_dust=鉄の粉
+item.ae2be:logic_processor=論理プロセッサ
+item.ae2be:logic_processor_asm=未完成な論理プロセッサ
+item.ae2be:matter_ball=マターボール
+item.ae2be:nether_quartz_dust=ネザークォーツダスト
+item.ae2be:pure_certus_quartz_crystal=純粋なケルタスクォーツの水晶
+item.ae2be:pure_fluix=純粋なフルーシュの水晶
+item.ae2be:pure_nether_quartz=純粋なネザークォーツの水晶
+item.ae2be:quantum_entangled_singularity=量子もつれシンギュラリティ
+item.ae2be:silicon=シリコン
+item.ae2be:singularity=シンギュラリティ
+item.ae2be:wireless=無線受信機
+item.ae2be:wireless_booster=無線ブースター
+item.ae2be:wooden_gear=木の歯車
+item.ae2be:engineering_processor_press=情報処理回路の金型
+item.ae2be:calculation_processor_press=演算回路の金型
+item.ae2be:logic_processor_press=論理回路の金型
+item.ae2be:engineering_processor_print=情報処理回路
+item.ae2be:calculation_processor_print=演算回路
+item.ae2be:logic_processor_print=論理回路
+item.ae2be:silicon_press=シリコン基盤の金型
+item.ae2be:silicon_print=シリコン基盤
+item.ae2be:material_press=プレスする素材を刻印
+item.ae2be:sky_dust=スカイストーンダスト
+item.ae2be:card_crafting=クラフトカード
+
+## Cells
+item.ae2be:cell2_spatial_part=2³ 空間コンポーネント
+item.ae2be:cell16_spatial_part=16³ 空間コンポーネント
+item.ae2be:cell128_spatial_part=128³ 空間コンポーネント
+
+item.ae2be:1k_storage_cell=1k MEアイテムストレージセル\n §8バイト:\n  §e0§7/1024\n §8タイプ:\n  §e0§7/16
+item.ae2be:4k_storage_cell=4k MEアイテムストレージセル\n §8バイト:\n  §e0§7/4096\n §8タイプ:\n  §e0§7/32
+item.ae2be:16k_storage_cell=16k MEアイテムストレージセル\n §8バイト:\n  §e0§7/16384\n §8タイプ:\n  §e0§7/64
+item.ae2be:32k_storage_cell=32k MEアイテムストレージセル\n §8バイト:\n  §e0§7/32768\n §8タイプ:\n  §e0§7/64
+item.ae2be:storage_housing=MEアイテムストレージセル筐体
+item.ae2be:1k_storage_part=1k MEアイテムストレージコンポーネント
+item.ae2be:4k_storage_part=4k MEアイテムストレージコンポーネント
+item.ae2be:16k_storage_part=16k MEアイテムストレージコンポーネント
+item.ae2be:32k_storage_part=32k MEアイテムストレージコンポーネント
+
+item.ae2be:fluid_cell1k_part=1k ME流体ストレージコンポーネント
+item.ae2be:fluid_cell4k_part=4k ME流体ストレージコンポーネント
+item.ae2be:fluid_cell16k_part=16k ME流体ストレージコンポーネント
+item.ae2be:fluid_cell64k_part=64k ME流体ストレージコンポーネント
+
+## Upgrades
+item.ae2be:capacity_card=容量カード
+item.ae2be:fuzzy_card=ファジーカード
+item.ae2be:inverter_card=反転カード
+item.ae2be:redstone_card=レッドストーンカード
+item.ae2be:booster_card=加速カード
+item.ae2be:empty_card=空のカード
+
+## UI
+item.ae2be:encode_pattern_ui_action=エンコードパターン
+item.ae2be:ui_progress=進捗
+item.ae2be:backsert=アイテムを挿入
+
+## Tiles
+tile.ae2be:network_cable.name=MEガラスケーブル
+### Machines
+tile.ae2be:wireless_access_point.name=ME無線アクセスポイント
+tile.ae2be:disk_drive.name=MEドライブ
+tile.ae2be:terminal.name=MEターミナル
+tile.ae2be:request_terminal.name=MEリクエストターミナル
+tile.ae2be:pattern_terminal.name=MEパターンターミナル
+tile.ae2be:crafting_terminal.name=MEクラフトターミナル
+tile.ae2be:interface.name=ME方向性インターフェース\n§正面のコンテナからアイテムを\nネットワークに搬入します
+tile.ae2be:energy_acceptor.name=エネルギーアクセプター
+tile.ae2be:inscriber.name=刻印機
+tile.ae2be:charger.name=チャージャー
+tile.ae2be:quartz_grindstone.name=クォーツ鉱石
+
+tile.ae2be:export_bus.name=MEエクスポートバス
+tile.ae2be:import_bus.name=MEインポートバス
+tile.ae2be:storage_bus.name=MEストレージバス
+
+tile.ae2be:bright_illuminated_panel.name=明るい照明パネル
+tile.ae2be:illuminated_panel.name=照明パネル
+tile.ae2be:dark_illuminated_panel.name=暗い照明パネル
+
+## Automation
+tile.ae2be:1k_crafting_cpu.name=1k クラフトストレージ
+
+## Blocks
+tile.ae2be:sky_stone.name=スカイストーン
+tile.ae2be:quartz_glass.name=クォーツガラス
+
+
+## Item Groups
+ae2be:itemGroup.name.machines=AE2BE 機械類
+ae2be:itemGroup.name.ingredients=AE2BE 素材
+ae2be:itemGroup.name.cells=AE2BE セル
+ae2be:itemGroup.name.blocks=AE2BE ブロック
+ae2be:itemGroup.name.misc=AE2BE その他
+ae2be:itemGroup.name.experimental=AE2BE 実験用\n§c(=開発中、使用禁止,\nアイテムを失う恐れあり, 最後の警告！!)
+
+## Error Messages
+ae2be:error_block_interact=§cこのブロックは設置された側からのみアクセス可能です！
+ae2be:error_block_break=§cこのブロックはは別の側からしか壊すことができません！
+ae2be:error_item_invalid=§cこのアイテムはネットワークに投入できません！
+ae2be:error_wireless_terminal_unlink=§cリンクされたアクセスポイントは有効でなくなりました！\nワイヤレス端末は現在リンクが解除されています。
+ae2be:error_wireless_terminal_out_of_range=§c範囲外です！\nアクセスポイントにブースターカードを追加するか、より近い位置に移動してください。

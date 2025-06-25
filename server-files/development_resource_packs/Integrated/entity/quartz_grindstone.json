@@ -1,0 +1,25 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "ae2be:quartz_grindstone",
+            "materials": {
+                "default": "entity_custom"
+            },
+            "textures": {
+                "default": "textures/textures/blocks/machines/quartz_grindstone"
+            },
+            "geometry": {
+                "default": "geometry.ae2be.display_stand"
+            },
+            "scripts": {},
+            "render_controllers": [
+                "controller.render.default"
+            ],
+            "spawn_egg": {
+                "base_color": "#288483",
+                "overlay_color": "#2B7135"
+            }
+        }
+    }
+}

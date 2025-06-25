@@ -1,0 +1,30 @@
+{
+    "format_version": "1.21.40",
+    "ae2be:network_cable": {
+        "sound": "glass"
+    },
+    "ae2be:terminal": {
+        "sound": "glass"
+    },
+    "ae2be:storage_bus": {
+        "sound": "glass"
+    },
+    "ae2be:import_bus": {
+        "sound": "glass"
+    },
+    "ae2be:export_bus": {
+        "sound": "glass"
+    },
+    "ae2be:quartz_glass": {
+        "sound": "glass"
+    },
+    "ae2be:illuminated_panel": {
+        "sound": "glass"
+    },
+    "ae2be:bright_illuminated_panel": {
+        "sound": "glass"
+    },
+    "ae2be:dark_illuminated_panel": {
+        "sound": "glass"
+    }
+}

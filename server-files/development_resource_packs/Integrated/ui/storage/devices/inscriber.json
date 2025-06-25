@@ -1,0 +1,469 @@
+{
+    "namespace": "inscriber",
+
+    "inscriber_root@common.root_panel": {
+        "size": [176, 180],
+        "layer": 20,
+        "controls": [
+            {
+                "common_panel@common.common_panel": {}
+            },
+            {
+                "recipe_book_panel": {
+                    "type": "panel",
+                    "size": [100, 180],
+                    "anchor_from": "left_middle",
+                    "anchor_to": "left_middle",
+                    "controls": [
+                        {
+                            "content_opened@recipe_book_open_panel_content": {
+                                "bindings": [
+                                    {
+                                        "binding_type": "view",
+                                        "source_property_name": "#toggle_state",
+                                        "source_control_name": "recipes_inscriber_opened",
+                                        "target_property_name": "#visible"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "content_closed@recipe_book_closed_panel_content": {
+                                "bindings": [
+                                    {
+                                        "binding_type": "view",
+                                        "source_property_name": "#toggle_state",
+                                        "source_control_name": "recipes_inscriber_closed",
+                                        "target_property_name": "#visible"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "chest_label": {
+                    "type": "label",
+                    "offset": [7, 11],
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "text": "Inscriber",
+                    "size": ["90%", "default"],
+                    "color": "$title_text_color",
+                    "layer": 2
+                }
+            },
+            {
+                "chest_panel": {
+                    "type": "panel",
+                    "layer": 5,
+                    "controls": [
+                        {
+                            "small_chest_panel_top_half@inscriber.inscriber": {
+                                "offset": [7, 21],
+                                "anchor_to": "top_left",
+                                "anchor_from": "top_left"
+                            }
+                        },
+                        {
+                            "inventory_panel_bottom_half_with_label@common.inventory_panel_bottom_half_with_label": {}
+                        },
+                        {
+                            "hotbar_grid@common.hotbar_grid_template": {}
+                        },
+                        {
+                            "inventory_take_progress_icon_button@common.inventory_take_progress_icon_button": {}
+                        },
+                        {
+                            "flying_item_renderer@common.flying_item_renderer": {
+                                "layer": 15
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "inventory_selected_icon_button@common.inventory_selected_icon_button": {}
+            },
+            {
+                "gamepad_cursor@common.gamepad_cursor_button": {}
+            }
+        ]
+    },
+
+    "inscriber": {
+        "size": [162, 18],
+        "type": "panel",
+        "controls": [
+            {
+                "panel": {
+                    "type": "panel",
+                    "size": [97, 64],
+                    "anchor_from": "top_middle",
+                    "anchor_to": "top_middle",
+                    "controls": [
+                        {
+                            "arrow_layout": {
+                                "type": "image",
+                                "size": ["100%", "100%"],
+                                "texture": "textures/inscriber/arrow_layout"
+                            }
+                        },
+                        {
+                            "bar": {
+                                "type": "collection_panel",
+                                "size": [4, 16],
+                                "collection_name": "container_items",
+                                "anchor_from": "right_middle",
+                                "anchor_to": "right_middle",
+                                "offset": [-1, 1],
+                                "controls": [
+                                    {
+                                        "actual_bar": {
+                                            "type": "image",
+                                            "size": [4, 16],
+                                            "collection_index": 4,
+                                            "$max_stack|default": 63.0,
+                                            "clip_direction": "down",
+                                            "clip_pixelperfect": false,
+                                            "bindings": [
+                                                {
+                                                    "binding_name": "#inventory_stack_count",
+                                                    "binding_name_override": "#stack_count",
+                                                    "binding_condition": "always",
+                                                    "binding_type": "collection",
+                                                    "binding_collection_name": "container_items"
+                                                },
+                                                {
+                                                    "binding_type": "view",
+                                                    "source_property_name": "(not (#stack_count = ''))",
+                                                    "target_property_name": "#visible"
+                                                },
+                                                {
+                                                    "binding_type": "view",
+                                                    "source_property_name": "((#stack_count - '§r' - '§f' - '§o') * 1)",
+                                                    "target_property_name": "#stack_number"
+                                                },
+                                                {
+                                                    "binding_condition": "always",
+                                                    "binding_type": "view",
+                                                    "source_property_name": "(1 - ((#stack_number - 1) / $max_stack))",
+                                                    "target_property_name": "#clip_ratio"
+                                                }
+                                            ],
+                                            "texture": "textures/inscriber/bar"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "layouts@inscriber_recipes.item_layouts": {}
+            }
+        ]
+    },
+    "inscriber_item_outline": {
+        "type": "image",
+        "texture": "$texture_outline",
+        "size": [16, 16],
+        "layer": 5,
+        "controls": [
+            {
+                "black": {
+                    "type": "image",
+                    "texture": "textures/ui/Black",
+                    "alpha": "$default",
+                    "size": "$cell_image_size",
+                    "layer": 1
+                }
+            }
+        ],
+        "bindings": [
+            {
+                "binding_name": "#item_id_aux",
+                "binding_name_override": "#aux",
+                "binding_condition": "always",
+                "binding_type": "collection",
+                "binding_collection_name": "container_items"
+            },
+            {
+                "binding_type": "collection_details",
+                "binding_collection_name": "container_items"
+            },
+            {
+                "binding_type": "collection",
+                "binding_collection_name": "container_items",
+                "binding_name": "#collection_index"
+            },
+            {
+                "binding_type": "view",
+                "source_property_name": "(#aux = -1)",
+                "target_property_name": "#visible"
+            }
+        ]
+    },
+    "inscriber_item": {
+        "type": "stack_panel",
+        "$collection_index|default": 0,
+        "$cell_image_size|default": [18, 18],
+        "$texture_outline|default": "textures/inscriber/1_item_outline",
+        "collection_name": "container_items",
+        "size": [18, 18],
+        "layer": 1,
+        "controls": [
+            {
+                "chest_grid_item@inscriber.dynamic_inscriber_item": {
+                    "collection_index": "$collection_index"
+                }
+            }
+        ]
+    },
+    "dynamic_inscriber_item": {
+        "type": "panel",
+        "size": ["100%", "100%"],
+        "controls": [
+            {
+                "chest_grid_item@chest.chest_grid_item": {
+                    "size": ["100%", "100%"]
+                }
+            },
+            {
+                "outline@inscriber.inscriber_item_outline": {}
+            }
+        ]
+    },
+    "recipe_book_open_panel_content": {
+        "type": "image",
+        "texture": "textures/ui/dialog_background_opaque",
+        "layer": -1,
+        "color": [0.4, 0.4, 0.4],
+        "offset": [-94, 0],
+        "alpha": 1,
+        "size": [100, 180],
+        "anchor_from": "left_middle",
+        "anchor_to": "left_middle",
+        "controls": [
+            {
+                "content": {
+                    "type": "stack_panel",
+                    "size": [86, 170],
+                    "anchor_from": "left_middle",
+                    "anchor_to": "left_middle",
+                    "orientation": "vertical",
+                    "offset": [5, 0],
+                    "controls": [
+                        {
+                            "label": {
+                                "size": ["100%", 14],
+                                "type": "panel",
+                                "controls": [
+                                    {
+                                        "actual_text": {
+                                            "size": ["100%", "default"],
+                                            "type": "label",
+                                            "offset": [1, 0],
+                                            "text": "Recipes",
+                                            "shadow": true,
+                                            "anchor_from": "left_middle",
+                                            "anchor_to": "left_middle"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "grid@inscriber_recipes.scrolling_grid": {
+                                "layer": 10,
+                                "anchor_from": "left_middle",
+                                "anchor_to": "left_middle",
+                                "offset": [5, 0]
+                            }
+                        },
+                        {
+                            "padding": {
+                                "type": "panel",
+                                "size": ["100%", 4]
+                            }
+                        },
+                        {
+                            "default": {
+                                "type": "panel",
+                                "size": ["100%", 14],
+                                "layer": 10,
+                                "controls": [
+                                    {
+                                        "inscriber.recipe.default@common.toggle": {
+                                            "type": "toggle",
+                                            "anchor_from": "top_left",
+                                            "anchor_to": "top_left",
+                                            "size": [86, "100%"],
+                                            "$unchecked_control": "inscriber_recipes.toggle_default",
+                                            "$checked_control": "inscriber_recipes.toggle_pressed",
+                                            "$unchecked_hover_control": "inscriber_recipes.toggle_hover",
+                                            "$button_id": "button.menu_select",
+                                            "$checked_hover_control": "inscriber_recipes.toggle_hover",
+                                            "$checked_locked_hover_control": "inscriber_recipes.toggle_hover",
+                                            "$unchecked_locked_hover_control": "inscriber_recipes.toggle_hover",
+                                            "$toggle_name": "recipes.inscriber",
+                                            "$checked_locked_control": "inscriber_recipes.toggle_hover",
+                                            "$unchecked_locked_control": "inscriber_recipes.toggle_pressed",
+                                            "toggle_default_state": true,
+                                            "radio_toggle_group": true,
+                                            "toggle_group_forced_index": 0,
+                                            "button_mappings": [
+                                                {
+                                                    "from_button_id": "button.menu_select",
+                                                    "to_button_id": "button.menu_select",
+                                                    "mapping_type": "pressed"
+                                                },
+                                                {
+                                                    "from_button_id": "button.menu_ok",
+                                                    "to_button_id": "button.menu_select",
+                                                    "mapping_type": "pressed"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "label": {
+                                            "type": "label",
+                                            "text": "Remove Recipe"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "toggle_recipes": {
+                    "type": "image",
+                    "size": [24, 24],
+                    "color": [0.4, 0.4, 0.4],
+                    "texture": "textures/inscriber/left_side",
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "offset": [-21, 10],
+                    "controls": [
+                        {
+                            "book_open": {
+                                "type": "image",
+                                "layer": 2,
+                                "size": [22, 22],
+                                "texture": "textures/inscriber/recipe_open"
+                            }
+                        },
+                        {
+                            "recipes_inscriber_closed@common.toggle": {
+                                "type": "toggle",
+                                "anchor_from": "center",
+                                "anchor_to": "center",
+                                "size": [22, 22],
+                                "offset": [0, 0],
+                                "layer": 10,
+                                "toggle_default_state": true,
+                                "$unchecked_control": "chest.nothing",
+                                "$checked_control": "chest.nothing",
+                                "$unchecked_hover_control": "chest.hover",
+                                "$button_id": "button.menu_select",
+                                "$checked_hover_control": "chest.nothing",
+                                "$checked_locked_hover_control": "chest.nothing",
+                                "$unchecked_locked_hover_control": "chest.nothing",
+                                "$toggle_name": "recipes.inscriber_state",
+                                "$checked_locked_control": "chest.nothing",
+                                "$unchecked_locked_control": "chest.nothing",
+                                "radio_toggle_group": true,
+                                "toggle_group_forced_index": 0,
+                                "button_mappings": [
+                                    {
+                                        "from_button_id": "button.menu_select",
+                                        "to_button_id": "button.menu_select",
+                                        "mapping_type": "pressed"
+                                    },
+                                    {
+                                        "from_button_id": "button.menu_ok",
+                                        "to_button_id": "button.menu_select",
+                                        "mapping_type": "pressed"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "recipe_book_closed_panel_content": {
+        "type": "image",
+        "texture": "textures/ui/dialog_background_opaque",
+        "layer": -1,
+        "color": [0.4, 0.4, 0.4],
+        "alpha": 1,
+        "offset": [0, 0],
+        "size": [100, 180],
+        "anchor_from": "left_middle",
+        "anchor_to": "left_middle",
+        "controls": [
+            {
+                "toggle_recipes": {
+                    "type": "image",
+                    "size": [24, 24],
+                    "color": [0.4, 0.4, 0.4],
+                    "texture": "textures/inscriber/left_side",
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "offset": [-21, 10],
+                    "controls": [
+                        {
+                            "book_open": {
+                                "type": "image",
+                                "layer": 2,
+                                "size": [22, 22],
+                                "texture": "textures/inscriber/recipe_closed"
+                            }
+                        },
+                        {
+                            "recipes_inscriber_opened@common.toggle": {
+                                "type": "toggle",
+                                "anchor_from": "center",
+                                "anchor_to": "center",
+                                "size": [22, 22],
+                                "offset": [0, 0],
+                                "layer": 10,
+                                "$unchecked_control": "chest.nothing",
+                                "$checked_control": "chest.nothing",
+                                "$unchecked_hover_control": "chest.hover",
+                                "$button_id": "button.menu_select",
+                                "$checked_hover_control": "chest.nothing",
+                                "$checked_locked_hover_control": "chest.nothing",
+                                "$unchecked_locked_hover_control": "chest.nothing",
+                                "$toggle_name": "recipes.inscriber_state",
+                                "$checked_locked_control": "chest.nothing",
+                                "$unchecked_locked_control": "chest.nothing",
+                                "radio_toggle_group": true,
+                                "toggle_group_forced_index": 1,
+                                "button_mappings": [
+                                    {
+                                        "from_button_id": "button.menu_select",
+                                        "to_button_id": "button.menu_select",
+                                        "mapping_type": "pressed"
+                                    },
+                                    {
+                                        "from_button_id": "button.menu_ok",
+                                        "to_button_id": "button.menu_select",
+                                        "mapping_type": "pressed"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

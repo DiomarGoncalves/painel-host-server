@@ -1,0 +1,131 @@
+{
+    "namespace": "disk_drive",
+    "disk_drive_root@common.root_panel": {
+        "size": [176, 188],
+        "layer": 1,
+        "controls": [
+            {
+                "common_panel@common.common_panel": {}
+            },
+            {
+                "chest_label": {
+                    "type": "label",
+                    "offset": [7, 11],
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "text": "Disk Drive",
+                    "size": ["90%", "default"],
+                    "color": "$title_text_color",
+                    "layer": 2
+                }
+            },
+            {
+                "chest_panel": {
+                    "type": "panel",
+                    "layer": 5,
+                    "controls": [
+                        {
+                            "small_chest_panel_top_half@disk_drive.disk_drive": {
+                                "offset": [7, 21],
+                                "anchor_to": "top_left",
+                                "anchor_from": "top_left"
+                            }
+                        },
+                        {
+                            "inventory_panel_bottom_half_with_label@common.inventory_panel_bottom_half_with_label": {}
+                        },
+                        {
+                            "hotbar_grid@common.hotbar_grid_template": {}
+                        },
+                        {
+                            "inventory_take_progress_icon_button@common.inventory_take_progress_icon_button": {}
+                        },
+                        {
+                            "flying_item_renderer@common.flying_item_renderer": {
+                                "layer": 15
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "inventory_selected_icon_button@common.inventory_selected_icon_button": {}
+            },
+            {
+                "gamepad_cursor@common.gamepad_cursor_button": {}
+            }
+        ]
+    },
+    
+    "disk_drive": {
+        "size": [162, 18],
+        "type": "panel",
+        "controls": [
+            {
+                "stack": {
+                    "type": "stack_panel",
+                    "anchor_from": "top_middle",
+                    "anchor_to": "top_middle",
+                    "orientation": "vertical",
+                    "size": [18, "100%c"],
+                    "collection_name": "container_items",
+                    "property_bag": {
+                        "#collection_length": 4
+                    },
+                    "bindings": [
+                        {
+                            "binding_name": "#collection_length",
+                            "binding_name_override": "#collection_length"
+                        }
+                    ],
+                    "factory": {
+                        "name": "items",
+                        "control_name": "disk_drive.dynamic_diskdrive_item"
+                    }
+                }
+            }
+        ]
+    },
+    "diskdrive_item_outline": {
+        "type": "image",
+        "texture": "textures/terminal/diskdrive_outline",
+        "size": [16, 16],
+        "layer": 5,
+        "bindings": [
+            {
+                "binding_name": "#item_id_aux",
+                "binding_name_override": "#aux",
+                "binding_condition": "always",
+                "binding_type": "collection",
+                "binding_collection_name": "container_items"
+            },
+            {
+                "binding_type": "collection_details",
+                "binding_collection_name": "container_items"
+            },
+            {
+                "binding_type": "collection",
+                "binding_collection_name": "container_items",
+                "binding_name": "#collection_index"
+            },
+            {
+                "binding_type": "view",
+                "source_property_name": "(#aux = -1)",
+                "target_property_name": "#visible"
+            }
+        ]
+    },
+    "dynamic_diskdrive_item": {
+        "type": "panel",
+        "size": [18, 18],
+
+        "controls": [
+            {
+                "chest_grid_item@chest.chest_grid_item": {}
+            },
+            {
+                "outline@disk_drive.diskdrive_item_outline": {}
+            }
+        ]
+    }
+}

@@ -1,0 +1,165 @@
+{
+    "namespace": "wireless_access_point",
+
+    "wireless_access_point_root@common.root_panel": {
+        "size": [176, 200],
+        "layer": 1,
+        "controls": [
+            { "common_panel@common.common_panel": {} },
+            {
+                "chest_label": {
+                    "type": "label",
+                    "offset": [7, 11],
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "text": "ME Wireless Access Point",
+                    "size": ["90%", "default"],
+                    "color": "$title_text_color",
+                    "layer": 2
+                }
+            },
+            {
+                "chest_panel": {
+                    "type": "panel",
+                    "layer": 5,
+                    "controls": [
+                        {
+                            "wireless_access_point_items@wireless_access_point.wireless_access_point_items": {
+                                "offset": [0, -36]
+                            }
+                        },
+                        {
+                            "inventory_panel_bottom_half_with_label@common.inventory_panel_bottom_half_with_label": {}
+                        },
+                        { "hotbar_grid@common.hotbar_grid_template": {} },
+                        {
+                            "inventory_take_progress_icon_button@common.inventory_take_progress_icon_button": {}
+                        },
+                        {
+                            "flying_item_renderer@common.flying_item_renderer": {
+                                "layer": 15
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "inventory_selected_icon_button@common.inventory_selected_icon_button": {}
+            },
+            { "gamepad_cursor@common.gamepad_cursor_button": {} }
+        ]
+    },
+
+    "wireless_access_point_items": {
+        "type": "panel",
+        "size": ["100%", "100%"],
+        "anchor_from": "center",
+        "anchor_to": "center",
+        "controls": [
+            {
+                "wrapping_panel": {
+                    "type": "stack_panel",
+                    "collection_name": "container_items",
+                    "size": ["100%c", "100%c"],
+                    "controls": [
+                        {
+                            "booster_card_panel": {
+                                "type": "panel",
+                                "size": [18, 18],
+                                "collection_index": 0,
+                                "controls": [
+                                    {
+                                        "grid_item@pattern_terminal.grid_item": {}
+                                    },
+                                    {
+                                        "overlay": {
+                                            "type": "image",
+                                            "texture": "textures/terminal/booster_card_overlay",
+                                            "size": [18, 18],
+                                            "layer": 4
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "wireless_access_point_upgrade_items": {
+                    "type": "panel",
+                    "anchor_from": "right_middle",
+                    "offset": [12, 0],
+                    "size": [18, 72],
+                    "controls": [
+                        {
+                            "wireless_access_point_upgrade_items_bg": {
+                                "type": "image",
+                                "texture": "textures/terminal/right_side",
+                                "size": ["100% + 12px", "100% + 14px"],
+                                "layer": 10
+                            }
+                        },
+                        {
+                            "wireless_access_point_upgrade_items_grid": {
+                                "type": "stack_panel",
+                                "orientation": "vertical",
+                                "size": [18, 72],
+                                "offset": [-2, 0],
+                                "layer": 11,
+                                "collection_name": "container_items",
+                                "controls": [
+                                    {
+                                        "treminal_panel": {
+                                            "type": "panel",
+                                            "size": [18, 18],
+                                            "collection_index": 1,
+                                            "controls": [
+                                                {
+                                                    "grid_item@pattern_terminal.grid_item": {}
+                                                },
+                                                {
+                                                    "overlay": {
+                                                        "type": "image",
+                                                        "texture": "textures/terminal/wireless_terminal_overlay",
+                                                        "size": [18, 18],
+                                                        "layer": 4
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "padding_panel": {
+                                            "type": "panel",
+                                            "size": [18, 6]
+                                        }
+                                    },
+                                    {
+                                        "down_arrow": {
+                                            "type": "image",
+                                            "size": [18, 18],
+                                            "texture": "textures/terminal/down_arrow"
+                                        }
+                                    },
+                                    {
+                                        "padding_panel": {
+                                            "type": "panel",
+                                            "size": [18, 9]
+                                        }
+                                    },
+                                    {
+                                        "grid_item@pattern_terminal.grid_item": {
+                                            "$img_size": [24, 24],
+                                            "collection_index": 2
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,115 @@
+## Translated by Harpagón
+
+item.ae2be:certus_quartz_crystal=Cristal de Cuarzo Certus
+item.ae2be:charged_certus_quartz_crystal=Cristal de Cuarzo Certus Cargado
+
+tile.ae2be:certus_quartz_ore.name=Mena de Cuarzo Certus
+tile.ae2be:charged_certus_quartz_ore.name=Mena de Cuarzo Certus Cargado
+
+item.ae2be:certus_quartz_wrench=Llave de Cuarzo Certus
+item.ae2be:nether_quartz_wrench=Llave de Cuarzo del Nether
+
+item.ae2be:crystal_seed.certus=Semilla de Cuarzo Certus
+item.ae2be:crystal_seed.nether=Semilla de Cuarzo del Nether
+item.ae2be:crystal_seed.fluix=Semilla de Fluix
+item.ae2be:invalid_type=Este objeto está deshabilitado.
+item.ae2be:advanced_card=Tarjeta Avanzada
+item.ae2be:annihilation_core=Núcleo de Aniquilación
+item.ae2be:basic_card=Tarjeta Básica
+item.ae2be:blank_pattern=Patrón en Blanco
+item.ae2be:calculation_processor=Procesador de Cálculo
+item.ae2be:card_capacity=Tarjeta de Capacidad
+item.ae2be:card_fuzzy=Tarjeta Difusa
+item.ae2be:card_inverter=Tarjeta Invertida
+item.ae2be:card_redstone=Tarjeta Redstone
+item.ae2be:card_speed=Tarjeta Acelerada
+
+## Components
+item.ae2be:cell2_spatial_part=2³ Componente Especial
+item.ae2be:cell16_spatial_part=16³ Componente Especial
+item.ae2be:cell128_spatial_part=128³ Componente Especial
+
+item.ae2be:1k_storage_cell=1k ME Celúla de Almacenamiento\n §8Bytes:\n  §e0§7/1024\n §8Types:\n  §e0§7/16
+item.ae2be:4k_storage_cell=4k ME Celúla de Almacenamiento\n §8Bytes:\n  §e0§7/4096\n §8Types:\n  §e0§7/32
+item.ae2be:16k_storage_cell=16k ME Celúla de Almacenamiento\n §8Bytes:\n  §e0§7/16384\n §8Types:\n  §e0§7/64
+item.ae2be:32k_storage_cell=32k ME Celula de Almacenamiento\n §8Bytes:\n  §e0§7/32768\n §8Types:\n  §e0§7/64
+item.ae2be:storage_housing=Caja de Almacenamiento
+item.ae2be:1k_storage_part=1k ME Pieza de Almacenamiento
+item.ae2be:4k_storage_part=4k ME Pieza de Almacenamiento
+item.ae2be:16k_storage_part=16k ME Pieza de Almacenamiento
+item.ae2be:32k_storage_part=32k ME Pieza de Almacenamiento
+
+item.ae2be:fluid_cell1k_part=1k ME Pieza de Celúla Fluida
+item.ae2be:fluid_cell4k_part=4k ME Pieza de Celúla Fluida
+item.ae2be:fluid_cell16k_part=16k ME Pieza de Celúla Fluida
+item.ae2be:fluid_cell64k_part=64k ME Pieza de Celúla Fluida
+
+item.ae2be:certus_quartz_dust=Polvo de Cuarzo Certus
+item.ae2be:empty_storage_cell=ME Celda de Almacenamiento
+item.ae2be:ender_dust=Polvo de Ender
+item.ae2be:engineering_processor=Procesador de Ingeniería
+item.ae2be:flour=Harina
+item.ae2be:fluix_crystal=Cristal Fluix
+item.ae2be:fluix_dust=Polvo Fluix
+item.ae2be:fluix_pearl=Perla Fluix
+item.ae2be:formation_core=Núcleo de Formación
+item.ae2be:gold_dust=Polvo de Oro
+item.ae2be:iron_dust=Polvo de Hierro
+item.ae2be:logic_processor=Procesador Lógico
+item.ae2be:logic_processor_asm=Emsamblaje de Procesador Lógico
+item.ae2be:matter_ball=Bola de Materia
+item.ae2be:nether_quartz_dust=Polvo de Cuarzo del Nether
+item.ae2be:pure_certus_quartz_crystal=Cristal de Cuarzo Certus Puro
+item.ae2be:pure_fluix=Fluix Puro
+item.ae2be:pure_nether_quartz=Cuarzo del Nether Puro
+item.ae2be:quantum_entangled_singularity=Singularidad Entrelazada Cuántica
+item.ae2be:silicon=Silicio
+item.ae2be:singularity=Singularidad
+item.ae2be:wireless=Inalámbrico
+item.ae2be:wireless_booster=Amplificador Inalámbrico
+item.ae2be:wooden_gear=Engranaje de Madera
+item.ae2be:engineering_processor_press=Prensa Procesadora de Ingeniería
+item.ae2be:calculation_processor_press=Prensa de Procesador de Cálculo
+item.ae2be:logic_processor_press=Prensa de Procesador Lógico
+item.ae2be:engineering_processor_print=Circuito Procesador de Ingeniería
+item.ae2be:calculation_processor_print=Circuito Procesador de Cálculo
+item.ae2be:logic_processor_print=Circuito Lógico Impreso
+item.ae2be:silicon_press=Prensa de Silicio
+item.ae2be:silicon_print=Silicio Impreso
+item.ae2be:material_press=Prensa de Inscripción de Nombré
+item.ae2be:sky_dust=Polvo de Piedra del Cielo
+item.ae2be:card_crafting=Tarjeta de Fabricación
+
+## UI
+item.ae2be:encode_pattern_ui_action=Cifrar Patrón
+
+## Tiles
+tile.ae2be:network_cable.name=ME Cable de Red
+tile.ae2be:disk_drive.name=Unidad de disco
+tile.ae2be:terminal.name=ME Terminal
+tile.ae2be:request_terminal.name=ME Terminal de Solicitud
+tile.ae2be:pattern_terminal.name=ME Terminal de Patrón
+tile.ae2be:interface.name=ME Interfaz Direccional\n§7Inserta un elemento del\contenedor superior en el Sistema
+tile.ae2be:energy_acceptor.name=Aceptador de Energía
+tile.ae2be:sky_stone.name=Piedra del Cielo
+tile.ae2be:inscriber.name=Inscriptor
+tile.ae2be:charger.name=Cargador
+tile.ae2be:quartz_glass.name=Vidrio de Cuarzo
+tile.ae2be:quartz_grindstone.name=Piedra de Afilar de Cuarzo
+
+tile.ae2be:bright_illuminated_panel.name=Panel Iluminado Brillante
+tile.ae2be:illuminated_panel.name=Panel Iluminado
+tile.ae2be:dark_illuminated_panel.name=Panel Iluminado Oscuro
+
+ae2be:itemGroup.name.machines=AE2BE Máquina
+ae2be:itemGroup.name.ingredients=AE2BE Ingredientes
+ae2be:itemGroup.name.cells=AE2BE Celúlas
+ae2be:itemGroup.name.blocks=AE2BE Bloques
+ae2be:itemGroup.name.experimental=AE2BE Experimental\n§c(=BROKEN, DO NOT USE,\nCAN CAUSE ITEM LOSS, LAST WARNING!)
+
+ae2be:error_block_interact=§cYou may only access this block from the placed side!
+ae2be:error_block_break=§cYou may only break this block from a different side!
+ae2be:error_item_invalid=§cThis item may not be put into the system!
+
+item.ae2be:sky_stone_dust=Polvo de Piedra del Cielo
+tile.ae2be:quartz_fiber.name=Fibra de Cuarzo

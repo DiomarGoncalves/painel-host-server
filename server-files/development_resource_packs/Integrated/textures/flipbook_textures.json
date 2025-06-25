@@ -1,0 +1,17 @@
+[
+    {
+        "atlas_tile": "ae2be_disk_drive",
+        "flipbook_texture": "textures/blocks/machines/disk_drive",
+        "ticks_per_frame": 10
+    },
+    {
+        "atlas_tile": "ae2be_inscriber",
+        "flipbook_texture": "textures/blocks/machines/inscriber",
+        "ticks_per_frame": 10
+    },
+    {
+        "atlas_tile": "ae2be_quartz_grindstone",
+        "flipbook_texture": "textures/blocks/machines/quartz_grindstone",
+        "ticks_per_frame": 10
+    }
+]

@@ -1,0 +1,641 @@
+{
+    "namespace": "inscriber_recipes",
+
+    "item_layouts": {
+        "type": "panel",
+        "size": [97, 64],
+        "anchor_from": "top_middle",
+        "anchor_to": "top_middle",
+        "controls": [
+            {
+                "default@item_layout": {
+                    "$default": 0
+                }
+            },
+            //Silicon
+            {
+                "silicon_press@item_layout": {
+                    "$recipe_name": "inscriber.recipe.silicon_press",
+                    "$input_1": "textures/items/presses/silicon_press",
+                    "$input_2": "textures/items/iron_ingot",
+                    "$input_3": "textures/items/misc/blank",
+                    "$result": "textures/items/presses/silicon_press"
+                }
+            },
+            {
+                "silicon_print@item_layout": {
+                    "$recipe_name": "inscriber.recipe.silicon_print",
+                    "$input_1": "textures/items/presses/silicon_press",
+                    "$input_2": "textures/items/ingrediens/silicon",
+                    "$input_3": "textures/items/misc/blank",
+                    "$result": "textures/items/ingrediens/silicon_print"
+                }
+            },
+            //Logic
+            {
+                "logic_processor_press@item_layout": {
+                    "$recipe_name": "inscriber.recipe.logic_processor_press",
+                    "$input_1": "textures/items/presses/logic_processor_press",
+                    "$input_2": "textures/items/iron_ingot",
+                    "$input_3": "textures/items/misc/blank",
+                    "$result": "textures/items/presses/logic_processor_press"
+                }
+            },
+            {
+                "logic_print@item_layout": {
+                    "$recipe_name": "inscriber.recipe.logic_print",
+                    "$input_1": "textures/items/presses/logic_processor_press",
+                    "$input_2": "textures/items/gold_ingot",
+                    "$input_3": "textures/items/misc/blank",
+                    "$result": "textures/items/ingrediens/logic_processor_print"
+                }
+            },
+            {
+                "logic_processor@item_layout": {
+                    "$recipe_name": "inscriber.recipe.logic_processor",
+                    "$input_1": "textures/items/ingrediens/logic_processor_print",
+                    "$input_2": "textures/items/redstone_dust",
+                    "$input_3": "textures/items/ingrediens/silicon_print",
+                    "$result": "textures/items/ingrediens/logic_processor"
+                }
+            },
+            //Engineering
+            {
+                "engineering_processor_press@item_layout": {
+                    "$recipe_name": "inscriber.recipe.engineering_processor_press",
+                    "$input_1": "textures/items/presses/engineering_processor_press",
+                    "$input_2": "textures/items/iron_ingot",
+                    "$input_3": "textures/items/misc/blank",
+                    "$result": "textures/items/presses/engineering_processor_press"
+                }
+            },
+            {
+                "engineering_print@item_layout": {
+                    "$recipe_name": "inscriber.recipe.engineering_print",
+                    "$input_1": "textures/items/presses/engineering_processor_press",
+                    "$input_2": "textures/items/diamond",
+                    "$input_3": "textures/items/misc/blank",
+                    "$result": "textures/items/ingrediens/engineering_processor_print"
+                }
+            },
+            {
+                "engineering_processor@item_layout": {
+                    "$recipe_name": "inscriber.recipe.engineering_processor",
+                    "$input_1": "textures/items/ingrediens/engineering_processor_print",
+                    "$input_2": "textures/items/redstone_dust",
+                    "$input_3": "textures/items/ingrediens/silicon_print",
+                    "$result": "textures/items/ingrediens/engineering_processor"
+                }
+            },
+            //Calculation
+            {
+                "calculation_processor_press@item_layout": {
+                    "$recipe_name": "inscriber.recipe.calculation_processor_press",
+                    "$input_1": "textures/items/presses/calculation_processor_press",
+                    "$input_2": "textures/items/iron_ingot",
+                    "$input_3": "textures/items/misc/blank",
+                    "$result": "textures/items/presses/calculation_processor_press"
+                }
+            },
+            {
+                "calculation_print@item_layout": {
+                    "$recipe_name": "inscriber.recipe.calculation_print",
+                    "$input_1": "textures/items/presses/calculation_processor_press",
+                    "$input_2": "textures/items/ingrediens/crystals/certus_quartz",
+                    "$input_3": "textures/items/misc/blank",
+                    "$result": "textures/items/ingrediens/calculation_processor_print"
+                }
+            },
+            {
+                "calculation_processor@item_layout": {
+                    "$recipe_name": "inscriber.recipe.calculation_processor",
+                    "$input_1": "textures/items/ingrediens/calculation_processor_print",
+                    "$input_2": "textures/items/redstone_dust",
+                    "$input_3": "textures/items/ingrediens/silicon_print",
+                    "$result": "textures/items/ingrediens/calculation_processor"
+                }
+            }
+        ]
+    },
+
+    "recipes@grid_template": {
+        "grid_dimensions": [4, 3],
+        "size": [72, 54],
+        "controls": [
+            //Silicon
+            {
+                "silicon_press@recipe_template": {
+                    "grid_position": [0, 0],
+                    "$group_index": 1,
+                    "$result_texture": "textures/items/presses/silicon_press",
+                    "$recipe_name": "inscriber.recipe.silicon_press"
+                }
+            },
+            {
+                "silicon_print@recipe_template": {
+                    "grid_position": [0, 1],
+                    "$group_index": 2,
+                    "$result_texture": "textures/items/ingrediens/silicon_print",
+                    "$recipe_name": "inscriber.recipe.silicon_print"
+                }
+            },
+            //Logic
+            {
+                "logic_processor_press@recipe_template": {
+                    "grid_position": [1, 0],
+                    "$group_index": 3,
+                    "$result_texture": "textures/items/presses/logic_processor_press",
+                    "$recipe_name": "inscriber.recipe.logic_processor_press"
+                }
+            },
+            {
+                "logic_print@recipe_template": {
+                    "grid_position": [1, 1],
+                    "$group_index": 4,
+                    "$result_texture": "textures/items/ingrediens/logic_processor_print",
+                    "$recipe_name": "inscriber.recipe.logic_print"
+                }
+            },
+            {
+                "logic_processor@recipe_template": {
+                    "grid_position": [1, 2],
+                    "$group_index": 5,
+                    "$result_texture": "textures/items/ingrediens/logic_processor",
+                    "$recipe_name": "inscriber.recipe.logic_processor"
+                }
+            },
+            //Engineering
+            {
+                "engineering_processor_press@recipe_template": {
+                    "grid_position": [2, 0],
+                    "$group_index": 6,
+                    "$result_texture": "textures/items/presses/engineering_processor_press",
+                    "$recipe_name": "inscriber.recipe.engineering_processor_press"
+                }
+            },
+            {
+                "engineering_print@recipe_template": {
+                    "grid_position": [2, 1],
+                    "$group_index": 7,
+                    "$result_texture": "textures/items/ingrediens/engineering_processor_print",
+                    "$recipe_name": "inscriber.recipe.engineering_print"
+                }
+            },
+            {
+                "engineering_processor@recipe_template": {
+                    "grid_position": [2, 2],
+                    "$group_index": 8,
+                    "$result_texture": "textures/items/ingrediens/engineering_processor",
+                    "$recipe_name": "inscriber.recipe.engineering_processor"
+                }
+            },
+            //Calculation
+            {
+                "calculation_processor_press@recipe_template": {
+                    "grid_position": [3, 0],
+                    "$group_index": 9,
+                    "$result_texture": "textures/items/presses/calculation_processor_press",
+                    "$recipe_name": "inscriber.recipe.calculation_processor_press"
+                }
+            },
+            {
+                "calculation_print@recipe_template": {
+                    "grid_position": [3, 1],
+                    "$group_index": 10,
+                    "$result_texture": "textures/items/ingrediens/calculation_processor_print",
+                    "$recipe_name": "inscriber.recipe.calculation_print"
+                }
+            },
+            {
+                "calculation_processor@recipe_template": {
+                    "grid_position": [3, 2],
+                    "$group_index": 11,
+                    "$result_texture": "textures/items/ingrediens/calculation_processor",
+                    "$recipe_name": "inscriber.recipe.calculation_processor"
+                }
+            }
+        ]
+    },
+    "item_layout": {
+        "type": "panel",
+        "size": [97, 64],
+        "$recipe_name|default": "inscriber.recipe.default",
+        "anchor_from": "top_middle",
+        "anchor_to": "top_middle",
+        "$default|default": 0.6,
+        "$input_1|default": "textures/inscriber/1_item_outline",
+        "$input_2|default": "textures/inscriber/2_item_outline",
+        "$input_3|default": "textures/inscriber/1_item_outline",
+        "$result|default": "textures/inscriber/2_item_outline",
+        "bindings": [
+            {
+                "source_property_name": "(#toggle_state)",
+                "target_property_name": "#visible",
+                "source_control_name": "$recipe_name",
+                "binding_type": "view"
+            }
+        ],
+        "controls": [
+            {
+                "top_item@inscriber.inscriber_item": {
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "$texture_outline": "$input_1"
+                }
+            },
+            {
+                "middle@inscriber.inscriber_item": {
+                    "anchor_from": "left_middle",
+                    "anchor_to": "left_middle",
+                    "offset": [18, 0],
+                    "$collection_index": 1,
+                    "$texture_outline": "$input_2"
+                }
+            },
+            {
+                "bottom@inscriber.inscriber_item": {
+                    "anchor_from": "bottom_left",
+                    "anchor_to": "bottom_left",
+                    "offset": [0, 0],
+                    "$texture_outline": "$input_3",
+
+                    "$collection_index": 2
+                }
+            },
+            {
+                "result@inscriber.inscriber_item": {
+                    "anchor_from": "left_middle",
+                    "anchor_to": "left_middle",
+                    "size": [24, 24],
+                    "$cell_image_size": [24, 24],
+                    "$texture_outline": "$result",
+                    "offset": [64, 0],
+                    "$collection_index": 3
+                }
+            }
+        ]
+    },
+    "toggle_defaultd": {
+        "type": "image",
+        "size": ["100%", "100%"],
+        "layer": -5,
+
+        "texture": "textures/inscriber/custom_slot"
+    },
+
+    "toggle_hoverd": {
+        "type": "image",
+        "size": ["100%", "100%"],
+        "layer": -5,
+
+        "texture": "textures/inscriber/custom_slot_hover"
+    },
+
+    "toggle_pressedd": {
+        "type": "image",
+        "size": ["100%", "100%"],
+        "layer": -5,
+        "texture": "textures/inscriber/custom_slot_selected"
+    },
+
+    "toggle_default": {
+        "type": "image",
+        "size": ["100%", "100%"],
+        "layer": -5,
+
+        "texture": "textures/inscriber/custom_slot"
+    },
+
+    "toggle_hover": {
+        "type": "image",
+        "size": ["100%", "100%"],
+        "layer": -5,
+
+        "texture": "textures/inscriber/custom_slot_hover"
+    },
+
+    "toggle_pressed": {
+        "type": "image",
+        "size": ["100%", "100%"],
+        "layer": -5,
+        "texture": "textures/inscriber/custom_slot_selected"
+    },
+
+    "recipe_template": {
+        "$recipe_name|default": "inscriber.recipe.default",
+        "$group_index|default": 0,
+        "$result_texture|default": "textures/items/diamond",
+        "type": "panel",
+        "size": [18, 18],
+        "controls": [
+            {
+                "$recipe_name@common.toggle": {
+                    "type": "toggle",
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "size": ["100%", "100%"],
+                    "layer": 1,
+                    "$unchecked_control": "inscriber_recipes.toggle_default",
+                    "$checked_control": "inscriber_recipes.toggle_pressed",
+                    "$unchecked_hover_control": "inscriber_recipes.toggle_hover",
+                    "$button_id": "button.menu_select",
+                    "$checked_hover_control": "inscriber_recipes.toggle_hover",
+                    "$checked_locked_hover_control": "inscriber_recipes.toggle_hover",
+                    "$unchecked_locked_hover_control": "inscriber_recipes.toggle_hover",
+                    "$toggle_name": "recipes.inscriber",
+                    "$checked_locked_control": "inscriber_recipes.toggle_hover",
+                    "$unchecked_locked_control": "inscriber_recipes.toggle_pressed",
+
+                    "radio_toggle_group": true,
+                    "toggle_group_forced_index": "$group_index",
+                    "button_mappings": [
+                        {
+                            "from_button_id": "button.menu_select",
+                            "to_button_id": "button.menu_select",
+                            "mapping_type": "pressed"
+                        },
+                        {
+                            "from_button_id": "button.menu_ok",
+                            "to_button_id": "button.menu_select",
+                            "mapping_type": "pressed"
+                        }
+                    ]
+                }
+            },
+            {
+                "texture": {
+                    "size": [16, 16],
+                    "type": "image",
+                    "texture": "$result_texture",
+                    "layer": 2
+                }
+            }
+        ]
+    },
+
+    "scrolling_grid@scrolling_panel": {
+        "$scrolling_content": "inscriber_recipes.recipes"
+    },
+
+    "grid_template": {
+        "type": "grid",
+        "grid_dimensions": [5, 0],
+        "size": [90, "100%c"],
+        "controls": [
+            {
+                "test": {
+                    "grid_position": [0, 0],
+                    "type": "image",
+                    "size": [18, 18],
+                    "texture": "textures/ui/slots_bg"
+                }
+            },
+            {
+                "test": {
+                    "grid_position": [1, 0],
+                    "type": "image",
+                    "size": [18, 18],
+                    "texture": "textures/ui/slots_bg"
+                }
+            }
+        ]
+    },
+
+    "scrolling_panel": {
+        "size": [72, "fill"],
+        "type": "panel",
+        "controls": [
+            {
+                "scrolling_panel_base": {
+                    "type": "input_panel",
+                    "anchor_to": "top_left",
+                    "anchor_from": "top_left",
+                    "controls": [
+                        {
+                            "view_control@scroll_view_control": {}
+                        }
+                    ],
+                    "button_mappings": []
+                }
+            }
+        ]
+    },
+    "box": {
+        "type": "panel",
+
+        "controls": [
+            {
+                "actual_box": {
+                    "type": "scrollbar_box",
+                    "anchor_to": "top_left",
+                    "anchor_from": "top_left",
+                    "layer": 5,
+                    "contained": true,
+                    "draggable": "vertical",
+
+                    "button_mappings": [
+                        {
+                            "from_button_id": "button.menu_select",
+                            "to_button_id": "button.menu_select",
+                            "mapping_type": "pressed",
+                            "button_up_right_of_first_refusal": true
+                        }
+                    ],
+                    "controls": [
+                        {
+                            "mouse_box": {
+                                "type": "image",
+                                "texture": "textures/terminal/scroller",
+                                "controls": [
+                                    {
+                                        "lines": {
+                                            "type": "image",
+                                            "size": ["100%", "100%-3px"],
+                                            "offset": [-1, 2],
+                                            "anchor_from": "top_middle",
+                                            "anchor_to": "top_middle",
+                                            "tiled": true,
+                                            "texture": "textures/terminal/line"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+
+    "scrollbar_track": {
+        "type": "scroll_track",
+        "button_mappings": [
+            {
+                "from_button_id": "button.menu_select",
+                "to_button_id": "button.scrollbar_skip_track",
+                "mapping_type": "pressed"
+            }
+        ]
+    },
+
+    "nothing_panel": {
+        "type": "panel",
+        "size": ["100%", "100%"]
+    },
+
+    "scroll_view_control": {
+        "$scrolling_content|default": "common.black",
+        "$scrolling_background|default": "me_terminal_scroll.nothing_panel",
+        "type": "scroll_view",
+        "anchor_from": "left_middle",
+        "anchor_to": "left_middle",
+        "size": ["100% + 14px", "100%"],
+        "scroll_speed": 5,
+        "scrollbar_track_button": "button.scrollbar_skip_track",
+        "scrollbar_touch_button": "button.scrollbar_touch",
+        "always_listen_to_input": true,
+        "always_handle_pointer": true,
+        "scrollbar_track": "track",
+        "scrollbar_box": "actual_box",
+        "always_handle_scrolling": false,
+        "scroll_view_port": "viewport",
+        "scroll_box_and_track_panel": "bar_and_track",
+        "scroll_content": "scrolling_content",
+
+        "jump_to_bottom_on_update": false,
+
+        "button_mappings": [
+            {
+                "from_button_id": "button.menu_select",
+                "to_button_id": "button.scrollbar_touch",
+                "mapping_type": "pressed",
+                "button_up_right_of_first_refusal": true
+            }
+        ],
+        "controls": [
+            {
+                "viewport": {
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "type": "panel",
+                    "offset": [1, 1],
+                    "size": ["100%-14px", "100%"],
+                    "clips_children": true,
+                    "layer": 162,
+                    "controls": [
+                        {
+                            "scrolling_content@$scrolling_content": {
+                                "anchor_from": "top_middle",
+                                "anchor_to": "top_middle"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "background": {
+                    "type": "image",
+                    "texture": "textures/ui/Black",
+                    "alpha": 0.2,
+                    "layer": -2,
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "size": ["100%-12px", "100%"],
+                    "controls": [
+                        {
+                            "pcb_tiles": {
+                                    "type": "image",
+                                    "texture": "textures/ui_common/pcb_tiled",
+                                    "tiled": true,
+                                    "alpha": 0.4,
+                                    "layer": 1,
+                                    "anchor_from": "center",
+                                    "anchor_to": "center",
+                                    "size": ["100%", "100%"]
+                                
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "bar_and_track": {
+                    "type": "panel",
+                    "size": [10, "100%-2px"],
+                    "offset": [0, 0],
+                    "anchor_from": "right_middle",
+                    "anchor_to": "right_middle",
+                    "layer": 5,
+
+                    "controls": [
+                        {
+                            "track@scrollbar_track": {
+                                "layer": 2,
+                                "anchor_from": "center",
+                                "anchor_to": "center"
+                            }
+                        },
+                        {
+                            "scroll_box@box": {
+                                "layer": 5,
+                                "anchor_from": "center",
+                                "anchor_to": "center"
+                            }
+                        },
+                        {
+                            "outline": {
+                                "type": "image",
+                                "size": ["100%+2px", "100%+2px"],
+                                "color": [0.5, 0.5, 0.5],
+
+                                "texture": "textures/ui/cell_image"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "bar_and_track_full": {
+                    "type": "panel",
+                    "size": [10, "100%-2px"],
+                    "offset": [0, 0],
+                    "anchor_from": "right_middle",
+                    "anchor_to": "right_middle",
+                    "layer": 4,
+
+                    "controls": [
+                        {
+                            "scroll_box": {
+                                "type": "image",
+                                "texture": "textures/terminal/scroller",
+                                "size": ["100%", "100%"],
+                                "layer": 3,
+                                "controls": [
+                                    {
+                                        "lines": {
+                                            "type": "image",
+                                            "size": ["100%", "100%-3px"],
+                                            "offset": [0, 2],
+                                            "anchor_from": "top_middle",
+                                            "anchor_to": "top_middle",
+                                            "tiled": true,
+                                            "texture": "textures/terminal/line"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "outline": {
+                                "type": "image",
+                                "size": ["100%+2px", "100%+2px"],
+                                "color": [0.5, 0.5, 0.5],
+                                "texture": "textures/ui/cell_image"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

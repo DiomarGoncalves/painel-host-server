@@ -1,0 +1,139 @@
+item.ae2be:certus_quartz_crystal=Certus Kuvars Kristali  
+item.ae2be:charged_certus_quartz_crystal=Yüklü Certus Kuvars Kristali  
+
+tile.ae2be:certus_quartz_ore.name=Certus Kuvars Cevheri  
+tile.ae2be:charged_certus_quartz_ore.name=Yüklü Certus Kuvars Cevheri  
+
+item.ae2be:certus_quartz_wrench=Certus Kuvars Anahtarı  
+item.ae2be:nether_quartz_wrench=Nether Kuvars Anahtarı  
+
+item.ae2be:crystal_seed.certus=Certus Kuvars Tohumu  
+item.ae2be:crystal_seed.nether=Nether Kuvars Tohumu  
+item.ae2be:crystal_seed.fluix=Fluix Tohumu  
+item.ae2be:invalid_type=Bu Eşya Devre Dışı.  
+item.ae2be:advanced_card=Gelişmiş Kart  
+item.ae2be:annihilation_core=Yok Etme Çekirdeği  
+item.ae2be:basic_card=Temel Kart  
+item.ae2be:blank_pattern=Boş Şablon  
+item.ae2be:calculation_processor=Hesaplama İşlemcisi  
+item.ae2be:card_capacity=Kapasite Kartı  
+item.ae2be:card_fuzzy=Bulanık Kart  
+item.ae2be:card_inverter=Çevirici Kart  
+item.ae2be:card_redstone=Redstone Kartı  
+item.ae2be:card_speed=Hızlandırıcı Kart  
+
+item.ae2be:sky_stone_dust=Göktaşı Tozu  
+tile.ae2be:quartz_fiber.name=Kuvars Elyafı  
+item.ae2be:encoded_pattern=Kodlanmış Şablon  
+
+item.ae2be:wireless_receiver=Kablosuz Alıcı  
+item.ae2be:wireless_terminal=Kablosuz Terminal  
+item.ae2be:wireless_booster_card=Kablosuz Güçlendirici Kartı  
+item.ae2be:infinite_wireless_booster_card=Sonsuz Kablosuz Güçlendirici Kartı  
+
+item.ae2be:certus_quartz_dust=Certus Kuvars Tozu  
+item.ae2be:empty_storage_cell=ME Depolama Kabı  
+item.ae2be:ender_dust=Ender Tozu  
+item.ae2be:engineering_processor=Mühendislik İşlemcisi  
+item.ae2be:flour=Un  
+item.ae2be:fluix_crystal=Fluix Kristali  
+item.ae2be:fluix_dust=Fluix Tozu  
+item.ae2be:fluix_pearl=Fluix İncisi  
+item.ae2be:formation_core=Oluşum Çekirdeği  
+item.ae2be:gold_dust=Altın Tozu  
+item.ae2be:iron_dust=Demir Tozu  
+item.ae2be:logic_processor=Mantık İşlemcisi  
+item.ae2be:logic_processor_asm=Tamamlanmamış Mantık İşlemcisi  
+item.ae2be:matter_ball=Madde Küresi  
+item.ae2be:nether_quartz_dust=Nether Kuvars Tozu  
+item.ae2be:pure_certus_quartz_crystal=Saf Certus Kuvars Kristali  
+item.ae2be:pure_fluix=Saf Fluix Kristali  
+item.ae2be:pure_nether_quartz=Saf Nether Kuvars Kristali  
+item.ae2be:quantum_entangled_singularity=Kuantum Dolanık Tekillik  
+item.ae2be:silicon=Silisyum  
+item.ae2be:singularity=Tekillik  
+item.ae2be:wireless=Kablosuz Alıcı  
+item.ae2be:wireless_booster=Kablosuz Güçlendirici  
+item.ae2be:wooden_gear=Ahşap Dişli  
+item.ae2be:engineering_processor_press=Mühendislik Pres Kalıbı  
+item.ae2be:calculation_processor_press=Hesaplama Pres Kalıbı  
+item.ae2be:logic_processor_press=Mantık Pres Kalıbı  
+item.ae2be:engineering_processor_print=Basılmış Mühendislik Devresi  
+item.ae2be:calculation_processor_print=Basılmış Hesaplama Devresi  
+item.ae2be:logic_processor_print=Basılmış Mantık Devresi  
+item.ae2be:silicon_press=Silisyum Pres Kalıbı  
+item.ae2be:silicon_print=Basılmış Silisyum  
+item.ae2be:material_press=İsim Kalıbı  
+item.ae2be:sky_dust=Göktaşı Tozu  
+item.ae2be:card_crafting=Üretim Kartı
+
+item.ae2be:cell2_spatial_part=2³ Uzamsal Bileşen  
+item.ae2be:cell16_spatial_part=16³ Uzamsal Bileşen  
+item.ae2be:cell128_spatial_part=128³ Uzamsal Bileşen  
+
+item.ae2be:1k_storage_cell=1k ME Depolama\n §8Bayt:\n  §e0§7/1024\n §8Tür:\n  §e0§7/16  
+item.ae2be:4k_storage_cell=4k ME Depolama\n §8Bayt:\n  §e0§7/4096\n §8Tür:\n  §e0§7/32  
+item.ae2be:16k_storage_cell=16k ME Depolama\n §8Bayt:\n  §e0§7/16384\n §8Tür:\n  §e0§7/64  
+item.ae2be:32k_storage_cell=32k ME Depolama\n §8Bayt:\n  §e0§7/32768\n §8Tür:\n  §e0§7/64  
+item.ae2be:storage_housing=Depolama Kabı  
+item.ae2be:1k_storage_part=1k ME Depolama Bileşeni  
+item.ae2be:4k_storage_part=4k ME Depolama Bileşeni  
+item.ae2be:16k_storage_part=16k ME Depolama Bileşeni  
+item.ae2be:32k_storage_part=32k ME Depolama Bileşeni  
+
+item.ae2be:fluid_cell1k_part=1k ME Sıvı Depolama Bileşeni  
+item.ae2be:fluid_cell4k_part=4k ME Sıvı Depolama Bileşeni  
+item.ae2be:fluid_cell16k_part=16k ME Sıvı Depolama Bileşeni  
+item.ae2be:fluid_cell64k_part=64k ME Sıvı Depolama Bileşeni
+
+item.ae2be:capacity_card=Kapasite Kartı  
+item.ae2be:fuzzy_card=Bulanık Kart  
+item.ae2be:inverter_card=Çevirici Kart  
+item.ae2be:redstone_card=Redstone Kartı  
+item.ae2be:booster_card=Hızlandırıcı Kart  
+item.ae2be:empty_card=Boş Kart
+
+item.ae2be:encode_pattern_ui_action=Şablonu Kodla  
+item.ae2be:ui_progress=İlerleme  
+item.ae2be:backsert=Eşyaları Yerleştir
+
+tile.ae2be:network_cable.name=ME Cam Kablo  
+
+### Makineler  
+tile.ae2be:wireless_access_point.name=Kablosuz Erişim Noktası  
+tile.ae2be:disk_drive.name=Disk Sürücüsü  
+tile.ae2be:terminal.name=ME Terminali  
+tile.ae2be:request_terminal.name=ME İstek Terminali  
+tile.ae2be:pattern_terminal.name=ME Şablon Terminali  
+tile.ae2be:crafting_terminal.name=ME Üretim Terminali  
+tile.ae2be:interface.name=ME Yönlü Arayüz\n§7Üstteki kaptan\neşyaları sisteme aktarır  
+tile.ae2be:energy_acceptor.name=Enerji Alıcısı  
+tile.ae2be:inscriber.name=Yazıcı  
+tile.ae2be:charger.name=Şarj Aleti  
+tile.ae2be:quartz_grindstone.name=Kuvars Öğütme Taşı  
+
+tile.ae2be:export_bus.name=ME Aktarım Ünitesi  
+tile.ae2be:import_bus.name=ME Giriş Ünitesi  
+tile.ae2be:storage_bus.name=ME Depolama Ünitesi  
+
+tile.ae2be:bright_illuminated_panel.name=Parlak Aydınlatmalı Panel  
+tile.ae2be:illuminated_panel.name=Aydınlatmalı Panel  
+tile.ae2be:dark_illuminated_panel.name=Karanlık Aydınlatmalı Panel
+
+tile.ae2be:1k_crafting_cpu.name=1k Üretim İşlemcisi
+
+tile.ae2be:sky_stone.name=Göktaşı  
+tile.ae2be:quartz_glass.name=Kuvars Camı
+
+ae2be:itemGroup.name.machines=AE2BE Makineler  
+ae2be:itemGroup.name.ingredients=AE2BE Malzemeler  
+ae2be:itemGroup.name.cells=AE2BE Hücreler  
+ae2be:itemGroup.name.blocks=AE2BE Bloklar  
+ae2be:itemGroup.name.misc=AE2BE Diğer  
+ae2be:itemGroup.name.experimental=AE2BE Deneysel\n§c(=KIRIK, KULLANMAYIN,\nEŞYA KAYBI OLABİLİR, SON UYARI!)
+
+ae2be:error_block_interact=§cBu bloğa yalnızca yerleştirildiği yönden erişebilirsiniz!  
+ae2be:error_block_break=§cBu bloğu yalnızca farklı bir yönden kırabilirsiniz!  
+ae2be:error_item_invalid=§cBu eşya sisteme konulamaz!  
+ae2be:error_wireless_terminal_unlink=§cBağlı erişim noktası artık geçerli değil!\nKablosuz Terminal bağlantısı kesildi.  
+ae2be:error_wireless_terminal_out_of_range=§cMenzil dışındasınız!\nErişim noktanıza güçlendirici kartlar eklemeyi ya da yaklaşmayı deneyin.

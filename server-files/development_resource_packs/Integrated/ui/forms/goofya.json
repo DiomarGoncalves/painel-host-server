@@ -1,0 +1,98 @@
+{
+  "namespace": "goofyahassui",
+  "main": {
+    "type": "panel",
+    "size": [100, 30],
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "controls": [
+      {
+        "background": {
+          "type": "image",
+          "texture": "textures/ui/hud_tip_text_background",
+          "anchor_from": "bottom_middle",
+          "alpha": 0.4,
+          "anchor_to": "bottom_middle",
+          "size": [100, 14],
+          "controls": [
+            {
+              "stack": {
+                "type": "stack_panel",
+                "size": [100, 10],
+                "orientation": "vertical",
+                "anchor_from": "center",
+                "anchor_to": "center",
+
+                "factory": {
+                  "name": "buttons",
+                  "control_ids": {
+                    "input": "@amount_text_box.root"
+                  }
+                },
+
+                "collection_name": "custom_form",
+                "bindings": [
+                  {
+                    "binding_name": "#custom_form_length",
+                    "binding_name_override": "#collection_length"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ok_now_the_goofy_a_togle": {
+          "type": "panel",
+          "size": [14, 14],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "controls": [
+            {
+              "tenplus_1_holder@custom_radio_toggle": {
+                "size": [14, 14],
+                "$toggle_name": "tenplus",
+                "$toggle_view_binding_name": "tenplus_1",
+                "$toggle_group_forced_index": 0
+              }
+            },
+            {
+                "tenplus_2_holder@custom_radio_toggle": {
+                  "size": [14, 14],
+                  "offset": [14,0],
+                  "$toggle_view_binding_name": "tenplus_2",
+
+                  "$toggle_name": "tenplus",
+                  "$toggle_group_forced_index": 1
+                }
+              }
+          ]
+        }
+      }
+    ]
+  },
+  "nothing": {
+    "type": "panel",
+    "size": ["100%", "100%"]
+  },
+  "outline": {
+    "type": "image",
+    "texture": "textures/ui/Black",
+    "size": ["100%", "100%"]
+  },
+
+  "custom_radio_toggle@common_toggles.light_text_toggle": {
+    "size": "$button_size",
+    "layer": 1,
+    "$radio_toggle_group": true,
+    "$checked_control": "goofyahassui.nothing",
+    "$unchecked_control": "goofyahassui.nothing",
+    "$checked_hover_control": "goofyahassui.nothing",
+    "$unchecked_hover_control": "goofyahassui.outline",
+    "$unchecked_locked_control": "goofyahassui.nothing",
+    "$unchecked_locked_hover_control": "goofyahassui.outline",
+    "$checked_locked_control": "goofyahassui.outline",
+    "$checked_locked_hover_control": "goofyahassui.nothing"
+  }
+}

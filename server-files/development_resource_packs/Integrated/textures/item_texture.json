@@ -1,0 +1,169 @@
+{
+    "resource_pack_name": "ae2be",
+    "texture_name": "atlas.items",
+    "texture_data": {
+        "ae2be_charged_certus_quartz": {
+            "textures": "textures/items/ingrediens/crystals/charged_certus_quartz"
+        },
+        "ae2be_certus_quartz": {
+            "textures": "textures/items/ingrediens/crystals/certus_quartz"
+        },
+        "ae2be_fluix_crystal": {
+            "textures": "textures/items/ingrediens/crystals/fluix_crystal"
+        },
+        "ae2be_pure_certus_quartz": {
+            "textures": "textures/items/ingrediens/crystals/pure_certus_quartz"
+        },
+        "ae2be_pure_fluix_crystal": {
+            "textures": "textures/items/ingrediens/crystals/pure_fluix_crystal"
+        },
+        "ae2be_pure_nether_quartz": {
+            "textures": "textures/items/ingrediens/crystals/pure_nether_quartz"
+        },
+
+        "ae2be_silicon_press": {
+            "textures": "textures/items/presses/silicon_press"
+        },
+        "ae2be_logic_processor_press": {
+            "textures": "textures/items/presses/logic_processor_press"
+        },
+        "ae2be_engineering_processor_press": {
+            "textures": "textures/items/presses/engineering_processor_press"
+        },
+        "ae2be_calculation_processor_press": {
+            "textures": "textures/items/presses/calculation_processor_press"
+        },
+        "ae2be_silicon": {
+            "textures": "textures/items/ingrediens/silicon"
+        },
+        "ae2be_silicon_print": {
+            "textures": "textures/items/ingrediens/silicon_print"
+        },
+        "ae2be_logic_processor_print": {
+            "textures": "textures/items/ingrediens/logic_processor_print"
+        },
+        "ae2be_engineering_processor_print": {
+            "textures": "textures/items/ingrediens/engineering_processor_print"
+        },
+        "ae2be_calculation_processor_print": {
+            "textures": "textures/items/ingrediens/calculation_processor_print"
+        },
+        "ae2be_logic_processor": {
+            "textures": "textures/items/ingrediens/logic_processor"
+        },
+        "ae2be_engineering_processor": {
+            "textures": "textures/items/ingrediens/engineering_processor"
+        },
+        "ae2be_calculation_processor": {
+            "textures": "textures/items/ingrediens/calculation_processor"
+        },
+        "ae2be_certus_quartz_wrench": {
+            "textures": "textures/items/tools/certus_quartz_wrench"
+        },
+        "ae2be_nether_quartz_wrench": {
+            "textures": "textures/items/tools/nether_quartz_wrench"
+        },
+        "ae2be_blank_pattern": {
+            "textures": "textures/items/misc/blank_pattern"
+        },
+        "ae2be_encoded_pattern": {
+            "textures": "textures/items/misc/encoded_pattern"
+        },
+        "ae2be_ui_down_arrow": {
+            "textures": "textures/items/misc/blank"
+        },
+
+        "ae2be_cell1k_part": {
+            "textures": "textures/items/cells/cell1k_part"
+        },
+        "ae2be_cell4k_part": {
+            "textures": "textures/items/cells/cell4k_part"
+        },
+        "ae2be_cell16k_part": {
+            "textures": "textures/items/cells/cell16k_part"
+        },
+        "ae2be_cell32k_part": {
+            "textures": "textures/items/cells/cell32k_part"
+        },
+
+        "ae2be_storage_cell_1k": {
+            "textures": "textures/items/cells/storage_cell_1k"
+        },
+        "ae2be_storage_cell_4k": {
+            "textures": "textures/items/cells/storage_cell_4k"
+        },
+        "ae2be_storage_cell_16k": {
+            "textures": "textures/items/cells/storage_cell_16k"
+        },
+        "ae2be_storage_cell_32k": {
+            "textures": "textures/items/cells/storage_cell_32k"
+        },
+        "ae2be_storage_cell_housing": {
+            "textures": "textures/items/cells/empty_storage_cell"
+        },
+
+        "ae2be_wooden_gear": {
+            "textures": "textures/items/ingrediens/wooden_gear"
+        },
+
+        "ae2be_certus_quartz_dust": {
+            "textures": "textures/items/ingrediens/dusts/certus_quartz_dust"
+        },
+        "ae2be_nether_quartz_dust": {
+            "textures": "textures/items/ingrediens/dusts/nether_quartz_dust"
+        },
+        "ae2be_fluix_dust": {
+            "textures": "textures/items/ingrediens/dusts/fluix_dust"
+        },
+        "ae2be_iron_dust": {
+            "textures": "textures/items/ingrediens/dusts/iron_dust"
+        },
+        "ae2be_gold_dust": {
+            "textures": "textures/items/ingrediens/dusts/gold_dust"
+        },
+        "ae2be_sky_stone_dust": {
+            "textures": "textures/items/ingrediens/dusts/sky_stone_dust"
+        },
+        "ae2be_ender_dust": {
+            "textures": "textures/items/ingrediens/dusts/ender_dust"
+        },
+
+        "ae2be_annihilation_core": {
+            "textures": "textures/items/ingrediens/annihilation_core"
+        },
+        "ae2be_formation_core": {
+            "textures": "textures/items/ingrediens/formation_core"
+        },
+        "ae2be_storage_housing": {
+            "textures": "textures/items/cells/storage_housing"
+        },
+        "ae2be_wireless_receiver": {
+            "textures": "textures/items/ingrediens/wireless_receiver"
+        },
+        "ae2be_fluix_pearl": {
+            "textures": "textures/items/ingrediens/fluix_pearl"
+        },
+        "ae2be_wireless_terminal": {
+            "textures": "textures/items/tools/wireless_terminal"
+        },
+        "ae2be_wireless_booster_card": {
+            "textures": "textures/items/misc/booster_card"
+        },
+        "ae2be_infinite_wireless_booster_card": {
+            "textures": "textures/items/misc/infinite_booster_card"
+        },
+
+        "ae2be_capacity_card": {
+            "textures": "textures/items/misc/upgrades/capacity_card"
+        },
+        "ae2be_empty_card": {
+            "textures": "textures/items/misc/upgrades/empty_card"
+        },
+        "ae2be_booster_card": {
+            "textures": "textures/items/misc/upgrades/booster_card"
+        },
+        "ae2be_redstone_card": {
+            "textures": "textures/items/misc/upgrades/redstone_card"
+        }
+    }
+}
