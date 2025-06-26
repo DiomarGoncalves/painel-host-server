@@ -9,6 +9,7 @@
 #define MyAppAssocName MyAppName + " File"
 #define MyAppAssocExt ".myp"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
+#define caminhopc "posvenda"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -35,9 +36,9 @@ ChangesAssociations=yes
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only).
 ;PrivilegesRequired=lowest
-OutputDir=C:\Users\Diomar\Desktop
+OutputDir=C:\Users\{#caminhopc}\Desktop
 OutputBaseFilename=instalador Painel MCPEServer
-SetupIconFile=C:\Users\Diomar\Desktop\server-files\icon.ico
+SetupIconFile=C:\Users\{#caminhopc}\Desktop\server-files\icon.ico
 SolidCompression=yes
 WizardStyle=modern
 
@@ -77,21 +78,21 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\Diomar\Desktop\server-files\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\allowlist.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\bedrock_server.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\bedrock_server_how_to.html"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\MinecraftServerManager.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\ops.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\packet-statistics.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\permissions.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\profanity_filter.wlist"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\release-notes.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\server.properties"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Diomar\Desktop\server-files\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\allowlist.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\bedrock_server.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\bedrock_server_how_to.html"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\MinecraftServerManager.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\ops.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\packet-statistics.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\permissions.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\profanity_filter.wlist"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\README.md"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\release-notes.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\server.properties"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\{#caminhopc}\Desktop\server-files\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
