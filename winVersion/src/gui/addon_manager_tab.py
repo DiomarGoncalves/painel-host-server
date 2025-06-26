@@ -88,7 +88,7 @@ class AddonManagerTab:
         ).pack(pady=(8, 3))
         
         # Lista de addons
-        self.addons_listbox = ctk.CTkScrollableFrame(addons_frame, height=200)
+        self.addons_listbox = ctk.CTkScrollableFrame(addons_frame, height=800)
         self.addons_listbox.pack(fill="both", expand=True, padx=5, pady=5)
         
         # Botões de ação - layout responsivo

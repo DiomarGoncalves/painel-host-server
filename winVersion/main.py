@@ -8,7 +8,11 @@ def main():
         # Configurar tema escuro
         ctk.set_appearance_mode("dark")
         ctk.set_default_color_theme("blue")
-        
+
+        # Aumentar fontes globais do customtkinter
+        ctk.set_widget_scaling(1.25)  # 1.0 = padrão, 1.25 = 25% maior
+        ctk.set_window_scaling(1.15)  # aumenta fontes de janela/dialog
+
         # Criar e executar aplicação
         app = MinecraftPanel()
         try:

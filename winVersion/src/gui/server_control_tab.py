@@ -141,6 +141,20 @@ class ServerControlTab:
         )
         self.log_text.pack(fill="both", expand=True, padx=5, pady=5)
         
+        # --- NOVO: Console Playit ---
+        ctk.CTkLabel(
+            console_frame,
+            text="🌍 Console Playit.gg",
+            font=ctk.CTkFont(size=13, weight="bold")
+        ).pack(pady=(8, 3))
+        
+        self.playit_log_text = ctk.CTkTextbox(
+            console_frame,
+            height=90,
+            font=ctk.CTkFont(family="Consolas", size=9)
+        )
+        self.playit_log_text.pack(fill="both", expand=False, padx=5, pady=(0, 5))
+        
         # Campo de comando - layout responsivo
         command_frame = ctk.CTkFrame(console_frame)
         command_frame.pack(fill="x", padx=5, pady=(0, 8))
@@ -288,33 +302,39 @@ class ServerControlTab:
             self.log_message(f"❌ Erro ao enviar comando: {str(e)}")
     
     def log_message(self, message):
-        """Adicionar mensagem ao log"""
+        """Adicionar mensagem ao log do servidor"""
         import datetime
         timestamp = datetime.datetime.now().strftime("%H:%M:%S")
         formatted_message = f"[{timestamp}] {message}\n"
-        
-        # Adicionar ao final do texto
+
         self.log_text.insert("end", formatted_message)
-        
-        # Scroll para o final
         self.log_text.see("end")
-        
-        # Limitar número de linhas para performance
         lines = self.log_text.get("1.0", "end").split('\n')
         if len(lines) > 200:
-            # Manter apenas as últimas 150 linhas
             self.log_text.delete("1.0", f"{len(lines)-150}.0")
-    
+
+    def log_playit_message(self, message):
+        """Adicionar mensagem ao log do Playit"""
+        import datetime
+        timestamp = datetime.datetime.now().strftime("%H:%M:%S")
+        formatted_message = f"[{timestamp}] {message}\n"
+
+        self.playit_log_text.insert("end", formatted_message)
+        self.playit_log_text.see("end")
+        lines = self.playit_log_text.get("1.0", "end").split('\n')
+        if len(lines) > 100:
+            self.playit_log_text.delete("1.0", f"{len(lines)-70}.0")
+
     def on_server_log(self, source, message):
         """Callback para logs do servidor"""
         if source == "server":
             self.log_message(f"🖥️ {message}")
-    
+
     def on_playit_log(self, source, message):
         """Callback para logs do Playit"""
         if source == "playit":
-            self.log_message(f"🌍 {message}")
-    
+            self.log_playit_message(f"{message}")
+
     def update_button_states(self):
         """Atualizar estado dos botões"""
         try:

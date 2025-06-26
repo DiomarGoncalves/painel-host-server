@@ -13,7 +13,10 @@ class PlayerManagerTab:
         self.manager = PlayerManager(server_path)
         self._destroyed = False
         self._update_thread_running = False
-        
+
+        # Mapeamento XUID->nome (simples, para exibir na lista de operadores)
+        self.xuid_name_map = {}
+
         self.setup_ui()
         self.refresh_player_list()
     
@@ -222,15 +225,24 @@ class PlayerManagerTab:
         """Atualizar lista de jogadores operadores"""
         if self._destroyed:
             return
-            
+
         try:
             # Limpar lista atual de forma segura
             self.safe_clear_frame(self.players_listbox)
-            
+
             # Listar operadores
+            # Tenta usar o mapeamento xuid->nome, se não houver, mostra o XUID
             operators = self.manager.list_operators()
-            
-            if not operators:
+            players = []
+            for op in operators:
+                name = self.xuid_name_map.get(op["xuid"], op["xuid"])
+                players.append({
+                    "name": name,
+                    "xuid": op["xuid"],
+                    "permission": op.get("permission", "")
+                })
+
+            if not players:
                 no_players_label = ctk.CTkLabel(
                     self.players_listbox,
                     text="Nenhum operador configurado",
@@ -238,11 +250,11 @@ class PlayerManagerTab:
                 )
                 no_players_label.pack(pady=20)
                 return
-            
-            for player in operators:
+
+            for player in players:
                 if not self._destroyed:
                     self.create_player_item(player)
-                
+
         except Exception as e:
             if not self._destroyed:
                 messagebox.showerror("Erro", f"Erro ao atualizar lista de jogadores: {str(e)}")
@@ -332,27 +344,29 @@ class PlayerManagerTab:
         """Adicionar novo operador"""
         if self._destroyed:
             return
-            
+
         player_name = self.player_entry.get().strip()
-        
+
         if not player_name:
-            messagebox.showwarning("Aviso", "Por favor, digite o nickname do jogador.")
+            messagebox.showwarning("Aviso", "Por favor, digite o XUID do jogador.")
             return
-        
+
         try:
-            # Adicionar operador
+            # Adicionar operador (agora espera XUID)
             self.manager.add_operator(player_name)
-            
+            # Atualiza o mapeamento para mostrar o XUID como nome, se não houver nome real
+            self.xuid_name_map[player_name] = player_name
+
             messagebox.showinfo(
                 "Sucesso",
-                f"Jogador '{player_name}' adicionado como operador!"
+                f"Operador '{player_name}' adicionado!"
             )
-            
+
             # Limpar campo e atualizar lista
             self.player_entry.delete(0, 'end')
             if not self._destroyed:
                 self.refresh_player_list()
-            
+
         except Exception as e:
             if not self._destroyed:
                 messagebox.showerror("Erro", f"Erro ao adicionar operador: {str(e)}")
@@ -363,32 +377,32 @@ class PlayerManagerTab:
             if not self._destroyed:
                 messagebox.showwarning("Aviso", "Por favor, selecione um jogador primeiro.")
             return
-        
+
         try:
-            player_name = self.selected_player['name']
-            
+            xuid = self.selected_player['xuid']
+
             # Confirmar remoção
             result = messagebox.askyesno(
                 "Confirmar Remoção",
-                f"Deseja remover '{player_name}' da lista de operadores?"
+                f"Deseja remover '{xuid}' da lista de operadores?"
             )
-            
+
             if not result:
                 return
-            
+
             # Remover operador
-            self.manager.remove_operator(player_name)
-            
+            self.manager.remove_operator(xuid)
+
             messagebox.showinfo(
                 "Sucesso",
-                f"Jogador '{player_name}' removido da lista de operadores!"
+                f"Operador '{xuid}' removido da lista de operadores!"
             )
-            
+
             # Atualizar interface
             if not self._destroyed:
                 self.refresh_player_list()
                 self.selected_player = None
-            
+
         except Exception as e:
             if not self._destroyed:
                 messagebox.showerror("Erro", f"Erro ao remover operador: {str(e)}")
