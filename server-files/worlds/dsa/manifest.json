@@ -1,0 +1,25 @@
+
+{
+	"format_version" : 2,
+	"header" : 
+	{
+		"allow_random_seed" : false,
+		"base_game_version" : [ 1, 21, 92 ],
+		"description" : "",
+		"lock_template_options" : false,
+		"name" : "Skyblock 4.10 by KNGamingTamil",
+		"platform_locked" : false,
+		"uuid" : "6de7eaa1-04f7-4ee2-a714-b3999aa2bb56",
+		"version" : [ 1, 0, 0 ]
+	},
+	"modules" : 
+	[
+		
+		{
+			"description" : "",
+			"type" : "world_template",
+			"uuid" : "d4a0fcd7-4355-4d23-a405-4425afa83f12",
+			"version" : [ 1, 0, 0 ]
+		}
+	]
+}

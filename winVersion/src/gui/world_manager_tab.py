@@ -78,18 +78,38 @@ class WorldManagerTab:
         # Frame de mundos disponíveis
         worlds_frame = ctk.CTkFrame(main_frame)
         worlds_frame.pack(fill="both", expand=True, padx=10, pady=10)
-        
+
+        # Frame horizontal para label e botões
+        worlds_header_frame = ctk.CTkFrame(worlds_frame)
+        worlds_header_frame.pack(fill="x", pady=(10, 5))
+
         ctk.CTkLabel(
-            worlds_frame,
+            worlds_header_frame,
             text="🗂️ Mundos Disponíveis",
             font=ctk.CTkFont(size=14, weight="bold")
-        ).pack(pady=(10, 5))
-        
+        ).pack(side="left", padx=(20, 10))  # margem maior à esquerda
+
+        self.activate_button = ctk.CTkButton(
+            worlds_header_frame,
+            text="✅ Ativar Mundo Selecionado",
+            command=self.activate_selected_world,
+            height=35
+        )
+        self.activate_button.pack(side="left", padx=5)
+
+        self.refresh_button = ctk.CTkButton(
+            worlds_header_frame,
+            text="🔄 Atualizar Lista",
+            command=self.refresh_world_list,
+            height=35
+        )
+        self.refresh_button.pack(side="left", padx=5)
+
         # Lista de mundos
-        self.worlds_listbox = ctk.CTkScrollableFrame(worlds_frame)
-        self.worlds_listbox.pack(fill="both", expand=True, padx=10, pady=10)
+        self.worlds_listbox = ctk.CTkScrollableFrame(worlds_frame, height=450)
+        self.worlds_listbox.pack(fill="x", padx=10, pady=10)
         
-        # Botões de ação para mundos
+        # Botões de ação para mundos (fora do scrollable frame)
         world_actions_frame = ctk.CTkFrame(worlds_frame)
         world_actions_frame.pack(fill="x", padx=10, pady=(0, 10))
         

@@ -138,52 +138,52 @@ class MinecraftPanel(ctk.CTk):
         """Configurar interface do usuário"""
         if not self.server_path:
             return
-            
-        # Header com informações de status
+
+        # Header com informações de status (reduzido)
         self.header_frame = ctk.CTkFrame(self)
-        self.header_frame.pack(fill="x", padx=15, pady=(15, 8))
-        
-        # Título responsivo com fonte melhorada
-        title_size = 24 if self.winfo_width() < 1000 else 28
+        self.header_frame.pack(fill="x", padx=10, pady=(8, 4))  # padding menor
+
+        # Título responsivo com fonte menor
+        title_size = 18 if self.winfo_width() < 1000 else 22
         title_label = ctk.CTkLabel(
             self.header_frame,
             text="🎮 Minecraft Server Manager",
             font=ctk.CTkFont(family="Segoe UI", size=title_size, weight="bold")
         )
-        title_label.pack(pady=(15, 8))
-        
-        # Subtítulo
+        title_label.pack(pady=(8, 2))  # padding menor
+
+        # Subtítulo menor
         subtitle_label = ctk.CTkLabel(
             self.header_frame,
             text="Gerenciador Completo para Servidores Bedrock Edition",
-            font=ctk.CTkFont(family="Segoe UI", size=12),
+            font=ctk.CTkFont(family="Segoe UI", size=10),
             text_color="gray"
         )
-        subtitle_label.pack(pady=(0, 10))
-        
-        # Frame de status
+        subtitle_label.pack(pady=(0, 4))  # padding menor
+
+        # Frame de status mais compacto
         self.status_frame = ctk.CTkFrame(self.header_frame)
-        self.status_frame.pack(fill="x", padx=8, pady=(0, 15))
-        
+        self.status_frame.pack(fill="x", padx=4, pady=(0, 6))
+
         self.setup_normal_header()
-        
+
         # Caminho do servidor (compacto)
         path_text = f"📁 {os.path.basename(self.server_path)}"
         if len(self.server_path) > 60:
             path_text = f"📁 ...{self.server_path[-57:]}"
-        
+
         path_label = ctk.CTkLabel(
             self.header_frame,
             text=path_text,
-            font=ctk.CTkFont(family="Consolas", size=10),
+            font=ctk.CTkFont(family="Consolas", size=9),
             text_color="gray"
         )
-        path_label.pack(pady=(0, 8))
-        
+        path_label.pack(pady=(0, 4))
+
         # Notebook para abas
         self.notebook = ctk.CTkTabview(self)
-        self.notebook.pack(fill="both", expand=True, padx=15, pady=(0, 15))
-        
+        self.notebook.pack(fill="both", expand=True, padx=10, pady=(0, 10))
+
         # Criar abas
         self.create_tabs()
     
