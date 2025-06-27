@@ -150,7 +150,7 @@ class ServerControlTab:
         
         self.playit_log_text = ctk.CTkTextbox(
             console_frame,
-            height=90,
+            height=150,
             font=ctk.CTkFont(family="Consolas", size=9)
         )
         self.playit_log_text.pack(fill="both", expand=False, padx=5, pady=(0, 5))
