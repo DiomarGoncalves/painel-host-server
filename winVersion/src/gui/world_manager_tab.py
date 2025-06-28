@@ -26,27 +26,25 @@ class WorldManagerTab:
         )
         title_label.pack(pady=(10, 20))
         
-        # Frame de informações do mundo atual
-        current_world_frame = ctk.CTkFrame(main_frame)
-        current_world_frame.pack(fill="x", padx=10, pady=10)
-        
+        # Frame de ações (agora inclui mundo atual)
+        actions_frame = ctk.CTkFrame(main_frame)
+        actions_frame.pack(fill="x", padx=10, pady=10)
+
+        # Mundo Atual dentro do actions_frame
         ctk.CTkLabel(
-            current_world_frame,
+            actions_frame,
             text="🎯 Mundo Atual",
             font=ctk.CTkFont(size=14, weight="bold")
         ).pack(pady=(10, 5))
         
         self.current_world_label = ctk.CTkLabel(
-            current_world_frame,
+            actions_frame,
             text="Carregando...",
             font=ctk.CTkFont(size=12)
         )
         self.current_world_label.pack(pady=(0, 10))
         
-        # Frame de ações
-        actions_frame = ctk.CTkFrame(main_frame)
-        actions_frame.pack(fill="x", padx=10, pady=10)
-        
+        # Importar Novo Mundo
         ctk.CTkLabel(
             actions_frame,
             text="📥 Importar Novo Mundo",
@@ -155,8 +153,9 @@ class WorldManagerTab:
                 return
             
             for i, world in enumerate(worlds):
-                world_frame = ctk.CTkFrame(self.worlds_listbox)
+                world_frame = ctk.CTkFrame(self.worlds_listbox, width=470, height=48)
                 world_frame.pack(fill="x", padx=5, pady=2)
+                world_frame.pack_propagate(False)  # Impede que o frame ajuste o tamanho automaticamente
                 
                 # Radio button para seleção
                 radio_var = ctk.StringVar(value="")
