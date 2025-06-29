@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 Configurações do Mundo - Minecraft Bedrock Panel</title>
+    <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .world-config-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .config-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: rgba(79, 195, 247, 0.1);
+            border-bottom: 1px solid rgba(79, 195, 247, 0.2);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .section-header:hover {
+            background: rgba(79, 195, 247, 0.15);
+        }
+        
+        .section-header h3 {
+            margin: 0;
+            color: #4fc3f7;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .section-toggle {
+            color: #4fc3f7;
+            transition: transform 0.3s ease;
+        }
+        
+        .section-toggle.collapsed {
+            transform: rotate(-90deg);
+        }
+        
+        .section-content {
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .section-content.collapsed {
+            display: none;
+        }
+        
+        .config-field {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .field-label {
+            font-weight: 500;
+            color: #e0e6ed;
+            font-size: 0.9rem;
+        }
+        
+        .field-key {
+            font-size: 0.8rem;
+            color: #90a4ae;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .addon-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+        }
+        
+        .addon-lists {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            align-items: start;
+        }
+        
+        .addon-list {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 300px;
+        }
+        
+        .addon-list h4 {
+            margin: 0 0 1rem 0;
+            color: #4fc3f7;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .addon-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .addon-item:hover {
+            background: rgba(79, 195, 247, 0.1);
+            border-color: rgba(79, 195, 247, 0.3);
+        }
+        
+        .addon-item.selected {
+            background: rgba(79, 195, 247, 0.2);
+            border-color: #4fc3f7;
+        }
+        
+        .addon-item input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+        
+        .addon-info {
+            flex: 1;
+        }
+        
+        .addon-name {
+            font-weight: 500;
+            color: #e0e6ed;
+            font-size: 0.9rem;
+        }
+        
+        .addon-description {
+            font-size: 0.8rem;
+            color: #90a4ae;
+            margin-top: 0.25rem;
+        }
+        
+        .addon-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        
+        .addon-controls .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            min-width: 100px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .world-config-container {
+                padding: 1rem;
+            }
+            
+            .section-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .addon-lists {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .addon-controls {
+                flex-direction: row;
+                justify-content: center;
+                order: -1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="world-config-container">
+        <!-- Header -->
+        <header class="section">
+            <h1><i class="fas fa-globe"></i> Configurações do Mundo</h1>
+            <p>Configure as regras de jogo, experimentos e addons do mundo atual</p>
+            <div class="status-info">
+                <span id="currentWorld">Carregando mundo atual...</span>
+            </div>
+        </header>
+
+        <!-- Configurações Básicas -->
+        <div class="config-section">
+            <div class="section-header" onclick="toggleSection('basic')">
+                <h3><i class="fas fa-cog"></i> Configurações Básicas</h3>
+                <i class="fas fa-chevron-down section-toggle" id="basic-toggle"></i>
+            </div>
+            <div class="section-content" id="basic-content">
+                <div class="config-field">
+                    <label class="field-label">Semente do Mundo</label>
+                    <span class="field-key">RandomSeed</span>
+                    <input type="text" id="RandomSeed" class="input" placeholder="Deixe vazio para aleatório">
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Modo Hardcore</label>
+                    <span class="field-key">IsHardcore</span>
+                    <select id="IsHardcore" class="input">
+                        <option value="false">Não</option>
+                        <option value="true">Sim</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Dificuldade</label>
+                    <span class="field-key">Difficulty</span>
+                    <select id="Difficulty" class="input">
+                        <option value="0">Peaceful</option>
+                        <option value="1">Easy</option>
+                        <option value="2">Normal</option>
+                        <option value="3">Hard</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Recursos Educacionais</label>
+                    <span class="field-key">educationFeaturesEnabled</span>
+                    <select id="educationFeaturesEnabled" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comandos e Blocos -->
+        <div class="config-section">
+            <div class="section-header" onclick="toggleSection('commands')">
+                <h3><i class="fas fa-terminal"></i> Comandos e Blocos</h3>
+                <i class="fas fa-chevron-down section-toggle" id="commands-toggle"></i>
+            </div>
+            <div class="section-content collapsed" id="commands-content">
+                <div class="config-field">
+                    <label class="field-label">Saída de Blocos de Comando</label>
+                    <span class="field-key">commandblockoutput</span>
+                    <select id="commandblockoutput" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Blocos de Comando Habilitados</label>
+                    <span class="field-key">commandblocksenabled</span>
+                    <select id="commandblocksenabled" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Limite de Comandos de Função</label>
+                    <span class="field-key">functioncommandlimit</span>
+                    <input type="number" id="functioncommandlimit" class="input" min="1" max="100000" value="10000">
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Comprimento Máximo da Cadeia de Comandos</label>
+                    <span class="field-key">maxcommandchainlength</span>
+                    <input type="number" id="maxcommandchainlength" class="input" min="1" max="1000000" value="65535">
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Enviar Feedback de Comandos</label>
+                    <span class="field-key">sendcommandfeedback</span>
+                    <select id="sendcommandfeedback" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ciclos e Tempo -->
+        <div class="config-section">
+            <div class="section-header" onclick="toggleSection('cycles')">
+                <h3><i class="fas fa-sun"></i> Ciclos e Tempo</h3>
+                <i class="fas fa-chevron-down section-toggle" id="cycles-toggle"></i>
+            </div>
+            <div class="section-content collapsed" id="cycles-content">
+                <div class="config-field">
+                    <label class="field-label">Ciclo Dia/Noite</label>
+                    <span class="field-key">dodaylightcycle</span>
+                    <select id="dodaylightcycle" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Ciclo do Clima</label>
+                    <span class="field-key">doweathercycle</span>
+                    <select id="doweathercycle" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Velocidade de Tick Aleatório</label>
+                    <span class="field-key">randomtickspeed</span>
+                    <input type="number" id="randomtickspeed" class="input" min="0" max="1000" value="1">
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Insônia (Phantoms)</label>
+                    <span class="field-key">doinsomnia</span>
+                    <select id="doinsomnia" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gameplay -->
+        <div class="config-section">
+            <div class="section-header" onclick="toggleSection('gameplay')">
+                <h3><i class="fas fa-gamepad"></i> Gameplay</h3>
+                <i class="fas fa-chevron-down section-toggle" id="gameplay-toggle"></i>
+            </div>
+            <div class="section-content collapsed" id="gameplay-content">
+                <div class="config-field">
+                    <label class="field-label">Manter Inventário</label>
+                    <span class="field-key">keepinventory</span>
+                    <select id="keepinventory" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Respawn Imediato</label>
+                    <span class="field-key">doimmediaterespawn</span>
+                    <select id="doimmediaterespawn" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Regeneração Natural</label>
+                    <span class="field-key">naturalregeneration</span>
+                    <select id="naturalregeneration" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Griefing de Mobs</label>
+                    <span class="field-key">mobgriefing</span>
+                    <select id="mobgriefing" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">PvP</label>
+                    <span class="field-key">pvp</span>
+                    <select id="pvp" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">% Jogadores Dormindo</label>
+                    <span class="field-key">playerssleepingpercentage</span>
+                    <input type="number" id="playerssleepingpercentage" class="input" min="0" max="100" value="100">
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Raio de Spawn</label>
+                    <span class="field-key">spawnradius</span>
+                    <input type="number" id="spawnradius" class="input" min="0" max="100" value="10">
+                </div>
+            </div>
+        </div>
+
+        <!-- Experimentos -->
+        <div class="config-section">
+            <div class="section-header" onclick="toggleSection('experiments')">
+                <h3><i class="fas fa-flask"></i> Recursos Experimentais</h3>
+                <i class="fas fa-chevron-down section-toggle" id="experiments-toggle"></i>
+            </div>
+            <div class="section-content collapsed" id="experiments-content">
+                <div class="config-field">
+                    <label class="field-label">Biomas Personalizados</label>
+                    <span class="field-key">data_driven_biomes</span>
+                    <select id="data_driven_biomes" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Câmeras Experimentais</label>
+                    <span class="field-key">experimental_creator_cameras</span>
+                    <select id="experimental_creator_cameras" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">APIs Beta</label>
+                    <span class="field-key">gametest</span>
+                    <select id="gametest" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Estruturas Jigsaw</label>
+                    <span class="field-key">jigsaw_structures</span>
+                    <select id="jigsaw_structures" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Recursos Futuros</label>
+                    <span class="field-key">upcoming_creator_features</span>
+                    <select id="upcoming_creator_features" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label class="field-label">Rebalanceamento de Trocas</label>
+                    <span class="field-key">villager_trades_rebalance</span>
+                    <select id="villager_trades_rebalance" class="input">
+                        <option value="false">Desabilitado</option>
+                        <option value="true">Habilitado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Addons do Mundo -->
+        <div class="addon-section">
+            <h2><i class="fas fa-puzzle-piece"></i> Addons Aplicados ao Mundo</h2>
+            <p>Gerencie os addons aplicados ao mundo atual</p>
+            
+            <div class="addon-lists">
+                <!-- Addons Disponíveis -->
+                <div class="addon-list">
+                    <h4><i class="fas fa-book"></i> Biblioteca</h4>
+                    <div id="availableAddons">
+                        <p class="text-center">Carregando addons disponíveis...</p>
+                    </div>
+                </div>
+                
+                <!-- Controles -->
+                <div class="addon-controls">
+                    <button id="applyAddonBtn" class="btn btn-success">
+                        <i class="fas fa-arrow-right"></i> Aplicar
+                    </button>
+                    <button id="removeAddonBtn" class="btn btn-danger">
+                        <i class="fas fa-arrow-left"></i> Remover
+                    </button>
+                    <button id="refreshAddonsBtn" class="btn btn-secondary">
+                        <i class="fas fa-sync"></i> Atualizar
+                    </button>
+                </div>
+                
+                <!-- Addons Aplicados -->
+                <div class="addon-list">
+                    <h4><i class="fas fa-check-circle"></i> Aplicados</h4>
+                    <div id="appliedAddons">
+                        <p class="text-center">Carregando addons aplicados...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="action-buttons">
+            <button id="saveBtn" class="btn btn-success">
+                <i class="fas fa-save"></i> Salvar Configurações
+            </button>
+            <button id="loadBtn" class="btn btn-secondary">
+                <i class="fas fa-sync"></i> Recarregar
+            </button>
+            <button id="resetBtn" class="btn btn-danger">
+                <i class="fas fa-undo"></i> Restaurar Padrões
+            </button>
+            <button id="backBtn" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Voltar ao Painel
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Carregando...</p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Título</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Conteúdo do modal -->
+            </div>
+            <div class="modal-footer">
+                <button id="modalConfirm" class="btn btn-primary">Confirmar</button>
+                <button id="modalCancel" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/eel.js"></script>
+    <script src="world-config.js"></script>
+</body>
+</html>
