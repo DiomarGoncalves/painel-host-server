@@ -1,4 +1,5 @@
-('C:\\Users\\Diomar\\Desktop\\project\\build\\minecraft_panel\\PYZ-00.pyz',
+('C:\\Users\\Diomar\\Documents\\GitHub\\painel-host-server\\winVersionPython '
+ 'eel\\build\\minecraft_panel\\PYZ-00.pyz',
  [('__future__',
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\__future__.py',
    'PYMODULE'),
@@ -111,7 +112,8 @@
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\_threading_local.py',
    'PYMODULE'),
   ('addons',
-   'C:\\Users\\Diomar\\Desktop\\project\\server\\addons.py',
+   'C:\\Users\\Diomar\\Documents\\GitHub\\painel-host-server\\winVersionPython '
+   'eel\\server\\addons.py',
    'PYMODULE'),
   ('argparse',
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\argparse.py',
@@ -384,7 +386,8 @@
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\doctest.py',
    'PYMODULE'),
   ('editor_server',
-   'C:\\Users\\Diomar\\Desktop\\project\\server\\editor_server.py',
+   'C:\\Users\\Diomar\\Documents\\GitHub\\painel-host-server\\winVersionPython '
+   'eel\\server\\editor_server.py',
    'PYMODULE'),
   ('eel',
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\eel\\__init__.py',
@@ -1435,7 +1438,8 @@
    'PYMODULE'),
   ('jaraco', '-', 'PYMODULE'),
   ('jogadores',
-   'C:\\Users\\Diomar\\Desktop\\project\\server\\jogadores.py',
+   'C:\\Users\\Diomar\\Documents\\GitHub\\painel-host-server\\winVersionPython '
+   'eel\\server\\jogadores.py',
    'PYMODULE'),
   ('json',
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\json\\__init__.py',
@@ -1528,7 +1532,8 @@
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\multiprocessing\\util.py',
    'PYMODULE'),
   ('mundos',
-   'C:\\Users\\Diomar\\Desktop\\project\\server\\mundos.py',
+   'C:\\Users\\Diomar\\Documents\\GitHub\\painel-host-server\\winVersionPython '
+   'eel\\server\\mundos.py',
    'PYMODULE'),
   ('netrc',
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\netrc.py',
@@ -1716,7 +1721,10 @@
   ('random',
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\random.py',
    'PYMODULE'),
-  ('rede', 'C:\\Users\\Diomar\\Desktop\\project\\server\\rede.py', 'PYMODULE'),
+  ('rede',
+   'C:\\Users\\Diomar\\Documents\\GitHub\\painel-host-server\\winVersionPython '
+   'eel\\server\\rede.py',
+   'PYMODULE'),
   ('rlcompleter',
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\rlcompleter.py',
    'PYMODULE'),
@@ -1730,7 +1738,8 @@
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\selectors.py',
    'PYMODULE'),
   ('servidor',
-   'C:\\Users\\Diomar\\Desktop\\project\\server\\servidor.py',
+   'C:\\Users\\Diomar\\Documents\\GitHub\\painel-host-server\\winVersionPython '
+   'eel\\server\\servidor.py',
    'PYMODULE'),
   ('setuptools',
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\setuptools\\__init__.py',
@@ -2388,7 +2397,8 @@
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\webbrowser.py',
    'PYMODULE'),
   ('world_config',
-   'C:\\Users\\Diomar\\Desktop\\project\\server\\world_config.py',
+   'C:\\Users\\Diomar\\Documents\\GitHub\\painel-host-server\\winVersionPython '
+   'eel\\server\\world_config.py',
    'PYMODULE'),
   ('wsgiref',
    'C:\\Users\\Diomar\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\wsgiref\\__init__.py',

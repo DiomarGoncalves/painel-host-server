@@ -33,6 +33,56 @@ if platform.system() == 'Windows':
         except:
             pass
 
+# --- VERIFICAÇÃO DE PYTHON PORTÁTIL OU SISTEMA ---
+def check_python_available():
+    """
+    Garante que o Python está disponível (portátil ou sistema).
+    Se não encontrar, exibe mensagem clara e encerra.
+    """
+    # Verifica python portátil na pasta do painel
+    base_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
+    python_portable = os.path.join(base_dir, "python", "python.exe")
+    if os.path.exists(python_portable):
+        return True
+    # Verifica python do sistema
+    import shutil
+    if shutil.which("python") or shutil.which("python3"):
+        return True
+    # Caminhos comuns no Windows
+    possible = [
+        r"C:\Python39\python.exe",
+        r"C:\Python38\python.exe",
+        r"C:\Python37\python.exe",
+        r"C:\Python311\python.exe",
+        r"C:\Python310\python.exe",
+        r"C:\Python312\python.exe",
+        r"C:\Program Files\Python39\python.exe",
+        r"C:\Program Files\Python311\python.exe",
+        r"C:\Program Files\Python310\python.exe",
+        r"C:\Program Files\Python312\python.exe",
+    ]
+    for path in possible:
+        if os.path.exists(path):
+            return True
+    # Se não encontrou, exibe mensagem e encerra
+    msg = (
+        "\n[ERRO] Python não encontrado!\n"
+        "O painel requer Python para funcionar.\n"
+        "Se você instalou pelo instalador, certifique-se que a pasta 'python' está junto do executável.\n"
+        "Ou instale o Python em https://www.python.org/downloads/ e adicione ao PATH do sistema.\n"
+        "Se estiver usando Windows 11, desative o alias 'python' da Microsoft Store em Configurações > Aplicativos > Aliases de execução do aplicativo.\n"
+        "Pressione Enter para sair..."
+    )
+    print(msg)
+    try:
+        input()
+    except Exception:
+        pass
+    sys.exit(1)
+
+# Chama a verificação logo no início
+check_python_available()
+
 # Importar módulos do painel
 from editor_server import ServerPropertiesEditor
 from mundos import WorldManager
@@ -166,6 +216,10 @@ playit_queue = queue.Queue()
 def find_system_python():
     """Tenta encontrar o executável python do sistema para diálogos Tkinter"""
     import shutil
+    # 1. Procurar python portátil na pasta do painel
+    local_python = Path(__file__).parent.parent / "python" / "python.exe"
+    if local_python.exists():
+        return str(local_python)
     # Tenta encontrar python.exe no PATH
     python_path = shutil.which("python")
     if python_path:
