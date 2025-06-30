@@ -258,7 +258,32 @@ echo Copiando arquivos...
 copy "MinecraftBedrockPanel.exe" "%INSTALL_DIR%\\" >nul
 if exist "web" xcopy "web" "%INSTALL_DIR%\\web\\" /E /I /Y >nul
 if exist "README.md" copy "README.md" "%INSTALL_DIR%\\" >nul
+if exist "requirements.txt" copy "requirements.txt" "%INSTALL_DIR%\\" >nul
+if exist "install_python.bat" copy "install_python.bat" "%INSTALL_DIR%\\" >nul
 
+REM Instalar Python se necessário
+echo.
+echo Verificando Python...
+pushd "%INSTALL_DIR%"
+call install_python.bat
+
+REM Instalar dependências do projeto
+echo.
+echo Instalando dependencias do projeto...
+where python >nul 2>&1
+if %errorlevel%==0 (
+    python -m pip install --upgrade pip
+    python -m pip install -r requirements.txt
+) else (
+    echo [ERRO] Python nao foi instalado corretamente!
+    echo Instale manualmente o Python 3.11+ e rode:
+    echo    pip install -r requirements.txt
+    pause
+    exit /b 1
+)
+popd
+
+echo.
 echo Criando atalho na area de trabalho...
 powershell "$WshShell = New-Object -comObject WScript.Shell; $Shortcut = $WshShell.CreateShortcut('%USERPROFILE%\\Desktop\\Minecraft Bedrock Panel.lnk'); $Shortcut.TargetPath = '%INSTALL_DIR%\\MinecraftBedrockPanel.exe'; $Shortcut.WorkingDirectory = '%INSTALL_DIR%'; $Shortcut.IconLocation = '%INSTALL_DIR%\\MinecraftBedrockPanel.exe'; $Shortcut.Save()"
 
@@ -270,11 +295,16 @@ echo.
 echo Pressione qualquer tecla para continuar...
 pause >nul
 '''
-    
-    with open('dist/install.bat', 'w', encoding='utf-8') as f:
+    dist_dir = Path('dist')
+    dist_dir.mkdir(exist_ok=True)
+    with open(dist_dir / 'install.bat', 'w', encoding='utf-8') as f:
         f.write(installer_content)
-    
-    safe_print("Script de instalacao criado")
+    # Copiar requirements.txt e install_python.bat para dist/
+    if Path('requirements.txt').exists():
+        shutil.copy2('requirements.txt', dist_dir)
+    if Path('install_python.bat').exists():
+        shutil.copy2('install_python.bat', dist_dir)
+    safe_print("Script de instalacao criado e dependências copiadas para dist/")
 
 def create_portable_package():
     """Criar pacote portátil"""
@@ -478,37 +508,6 @@ MinecraftBedrockPanel_Portable/
     
     safe_print("Pacote portatil criado em dist/MinecraftBedrockPanel_Portable/")
 
-def verify_build_result():
-    """Verificar se o build foi bem-sucedido"""
-    exe_path = Path('dist/MinecraftBedrockPanel.exe')
-    portable_exe = Path('dist/MinecraftBedrockPanel_Portable/MinecraftBedrockPanel.exe')
-    portable_web = Path('dist/MinecraftBedrockPanel_Portable/web')
-    
-    issues = []
-    
-    if not exe_path.exists():
-        issues.append("Executavel principal nao encontrado")
-    
-    if not portable_exe.exists():
-        issues.append("Executavel portatil nao encontrado")
-    
-    if not portable_web.exists():
-        issues.append("Pasta web nao copiada para o pacote portatil")
-    else:
-        required_files = ['index.html', 'style.css', 'script.js']
-        for file in required_files:
-            if not (portable_web / file).exists():
-                issues.append(f"Arquivo web faltando: {file}")
-    
-    if issues:
-        safe_print("\nPROBLEMAS ENCONTRADOS:")
-        for issue in issues:
-            safe_print(f"   - {issue}")
-        return False
-    else:
-        safe_print("\nBuild verificado com sucesso!")
-        return True
-
 def main():
     """Função principal do build"""
     safe_print("Minecraft Bedrock Panel - Build Script")
@@ -534,7 +533,6 @@ def main():
         if build_executable():
             # Copiar pasta web manualmente (backup)
             copy_web_to_dist()
-            
             # Criar instalador e pacote portátil
             create_installer_script()
             create_portable_package()
