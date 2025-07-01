@@ -44,25 +44,26 @@ Source: "C:\Users\Diomar\Documents\GitHub\painel-host-server\winVersionPython ee
 ; Todos os arquivos da pasta portable
 Source: "C:\Users\Diomar\Documents\GitHub\painel-host-server\winVersionPython eel\dist\MinecraftBedrockPanel_Portable\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
-; Script PowerShell para instalar Python e bibliotecas
-Source: "C:\Users\Diomar\Documents\GitHub\painel-host-server\winVersionPython eel\install_python_and_libs.ps1"; DestDir: "{app}"; Flags: ignoreversion
-
-; Apenas para manter registro
-Source: "C:\Users\Diomar\Documents\GitHub\painel-host-server\winVersionPython eel\requirements.txt"; DestDir: "{app}"; Flags: ignoreversion
+; Empacote o instalador do Python junto
+Source: "C:\Users\Diomar\Documents\GitHub\painel-host-server\winVersionPython eel\python-3.13.5-amd64.exe"; DestDir: "{app}"; Flags: ignoreversion
 
 [Registry]
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName}"; Flags: uninsdeletekey
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
+; Adiciona o Python ao PATH do usuário (não requer reiniciar para novos terminais)
+Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "Path"; \
+    ValueData: "{olddata};C:\Program Files\Python313\"; Flags: preservestringtype uninsdeletevalue
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
-; Executa script PowerShell que instala Python e bibliotecas
-Filename: "powershell.exe"; Parameters: "-ExecutionPolicy Bypass -NoProfile -File ""{app}\install_python_and_libs.ps1"""; WorkingDir: "{app}"; StatusMsg: "Instalando Python e bibliotecas necessárias..."; Flags: waituntilterminated runhidden
+; Executa o instalador do Python em modo interativo (tela para o usuário)
+
+Filename: "{app}\python-3.13.5-amd64.exe"; Parameters: ""; WorkingDir: "{app}"; StatusMsg: "Execute a instalação do Python (como admin e selecione o path) para finalizar a configuração."; Flags: postinstall skipifsilent
 
 ; Inicia o programa após instalação
 Filename: "{app}\{#MyAppExeName}"; Description: "Iniciar {#MyAppName}"; Flags: nowait postinstall skipifsilent
