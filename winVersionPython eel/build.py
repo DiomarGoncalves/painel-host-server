@@ -240,72 +240,6 @@ def copy_web_to_dist():
     
     return False
 
-def create_installer_script():
-    """Criar script de instalação"""
-    installer_content = '''@echo off
-chcp 65001 >nul 2>&1
-echo ========================================
-echo  Minecraft Bedrock Panel - Instalador
-echo ========================================
-echo.
-
-set "INSTALL_DIR=%USERPROFILE%\\MinecraftBedrockPanel"
-
-echo Criando diretorio de instalacao...
-if not exist "%INSTALL_DIR%" mkdir "%INSTALL_DIR%"
-
-echo Copiando arquivos...
-copy "MinecraftBedrockPanel.exe" "%INSTALL_DIR%\\" >nul
-if exist "web" xcopy "web" "%INSTALL_DIR%\\web\\" /E /I /Y >nul
-if exist "README.md" copy "README.md" "%INSTALL_DIR%\\" >nul
-if exist "requirements.txt" copy "requirements.txt" "%INSTALL_DIR%\\" >nul
-if exist "install_python.bat" copy "install_python.bat" "%INSTALL_DIR%\\" >nul
-
-REM Instalar Python se necessário
-echo.
-echo Verificando Python...
-pushd "%INSTALL_DIR%"
-call install_python.bat
-
-REM Instalar dependências do projeto
-echo.
-echo Instalando dependencias do projeto...
-where python >nul 2>&1
-if %errorlevel%==0 (
-    python -m pip install --upgrade pip
-    python -m pip install -r requirements.txt
-) else (
-    echo [ERRO] Python nao foi instalado corretamente!
-    echo Instale manualmente o Python 3.11+ e rode:
-    echo    pip install -r requirements.txt
-    pause
-    exit /b 1
-)
-popd
-
-echo.
-echo Criando atalho na area de trabalho...
-powershell "$WshShell = New-Object -comObject WScript.Shell; $Shortcut = $WshShell.CreateShortcut('%USERPROFILE%\\Desktop\\Minecraft Bedrock Panel.lnk'); $Shortcut.TargetPath = '%INSTALL_DIR%\\MinecraftBedrockPanel.exe'; $Shortcut.WorkingDirectory = '%INSTALL_DIR%'; $Shortcut.IconLocation = '%INSTALL_DIR%\\MinecraftBedrockPanel.exe'; $Shortcut.Save()"
-
-echo.
-echo Instalacao concluida!
-echo Instalado em: %INSTALL_DIR%
-echo Atalho criado na area de trabalho
-echo.
-echo Pressione qualquer tecla para continuar...
-pause >nul
-'''
-    dist_dir = Path('dist')
-    dist_dir.mkdir(exist_ok=True)
-    with open(dist_dir / 'install.bat', 'w', encoding='utf-8') as f:
-        f.write(installer_content)
-    # Copiar requirements.txt e install_python.bat para dist/
-    if Path('requirements.txt').exists():
-        shutil.copy2('requirements.txt', dist_dir)
-    if Path('install_python.bat').exists():
-        shutil.copy2('install_python.bat', dist_dir)
-    safe_print("Script de instalacao criado e dependências copiadas para dist/")
-
 def create_portable_package():
     """Criar pacote portátil"""
     safe_print("Criando pacote portatil...")
@@ -332,126 +266,14 @@ def create_portable_package():
     if os.path.exists('README.md'):
         shutil.copy2('README.md', portable_dir)
     
-    # Criar script de execução com debug
-    run_script = '''@echo off
-chcp 65001 >nul 2>&1
-title Minecraft Bedrock Panel
-echo ========================================
-echo  Minecraft Bedrock Panel - Portatil
-echo ========================================
-echo.
-echo Verificando arquivos...
-
-if not exist "web\\index.html" (
-    echo ERRO: Pasta web nao encontrada!
-    echo Certifique-se de que a pasta web esta presente.
-    echo.
-    pause
-    exit /b 1
-)
-
-echo [OK] Pasta web encontrada
-echo [OK] Iniciando painel...
-echo.
-echo Aguarde alguns segundos...
-echo O navegador abrira automaticamente
-echo Selecione a pasta do seu servidor Bedrock
-echo.
-echo Para fechar o painel, feche esta janela
-echo.
-
-MinecraftBedrockPanel.exe
-
-echo.
-echo Painel encerrado.
-echo Pressione qualquer tecla para sair...
-pause >nul
-'''
-    
-    with open(portable_dir / 'Executar_Painel.bat', 'w', encoding='utf-8') as f:
-        f.write(run_script)
-    
-    # Criar script de debug
-    debug_script = '''@echo off
-chcp 65001 >nul 2>&1
-title Minecraft Bedrock Panel - Debug
-echo ========================================
-echo  Minecraft Bedrock Panel - Debug Mode
-echo ========================================
-echo.
-
-echo Verificando estrutura de arquivos...
-echo.
-
-if exist "MinecraftBedrockPanel.exe" (
-    echo [OK] Executavel encontrado
-) else (
-    echo [ERRO] Executavel nao encontrado!
-)
-
-if exist "web" (
-    echo [OK] Pasta web encontrada
-    if exist "web\\index.html" (
-        echo [OK] index.html encontrado
-    ) else (
-        echo [ERRO] index.html nao encontrado!
-    )
-    if exist "web\\style.css" (
-        echo [OK] style.css encontrado
-    ) else (
-        echo [ERRO] style.css nao encontrado!
-    )
-    if exist "web\\script.js" (
-        echo [OK] script.js encontrado
-    ) else (
-        echo [ERRO] script.js nao encontrado!
-    )
-) else (
-    echo [ERRO] Pasta web nao encontrada!
-    echo.
-    echo A pasta web deve estar no mesmo diretorio do executavel.
-    echo Estrutura esperada:
-    echo   MinecraftBedrockPanel.exe
-    echo   web/
-    echo     index.html
-    echo     style.css
-    echo     script.js
-    echo     world-config.html
-    echo     world-config.js
-)
-
-echo.
-echo Executando em modo debug...
-echo Erros serao exibidos nesta janela.
-echo.
-echo Aguardando inicializacao...
-echo O navegador deve abrir automaticamente
-echo Verifique as mensagens abaixo para erros
-echo.
-
-MinecraftBedrockPanel.exe
-
-echo.
-echo ========================================
-echo Painel encerrado.
-echo Verifique as mensagens de erro acima.
-echo ========================================
-echo.
-pause
-'''
-    
-    with open(portable_dir / 'debug.bat', 'w', encoding='utf-8') as f:
-        f.write(debug_script)
-    
     # Criar arquivo de informações
     info_content = '''# Minecraft Bedrock Panel - Versao Portatil
 
 ## Como usar:
 
-1. **Execute o painel**: Clique duas vezes em `Executar_Painel.bat`
-2. **Se houver problemas**: Execute `debug.bat` para ver erros
-3. **Selecione a pasta do servidor**: Use o botao "Selecionar Pasta do Servidor"
-4. **Configure seu servidor**: Use as abas para gerenciar configuracoes, mundos, addons e jogadores
+1. **Execute o painel**: Clique duas vezes em `MinecraftBedrockPanel.exe`
+2. **Selecione a pasta do servidor**: Use o botao "Selecionar Pasta do Servidor"
+3. **Configure seu servidor**: Use as abas para gerenciar configuracoes, mundos, addons e jogadores
 
 ## Estrutura de Arquivos:
 
@@ -464,8 +286,6 @@ MinecraftBedrockPanel_Portable/
 │   ├── script.js
 │   ├── world-config.html
 │   └── world-config.js
-├── Executar_Painel.bat         # Script de execucao
-├── debug.bat                   # Script de debug
 └── LEIA-ME.md                  # Este arquivo
 ```
 
@@ -478,9 +298,8 @@ MinecraftBedrockPanel_Portable/
 ## Solucao de Problemas:
 
 ### Painel fecha imediatamente:
-1. Execute `debug.bat` para ver erros detalhados
-2. Verifique se a pasta `web` esta presente
-3. Certifique-se de que nao ha antivirus bloqueando
+1. Verifique se a pasta `web` esta presente
+2. Certifique-se de que nao ha antivirus bloqueando
 
 ### Pasta web nao encontrada:
 - Certifique-se de que a pasta `web` esta no mesmo diretorio do executavel
@@ -533,8 +352,7 @@ def main():
         if build_executable():
             # Copiar pasta web manualmente (backup)
             copy_web_to_dist()
-            # Criar instalador e pacote portátil
-            create_installer_script()
+            # Não criar instalador e scripts .bat
             create_portable_package()
             
             # Verificar resultado
@@ -544,12 +362,10 @@ def main():
                 safe_print("=" * 50)
                 safe_print("Arquivos gerados:")
                 safe_print("   • dist/MinecraftBedrockPanel.exe - Executavel principal")
-                safe_print("   • dist/install.bat - Instalador para Windows")
                 safe_print("   • dist/MinecraftBedrockPanel_Portable/ - Versao portatil")
                 safe_print("\nPara testar:")
                 safe_print("   1. Va para dist/MinecraftBedrockPanel_Portable/")
-                safe_print("   2. Execute Executar_Painel.bat")
-                safe_print("   3. Se houver problemas, execute debug.bat")
+                safe_print("   2. Execute MinecraftBedrockPanel.exe")
                 safe_print("\nPronto para distribuicao!")
             else:
                 safe_print("\nBuild concluido com problemas. Verifique os avisos acima.")

@@ -39,6 +39,10 @@ def check_python_available():
     Garante que o Python está disponível (portátil ou sistema).
     Se não encontrar, exibe mensagem clara e encerra.
     """
+    # Prioriza o Python instalado pelo setup
+    python_setup = r"C:\Program Files\Python313\python.exe"
+    if os.path.exists(python_setup):
+        return True
     # Verifica python portátil na pasta do painel
     base_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
     python_portable = os.path.join(base_dir, "python", "python.exe")
@@ -50,6 +54,7 @@ def check_python_available():
         return True
     # Caminhos comuns no Windows
     possible = [
+        python_setup,
         r"C:\Python39\python.exe",
         r"C:\Python38\python.exe",
         r"C:\Python37\python.exe",
@@ -216,6 +221,10 @@ playit_queue = queue.Queue()
 def find_system_python():
     """Tenta encontrar o executável python do sistema para diálogos Tkinter"""
     import shutil
+    # 1. Prioriza o Python instalado pelo setup
+    python_setup = r"C:\Program Files\Python313\python.exe"
+    if os.path.exists(python_setup):
+        return python_setup
     # 1. Procurar python portátil na pasta do painel
     local_python = Path(__file__).parent.parent / "python" / "python.exe"
     if local_python.exists():
@@ -230,6 +239,7 @@ def find_system_python():
         return python3_path
     # Tenta caminhos comuns no Windows
     possible = [
+        python_setup,
         r"C:\Python39\python.exe",
         r"C:\Python38\python.exe",
         r"C:\Python37\python.exe",
@@ -240,6 +250,7 @@ def find_system_python():
         r"C:\Program Files\Python311\python.exe",
         r"C:\Program Files\Python310\python.exe",
         r"C:\Program Files\Python312\python.exe",
+        r"C:\Program Files\Python313\python.exe",
     ]
     for path in possible:
         if os.path.exists(path):
