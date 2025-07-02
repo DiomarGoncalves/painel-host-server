@@ -44,6 +44,9 @@ Source: "C:\Users\Diomar\Documents\GitHub\painel-host-server\winVersionPython ee
 ; Todos os arquivos da pasta portable
 Source: "C:\Users\Diomar\Documents\GitHub\painel-host-server\winVersionPython eel\dist\MinecraftBedrockPanel_Portable\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
+; Apenas para manter registro
+Source: "C:\Users\Diomar\Documents\GitHub\painel-host-server\winVersionPython eel\requirements.txt"; DestDir: "{app}"; Flags: ignoreversion
+
 ; Empacote o instalador do Python junto
 Source: "C:\Users\Diomar\Documents\GitHub\painel-host-server\winVersionPython eel\python-3.13.5-amd64.exe"; DestDir: "{app}"; Flags: ignoreversion
 
@@ -63,7 +66,7 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 [Run]
 ; Executa o instalador do Python em modo interativo (tela para o usuário)
 
-Filename: "{app}\python-3.13.5-amd64.exe"; Parameters: ""; WorkingDir: "{app}"; StatusMsg: "Execute a instalação do Python (como admin e selecione o path) para finalizar a configuração."; Flags: postinstall skipifsilent
+Filename: "{app}\python-3.13.5-amd64.exe"; Parameters: ""; WorkingDir: "{app}"; StatusMsg: "Execute a instalação do Python (como admin) e selecione o path para finalizar a configuração."; Flags: postinstall skipifsilent
 
 ; Inicia o programa após instalação
 Filename: "{app}\{#MyAppExeName}"; Description: "Iniciar {#MyAppName}"; Flags: nowait postinstall skipifsilent

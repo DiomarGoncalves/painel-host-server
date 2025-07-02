@@ -27,8 +27,17 @@ const elements = {
     // Network controls
     startPlayitBtn: document.getElementById('startPlayitBtn'),
     stopPlayitBtn: document.getElementById('stopPlayitBtn'),
+    restartPlayitBtn: document.getElementById('restartPlayitBtn'),
     refreshPlayitBtn: document.getElementById('refreshPlayitBtn'),
     copyUrlBtn: document.getElementById('copyUrlBtn'),
+    clearPlayitLogsBtn: document.getElementById('clearPlayitLogsBtn'),
+    
+    // Updater controls
+    selectNewServerBtn: document.getElementById('selectNewServerBtn'),
+    validateServerBtn: document.getElementById('validateServerBtn'),
+    updateServerBtn: document.getElementById('updateServerBtn'),
+    createBackupBtn: document.getElementById('createBackupBtn'),
+    refreshBackupsBtn: document.getElementById('refreshBackupsBtn'),
     
     // Console controls
     sendCommandBtn: document.getElementById('sendCommandBtn'),
@@ -47,6 +56,9 @@ const elements = {
     operatorsList: document.getElementById('operatorsList'),
     worldInfo: document.getElementById('worldInfo'),
     appliedAddonsPreview: document.getElementById('appliedAddonsPreview'),
+    serverInfo: document.getElementById('serverInfo'),
+    validationResult: document.getElementById('validationResult'),
+    backupsList: document.getElementById('backupsList'),
     
     // Status
     serverPath: document.getElementById('serverPath'),
@@ -62,7 +74,9 @@ const elements = {
     serverConsole: document.getElementById('serverConsole'),
     playitConsole: document.getElementById('playitConsole'),
     tunnelInfo: document.getElementById('tunnelInfo'),
+    tunnelDetails: document.getElementById('tunnelDetails'),
     playitDownload: document.getElementById('playitDownload'),
+    downloadInstructions: document.getElementById('downloadInstructions'),
     
     // Modal
     modal: document.getElementById('modal'),
@@ -75,6 +89,10 @@ const elements = {
     // Loading
     loadingOverlay: document.getElementById('loadingOverlay')
 };
+
+// Variáveis para o atualizador
+let selectedNewServerPath = '';
+let validationData = null;
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', function() {
@@ -126,8 +144,17 @@ function setupEventListeners() {
     // Network controls
     elements.startPlayitBtn.addEventListener('click', startPlayit);
     elements.stopPlayitBtn.addEventListener('click', stopPlayit);
+    elements.restartPlayitBtn.addEventListener('click', restartPlayit);
     elements.refreshPlayitBtn.addEventListener('click', updatePlayitStatus);
     elements.copyUrlBtn.addEventListener('click', copyTunnelUrl);
+    elements.clearPlayitLogsBtn.addEventListener('click', clearPlayitLogs);
+    
+    // Updater controls
+    elements.selectNewServerBtn.addEventListener('click', selectNewServer);
+    elements.validateServerBtn.addEventListener('click', validateNewServer);
+    elements.updateServerBtn.addEventListener('click', executeServerUpdate);
+    elements.createBackupBtn.addEventListener('click', createManualBackup);
+    elements.refreshBackupsBtn.addEventListener('click', loadServerBackups);
     
     // Console controls
     elements.sendCommandBtn.addEventListener('click', sendCommand);
@@ -189,6 +216,10 @@ function loadTabContent(tab) {
             break;
         case 'network':
             updatePlayitStatus();
+            break;
+        case 'updater':
+            loadServerInfo();
+            loadServerBackups();
             break;
         case 'console':
             updateServerStatus();
@@ -307,6 +338,7 @@ async function selectServerFolder() {
             await updateServerStatus();
             await updatePlayitStatus();
             await loadWorldConfigPreview();
+            await loadServerInfo();
             
             showModal('Sucesso', 'Pasta do servidor selecionada com sucesso!');
         } else {
@@ -395,7 +427,7 @@ async function updateServerStatus() {
     }
 }
 
-// Network Functions (Playit.gg)
+// Network Functions (Playit.gg) - Atualizadas
 async function startPlayit() {
     if (!currentServerPath) {
         showModal('Erro', 'Selecione a pasta do servidor primeiro');
@@ -441,6 +473,26 @@ async function stopPlayit() {
     }
 }
 
+async function restartPlayit() {
+    showLoading();
+    try {
+        const result = await eel.restart_playit()();
+        
+        if (result.success) {
+            updateStatus('Túnel Playit reiniciado');
+            showModal('Sucesso', result.message);
+            await updatePlayitStatus();
+        } else {
+            showModal('Erro', result.error || 'Erro ao reiniciar Playit');
+        }
+    } catch (error) {
+        console.error('Erro ao reiniciar Playit:', error);
+        showModal('Erro', 'Erro ao reiniciar Playit');
+    } finally {
+        hideLoading();
+    }
+}
+
 async function updatePlayitStatus() {
     try {
         const result = await eel.check_playit_status()();
@@ -454,10 +506,22 @@ async function updatePlayitStatus() {
                 elements.playitStatusText.textContent = 'Playit não instalado';
                 elements.startPlayitBtn.disabled = true;
                 elements.stopPlayitBtn.disabled = true;
+                elements.restartPlayitBtn.disabled = true;
+                
+                // Mostrar instruções de download
+                if (status.download_info) {
+                    const instructions = status.download_info.instructions;
+                    elements.downloadInstructions.innerHTML = `
+                        <ol>
+                            ${instructions.map(instruction => `<li>${instruction}</li>`).join('')}
+                        </ol>
+                    `;
+                }
                 return;
             } else {
                 elements.playitDownload.style.display = 'none';
                 elements.startPlayitBtn.disabled = false;
+                elements.restartPlayitBtn.disabled = false;
             }
             
             if (status.running) {
@@ -465,16 +529,33 @@ async function updatePlayitStatus() {
                 elements.playitStatusText.textContent = `Túnel Ativo (PID: ${status.process_id})`;
                 elements.startPlayitBtn.disabled = true;
                 elements.stopPlayitBtn.disabled = false;
+                elements.restartPlayitBtn.disabled = false;
                 
-                if (status.tunnel_url) {
+                // Mostrar informações do túnel se disponível
+                if (status.tunnel_info && status.tunnel_info.url) {
                     elements.tunnelInfo.style.display = 'block';
-                    elements.tunnelUrlInput.value = status.tunnel_url;
+                    elements.tunnelUrlInput.value = status.tunnel_info.url;
+                    
+                    // Mostrar detalhes do túnel
+                    if (elements.tunnelDetails) {
+                        elements.tunnelDetails.innerHTML = `
+                            <div class="tunnel-detail-grid">
+                                <div class="tunnel-detail">
+                                    <strong>Status:</strong> ${status.tunnel_info.status || 'Conectado'}
+                                </div>
+                                <div class="tunnel-detail">
+                                    <strong>Porta Local:</strong> ${status.tunnel_info.local_port || '19132'}
+                                </div>
+                            </div>
+                        `;
+                    }
                 }
             } else {
                 elements.playitStatusDot.className = 'status-dot offline';
                 elements.playitStatusText.textContent = 'Túnel Inativo';
                 elements.startPlayitBtn.disabled = false;
                 elements.stopPlayitBtn.disabled = true;
+                elements.restartPlayitBtn.disabled = true;
                 elements.tunnelInfo.style.display = 'none';
             }
         }
@@ -491,6 +572,256 @@ function copyTunnelUrl() {
         }).catch(() => {
             showModal('Erro', 'Erro ao copiar URL');
         });
+    }
+}
+
+function clearPlayitLogs() {
+    elements.playitConsole.innerHTML = '';
+}
+
+// Updater Functions
+async function loadServerInfo() {
+    if (!currentServerPath) {
+        elements.serverInfo.innerHTML = '<p>Selecione a pasta do servidor primeiro</p>';
+        return;
+    }
+    
+    try {
+        const result = await eel.get_server_info()();
+        
+        if (result.success) {
+            const info = result.info;
+            
+            elements.serverInfo.innerHTML = `
+                <div class="server-info-grid">
+                    <div class="info-item">
+                        <strong>Caminho:</strong><br>${info.path}
+                    </div>
+                    <div class="info-item">
+                        <strong>Executável:</strong><br>
+                        ${info.has_bedrock_exe ? '✅ bedrock_server.exe' : ''}
+                        ${info.has_bedrock_bin ? '✅ bedrock_server' : ''}
+                        ${!info.has_bedrock_exe && !info.has_bedrock_bin ? '❌ Não encontrado' : ''}
+                    </div>
+                    <div class="info-item">
+                        <strong>Playit:</strong><br>
+                        ${info.has_playit ? '✅ Instalado' : '❌ Não instalado'}
+                    </div>
+                </div>
+                
+                <div class="preserved-status">
+                    <h4><i class="fas fa-shield-alt"></i> Dados que serão preservados:</h4>
+                    
+                    <div class="preserved-files-list">
+                        ${info.preserved_files.map(file => 
+                            `<span class="preserved-file">${file}</span>`
+                        ).join('')}
+                    </div>
+                    
+                    <div class="preserved-folders-list">
+                        ${info.preserved_folders.map(folder => 
+                            `<span class="preserved-folder">${folder.name} (${folder.items} itens)</span>`
+                        ).join('')}
+                    </div>
+                </div>
+            `;
+        } else {
+            elements.serverInfo.innerHTML = `<p class="error">Erro: ${result.error}</p>`;
+        }
+    } catch (error) {
+        console.error('Erro ao carregar info do servidor:', error);
+        elements.serverInfo.innerHTML = '<p class="error">Erro ao carregar informações</p>';
+    }
+}
+
+async function selectNewServer() {
+    try {
+        updateStatus('Abrindo diálogo de seleção...');
+        const fileResult = await eel.select_file('server')();
+        
+        if (!fileResult.success || !fileResult.path) {
+            updateStatus('Seleção cancelada');
+            return;
+        }
+        
+        selectedNewServerPath = fileResult.path;
+        elements.validateServerBtn.disabled = false;
+        elements.updateServerBtn.disabled = true;
+        
+        elements.validationResult.style.display = 'block';
+        elements.validationResult.className = 'validation-result';
+        elements.validationResult.innerHTML = `
+            <p><strong>Arquivo selecionado:</strong> ${fileResult.path}</p>
+            <p>Clique em "Validar Versão" para verificar se é um servidor Bedrock válido.</p>
+        `;
+        
+        updateStatus('Nova versão selecionada - Clique em Validar');
+    } catch (error) {
+        console.error('Erro ao selecionar nova versão:', error);
+        showModal('Erro', 'Erro ao selecionar arquivo');
+    }
+}
+
+async function validateNewServer() {
+    if (!selectedNewServerPath) {
+        showModal('Erro', 'Selecione uma nova versão primeiro');
+        return;
+    }
+    
+    showLoading();
+    try {
+        const result = await eel.validate_new_server(selectedNewServerPath)();
+        
+        if (result.success) {
+            validationData = result;
+            elements.updateServerBtn.disabled = false;
+            
+            elements.validationResult.className = 'validation-result validation-success';
+            elements.validationResult.innerHTML = `
+                <h4><i class="fas fa-check-circle"></i> Validação Bem-sucedida</h4>
+                <p><strong>Tipo:</strong> ${result.type === 'zip' ? 'Arquivo ZIP' : 'Pasta'}</p>
+                <p><strong>Caminho:</strong> ${result.path}</p>
+                <p class="success">✅ Servidor Bedrock válido encontrado!</p>
+                <p>Clique em "Executar Atualização" para prosseguir.</p>
+            `;
+            
+            updateStatus('Validação concluída - Pronto para atualizar');
+        } else {
+            elements.updateServerBtn.disabled = true;
+            
+            elements.validationResult.className = 'validation-result validation-error';
+            elements.validationResult.innerHTML = `
+                <h4><i class="fas fa-exclamation-triangle"></i> Validação Falhou</h4>
+                <p class="error">❌ ${result.error}</p>
+                <p>Selecione um arquivo ZIP ou pasta contendo um servidor Bedrock válido.</p>
+            `;
+            
+            updateStatus('Validação falhou');
+        }
+    } catch (error) {
+        console.error('Erro na validação:', error);
+        showModal('Erro', 'Erro ao validar servidor');
+    } finally {
+        hideLoading();
+    }
+}
+
+async function executeServerUpdate() {
+    if (!validationData || !selectedNewServerPath) {
+        showModal('Erro', 'Valide a nova versão primeiro');
+        return;
+    }
+    
+    const confirmed = await showConfirmModal(
+        'Confirmar Atualização',
+        'Deseja executar a atualização do servidor?\n\n' +
+        '⚠️ IMPORTANTE:\n' +
+        '• Um backup será criado automaticamente\n' +
+        '• Todos os dados importantes serão preservados\n' +
+        '• O processo pode demorar alguns minutos\n' +
+        '• Pare o servidor antes de continuar\n\n' +
+        'Continuar com a atualização?'
+    );
+    
+    if (!confirmed) return;
+    
+    showLoading();
+    try {
+        updateStatus('Executando atualização do servidor...');
+        
+        const result = await eel.update_server(selectedNewServerPath)();
+        
+        if (result.success) {
+            updateStatus('Servidor atualizado com sucesso');
+            showModal('Sucesso', 
+                `${result.message}\n\n` +
+                `Backup criado: ${result.backup_file}\n\n` +
+                'Reinicie o painel para aplicar as mudanças.'
+            );
+            
+            // Resetar formulário
+            selectedNewServerPath = '';
+            validationData = null;
+            elements.validateServerBtn.disabled = true;
+            elements.updateServerBtn.disabled = true;
+            elements.validationResult.style.display = 'none';
+            
+            // Recarregar informações
+            await loadServerInfo();
+            await loadServerBackups();
+        } else {
+            showModal('Erro', result.error || 'Erro durante a atualização');
+        }
+    } catch (error) {
+        console.error('Erro na atualização:', error);
+        showModal('Erro', 'Erro ao executar atualização');
+    } finally {
+        hideLoading();
+    }
+}
+
+async function createManualBackup() {
+    if (!currentServerPath) {
+        showModal('Erro', 'Selecione a pasta do servidor primeiro');
+        return;
+    }
+    
+    showLoading();
+    try {
+        const result = await eel.create_server_backup()();
+        
+        if (result.success) {
+            updateStatus('Backup criado com sucesso');
+            showModal('Sucesso', `Backup criado: ${result.backup_name}`);
+            await loadServerBackups();
+        } else {
+            showModal('Erro', result.error || 'Erro ao criar backup');
+        }
+    } catch (error) {
+        console.error('Erro ao criar backup:', error);
+        showModal('Erro', 'Erro ao criar backup');
+    } finally {
+        hideLoading();
+    }
+}
+
+async function loadServerBackups() {
+    if (!currentServerPath) {
+        elements.backupsList.innerHTML = '<p>Selecione a pasta do servidor primeiro</p>';
+        return;
+    }
+    
+    try {
+        const result = await eel.list_server_backups()();
+        
+        if (result.success) {
+            const backups = result.backups;
+            
+            if (backups.length === 0) {
+                elements.backupsList.innerHTML = '<p>Nenhum backup encontrado</p>';
+                return;
+            }
+            
+            elements.backupsList.innerHTML = `
+                <div class="backups-grid">
+                    ${backups.map(backup => `
+                        <div class="backup-item">
+                            <div class="backup-info">
+                                <h4><i class="fas fa-archive"></i> ${backup.name}</h4>
+                                <p><strong>Data:</strong> ${backup.date}</p>
+                                <p><strong>Tamanho:</strong> ${backup.size}</p>
+                                <p><strong>Caminho:</strong> ${backup.path}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        } else {
+            elements.backupsList.innerHTML = `<p class="error">Erro: ${result.error}</p>`;
+        }
+    } catch (error) {
+        console.error('Erro ao carregar backups:', error);
+        elements.backupsList.innerHTML = '<p class="error">Erro ao carregar lista de backups</p>';
     }
 }
 
@@ -553,15 +884,6 @@ function startLogUpdates() {
             const playitLogs = await eel.get_playit_logs()();
             playitLogs.forEach(log => {
                 addToConsole('playitConsole', log, 'playit');
-                
-                // Check for tunnel URL in logs
-                if (log.includes('playit.gg') && log.includes(':')) {
-                    const match = log.match(/([\w-]+\.playit\.gg:\d+)/);
-                    if (match) {
-                        elements.tunnelInfo.style.display = 'block';
-                        elements.tunnelUrlInput.value = match[1];
-                    }
-                }
             });
             
         } catch (error) {

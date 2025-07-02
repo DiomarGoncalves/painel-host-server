@@ -50,6 +50,9 @@
             <button class="tab-btn" data-tab="network">
                 <i class="fas fa-network-wired"></i> Rede
             </button>
+            <button class="tab-btn" data-tab="updater">
+                <i class="fas fa-download"></i> Atualizar
+            </button>
             <button class="tab-btn" data-tab="console">
                 <i class="fas fa-terminal"></i> Console
             </button>
@@ -188,6 +191,7 @@
                     
                     <div class="network-section">
                         <h3><i class="fas fa-globe"></i> Playit.gg - Acesso Remoto</h3>
+                        <p>Configure um túnel TCP para permitir acesso remoto ao servidor sem abrir portas no roteador</p>
                         
                         <div class="playit-status" id="playitStatus">
                             <div class="status-indicator">
@@ -203,18 +207,24 @@
                             <button id="stopPlayitBtn" class="btn btn-danger">
                                 <i class="fas fa-stop"></i> Parar Túnel
                             </button>
+                            <button id="restartPlayitBtn" class="btn btn-warning">
+                                <i class="fas fa-redo"></i> Reiniciar
+                            </button>
                             <button id="refreshPlayitBtn" class="btn btn-secondary">
                                 <i class="fas fa-refresh"></i> Atualizar Status
                             </button>
                         </div>
 
                         <div class="tunnel-info" id="tunnelInfo" style="display: none;">
-                            <h4><i class="fas fa-link"></i> Endereço Público</h4>
+                            <h4><i class="fas fa-link"></i> Endereço Público do Túnel</h4>
                             <div class="tunnel-url">
                                 <input type="text" id="tunnelUrlInput" class="input" readonly>
                                 <button id="copyUrlBtn" class="btn btn-secondary">
                                     <i class="fas fa-copy"></i> Copiar
                                 </button>
+                            </div>
+                            <div class="tunnel-details" id="tunnelDetails">
+                                <!-- Detalhes do túnel serão exibidos aqui -->
                             </div>
                         </div>
 
@@ -224,17 +234,104 @@
                                 <div class="console" id="playitConsole">
                                     <!-- Logs do Playit aparecerão aqui -->
                                 </div>
+                                <div class="console-controls">
+                                    <button id="clearPlayitLogsBtn" class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-trash"></i> Limpar Logs
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="playit-download" id="playitDownload" style="display: none;">
                             <div class="alert alert-info">
-                                <h4><i class="fas fa-download"></i> Playit não encontrado</h4>
-                                <p>Para usar o acesso remoto, baixe o Playit.gg e coloque na pasta do servidor:</p>
+                                <h4><i class="fas fa-download"></i> Playit.gg não encontrado</h4>
+                                <p>Para usar o acesso remoto, você precisa baixar o Playit.gg:</p>
+                                <div class="download-instructions" id="downloadInstructions">
+                                    <!-- Instruções de download serão carregadas aqui -->
+                                </div>
                                 <a href="https://playit.gg/download" target="_blank" class="btn btn-primary">
                                     <i class="fas fa-external-link-alt"></i> Baixar Playit.gg
                                 </a>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Atualizar Servidor Tab -->
+            <div id="updater" class="tab-content">
+                <div class="section">
+                    <h2><i class="fas fa-download"></i> Atualizar Servidor Bedrock</h2>
+                    <p>Atualize seu servidor Bedrock para uma nova versão mantendo todos os dados importantes</p>
+                    
+                    <div class="updater-section">
+                        <h3><i class="fas fa-info-circle"></i> Informações do Servidor Atual</h3>
+                        <div class="server-info" id="serverInfo">
+                            <p>Carregando informações do servidor...</p>
+                        </div>
+                    </div>
+
+                    <div class="updater-section">
+                        <h3><i class="fas fa-shield-alt"></i> Dados Preservados</h3>
+                        <div class="preserved-data-info">
+                            <p>Durante a atualização, os seguintes dados serão preservados:</p>
+                            <div class="preserved-lists">
+                                <div class="preserved-files">
+                                    <h4><i class="fas fa-file"></i> Arquivos</h4>
+                                    <ul>
+                                        <li>server.properties</li>
+                                        <li>permissions.json</li>
+                                        <li>allowlist.json</li>
+                                        <li>ops.json</li>
+                                        <li>playit.exe / playit-linux</li>
+                                    </ul>
+                                </div>
+                                <div class="preserved-folders">
+                                    <h4><i class="fas fa-folder"></i> Pastas</h4>
+                                    <ul>
+                                        <li>worlds/ (todos os mundos)</li>
+                                        <li>development_behavior_packs/</li>
+                                        <li>development_resource_packs/</li>
+                                        <li>config/</li>
+                                        <li>worlds_backup/</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="updater-section">
+                        <h3><i class="fas fa-upload"></i> Atualizar Servidor</h3>
+                        <div class="update-controls">
+                            <button id="selectNewServerBtn" class="btn btn-primary">
+                                <i class="fas fa-folder-open"></i> Selecionar Nova Versão
+                            </button>
+                            <button id="validateServerBtn" class="btn btn-secondary" disabled>
+                                <i class="fas fa-check"></i> Validar Versão
+                            </button>
+                            <button id="updateServerBtn" class="btn btn-success" disabled>
+                                <i class="fas fa-download"></i> Executar Atualização
+                            </button>
+                        </div>
+                        
+                        <div class="validation-result" id="validationResult" style="display: none;">
+                            <!-- Resultado da validação será exibido aqui -->
+                        </div>
+                    </div>
+
+                    <div class="updater-section">
+                        <h3><i class="fas fa-history"></i> Backups</h3>
+                        <div class="backup-controls">
+                            <button id="createBackupBtn" class="btn btn-secondary">
+                                <i class="fas fa-save"></i> Criar Backup Manual
+                            </button>
+                            <button id="refreshBackupsBtn" class="btn btn-secondary">
+                                <i class="fas fa-refresh"></i> Atualizar Lista
+                            </button>
+                        </div>
+                        
+                        <div class="backups-list" id="backupsList">
+                            <p>Carregando lista de backups...</p>
                         </div>
                     </div>
                 </div>
