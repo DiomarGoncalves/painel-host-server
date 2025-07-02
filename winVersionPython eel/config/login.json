@@ -1,0 +1,5 @@
+{
+  "usuario": "admin",
+  "senha_hash": "scrypt:32768:8:1$amwXrk1D8ms9n8rZ$62275c5566e34a23e7dd852fcaf1e471b8dc1f9bac42b0cd37a0d126f4b7911bd9c85ca21e46b11c912eda6bacfb24425857bf695dc01a193ac2b0757d9007f5",
+  "created_at": 1751422331.3041642
+}

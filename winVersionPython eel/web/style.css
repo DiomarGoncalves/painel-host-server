@@ -289,6 +289,220 @@ body {
     flex-wrap: wrap;
 }
 
+/* Updater Styles */
+.updater-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.server-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.info-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.preserved-data-info {
+    background: rgba(129, 199, 132, 0.1);
+    border: 1px solid rgba(129, 199, 132, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.preserved-lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.preserved-files, .preserved-folders {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+.preserved-files ul, .preserved-folders ul {
+    list-style: none;
+    padding: 0;
+}
+
+.preserved-files li, .preserved-folders li {
+    padding: 0.25rem 0;
+    color: #81c784;
+    font-size: 0.9rem;
+}
+
+.preserved-files li:before, .preserved-folders li:before {
+    content: "✓ ";
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.update-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.validation-result {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.validation-success {
+    border-left: 4px solid #4caf50;
+    padding-left: 1rem;
+}
+
+.validation-error {
+    border-left: 4px solid #f44336;
+    padding-left: 1rem;
+}
+
+.backup-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.backups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.backup-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.backup-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(79, 195, 247, 0.3);
+}
+
+.backup-info h4 {
+    color: #4fc3f7;
+    margin-bottom: 0.5rem;
+}
+
+.backup-info p {
+    color: #b0bec5;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.preserved-status {
+    margin-top: 1rem;
+}
+
+.preserved-files-list, .preserved-folders-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.preserved-file, .preserved-folder {
+    background: rgba(129, 199, 132, 0.2);
+    color: #81c784;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* Network Styles */
+.network-section {
+    margin-bottom: 2rem;
+}
+
+.playit-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.tunnel-info {
+    background: rgba(129, 199, 132, 0.1);
+    border: 1px solid rgba(129, 199, 132, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.tunnel-url {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.tunnel-url .input {
+    flex: 1;
+    font-family: 'Courier New', monospace;
+}
+
+.tunnel-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+.tunnel-detail {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.playit-logs {
+    margin-top: 1.5rem;
+}
+
+.console-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    justify-content: flex-end;
+}
+
+.playit-download {
+    margin-top: 1.5rem;
+}
+
+.download-instructions {
+    margin: 1rem 0;
+}
+
+.download-instructions ol {
+    margin-left: 1rem;
+}
+
+.download-instructions li {
+    margin-bottom: 0.5rem;
+}
+
 /* Buttons */
 .btn {
     background: linear-gradient(135deg, #4fc3f7, #29b6f6);
@@ -339,6 +553,14 @@ body {
 
 .btn-secondary:hover:not(:disabled) {
     box-shadow: 0 8px 25px rgba(144, 164, 174, 0.3);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #ffb74d, #ffa726);
+}
+
+.btn-warning:hover:not(:disabled) {
+    box-shadow: 0 8px 25px rgba(255, 183, 77, 0.3);
 }
 
 .btn-danger {
@@ -459,45 +681,6 @@ body {
 
 .command-input .input {
     flex: 1;
-}
-
-/* Network Section */
-.network-section {
-    margin-bottom: 2rem;
-}
-
-.playit-controls {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.tunnel-info {
-    background: rgba(129, 199, 132, 0.1);
-    border: 1px solid rgba(129, 199, 132, 0.3);
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.tunnel-url {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.tunnel-url .input {
-    flex: 1;
-    font-family: 'Courier New', monospace;
-}
-
-.playit-logs {
-    margin-top: 1.5rem;
-}
-
-.playit-download {
-    margin-top: 1.5rem;
 }
 
 .alert {
@@ -793,6 +976,10 @@ body {
         grid-template-columns: 1fr;
     }
     
+    .preserved-lists {
+        grid-template-columns: 1fr;
+    }
+    
     .add-player-form {
         flex-direction: column;
         align-items: stretch;
@@ -802,7 +989,7 @@ body {
         flex-direction: column;
     }
     
-    .world-actions, .addon-actions, .playit-controls, .world-config-actions {
+    .world-actions, .addon-actions, .playit-controls, .world-config-actions, .update-controls, .backup-controls {
         flex-direction: column;
     }
     
@@ -837,6 +1024,18 @@ body {
     
     .world-actions {
         justify-content: flex-start;
+    }
+    
+    .server-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tunnel-detail-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .backups-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -886,3 +1085,6 @@ body {
 
 .hidden { display: none !important; }
 .visible { display: block !important; }
+
+.success { color: #4caf50; }
+.error { color: #f44336; }

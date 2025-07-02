@@ -96,6 +96,7 @@ from jogadores import PlayerManager
 from rede import NetworkManager
 from servidor import ServerManager
 from world_config import WorldConfigManager
+from updater import ServerUpdater
 
 # Configuração básica de logging para arquivo e console
 logging.basicConfig(
@@ -213,6 +214,7 @@ player_manager = PlayerManager()
 network_manager = NetworkManager()
 server_manager = ServerManager()
 world_config_manager = WorldConfigManager("")
+server_updater = ServerUpdater()
 
 # Filas para logs
 console_queue = queue.Queue()
@@ -384,6 +386,8 @@ def create_file_dialog_script(file_types="*"):
         filetypes_code = '[("Arquivos de Mundo", "*.zip"), ("Todos os arquivos", "*.*")]'
     elif file_types == "addon":
         filetypes_code = '[("Addons Minecraft", "*.zip;*.mcaddon"), ("Arquivos ZIP", "*.zip"), ("Todos os arquivos", "*.*")]'
+    elif file_types == "server":
+        filetypes_code = '[("Servidor Bedrock", "*.zip"), ("Todos os arquivos", "*.*")]'
     else:
         filetypes_code = '[("Todos os arquivos", "*.*")]'
     
@@ -426,6 +430,7 @@ if __name__ == "__main__":
     main()
 '''
 
+# Funções expostas para o frontend (mantendo todas as existentes)
 @eel.expose
 def get_server_config():
     """Retorna as configurações atuais do server.properties"""
@@ -705,6 +710,7 @@ def configure_server_managers(folder_path):
     player_manager.set_server_path(folder_path)
     network_manager.set_server_path(folder_path)
     server_manager.set_server_path(folder_path)
+    server_updater.set_server_path(folder_path)
     world_config_manager.server_path = Path(folder_path)
     world_config_manager.worlds_path = Path(folder_path) / "worlds"
     world_config_manager.behavior_packs_path = Path(folder_path) / "development_behavior_packs"
@@ -742,6 +748,8 @@ def select_file(file_types="*"):
                 filetypes = [("Arquivos de Mundo", "*.zip"), ("Todos os arquivos", "*.*")]
             elif file_types == "addon":
                 filetypes = [("Addons", "*.zip *.mcaddon"), ("Todos os arquivos", "*.*")]
+            elif file_types == "server":
+                filetypes = [("Servidor Bedrock", "*.zip"), ("Todos os arquivos", "*.*")]
             else:
                 filetypes = [("Todos os arquivos", "*.*")]
             
@@ -760,7 +768,7 @@ def select_file(file_types="*"):
         logging.exception("Erro ao selecionar arquivo")
         return {"success": False, "error": error_msg}
 
-# Funções de Rede (Playit.gg)
+# Funções de Rede (Playit.gg) - Atualizadas
 @eel.expose
 def check_playit_status():
     """Verifica status do Playit"""
@@ -774,9 +782,6 @@ def start_playit():
     """Inicia o túnel Playit"""
     try:
         result = network_manager.start_playit()
-        if result["success"]:
-            # Iniciar thread para capturar logs
-            threading.Thread(target=capture_playit_logs, daemon=True).start()
         return result
     except Exception as e:
         return {"success": False, "error": str(e)}
@@ -790,15 +795,36 @@ def stop_playit():
         return {"success": False, "error": str(e)}
 
 @eel.expose
+def restart_playit():
+    """Reinicia o túnel Playit"""
+    try:
+        return network_manager.restart_playit()
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+@eel.expose
 def get_playit_logs():
     """Retorna logs do Playit"""
-    logs = []
     try:
-        while not playit_queue.empty():
-            logs.append(playit_queue.get_nowait())
-    except:
-        pass
-    return logs
+        return network_manager.get_logs()
+    except Exception as e:
+        return []
+
+@eel.expose
+def get_tunnel_info():
+    """Retorna informações detalhadas do túnel"""
+    try:
+        return network_manager.get_tunnel_info()
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+@eel.expose
+def get_network_info():
+    """Obtém informações de rede"""
+    try:
+        return network_manager.get_network_info()
+    except Exception as e:
+        return {"success": False, "error": str(e)}
 
 # Funções do Servidor Minecraft
 @eel.expose
@@ -848,6 +874,121 @@ def get_server_logs():
         pass
     return logs
 
+# Funções do Atualizador de Servidor
+@eel.expose
+def get_server_info():
+    """Obtém informações do servidor atual"""
+    try:
+        return server_updater.get_server_info()
+    except Exception as e:
+        return {"error": str(e)}
+
+@eel.expose
+def validate_new_server(server_path):
+    """Valida nova versão do servidor"""
+    try:
+        return server_updater.validate_new_server(server_path)
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+@eel.expose
+def update_server(new_server_path):
+    """Executa atualização do servidor"""
+    try:
+        return server_updater.update_server(new_server_path)
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+@eel.expose
+def list_server_backups():
+    """Lista backups do servidor"""
+    try:
+        return server_updater.list_backups()
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+@eel.expose
+def create_server_backup():
+    """Cria backup manual do servidor"""
+    try:
+        return server_updater.create_backup()
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+# Novas funções para o painel remoto
+@eel.expose
+def start_remote_panel():
+    """Inicia o painel remoto na porta 8080"""
+    try:
+        # Verificar se Flask está disponível
+        try:
+            import flask
+        except ImportError:
+            return {"success": False, "error": "Flask não instalado. Execute: pip install flask"}
+        
+        # Verificar se já está rodando
+        try:
+            import socket
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            result = sock.connect_ex(('localhost', 8080))
+            sock.close()
+            
+            if result == 0:
+                return {"success": False, "error": "Porta 8080 já está em uso"}
+        except:
+            pass
+        
+        # Iniciar painel remoto em thread separada
+        def run_remote():
+            try:
+                import subprocess
+                script_path = Path(__file__).parent.parent / "run_remote_panel.py"
+                
+                cmd = [
+                    sys.executable, 
+                    str(script_path),
+                    "--server-path", str(server_editor.server_path) if server_editor.server_path else "",
+                    "--auto-tunnel"
+                ]
+                
+                subprocess.Popen(cmd, creationflags=subprocess.CREATE_NEW_CONSOLE if platform.system() == 'Windows' else 0)
+            except Exception as e:
+                print(f"Erro ao iniciar painel remoto: {e}")
+        
+        threading.Thread(target=run_remote, daemon=True).start()
+        
+        return {
+            "success": True,
+            "message": "Painel remoto iniciado! Aguarde o túnel Playit.gg ser configurado.",
+            "port": 8080
+        }
+        
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+@eel.expose
+def get_remote_panel_status():
+    """Verifica status do painel remoto"""
+    try:
+        import socket
+        
+        # Verificar se porta 8080 está ativa
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        result = sock.connect_ex(('localhost', 8080))
+        sock.close()
+        
+        is_running = result == 0
+        
+        return {
+            "success": True,
+            "running": is_running,
+            "port": 8080,
+            "local_url": "http://localhost:8080" if is_running else None
+        }
+        
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
 def capture_server_logs():
     """Captura logs do servidor em tempo real"""
     while server_manager.server_process and server_manager.server_process.poll() is None:
@@ -855,17 +996,6 @@ def capture_server_logs():
             line = server_manager.server_process.stdout.readline()
             if line:
                 console_queue.put(line.decode('utf-8', errors='ignore').strip())
-            time.sleep(0.1)
-        except:
-            break
-
-def capture_playit_logs():
-    """Captura logs do Playit em tempo real"""
-    while network_manager.playit_process and network_manager.playit_process.poll() is None:
-        try:
-            line = network_manager.playit_process.stdout.readline()
-            if line:
-                playit_queue.put(line.decode('utf-8', errors='ignore').strip())
             time.sleep(0.1)
         except:
             break
