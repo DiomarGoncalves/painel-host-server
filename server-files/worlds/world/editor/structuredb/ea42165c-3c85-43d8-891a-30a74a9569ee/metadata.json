@@ -1,0 +1,38 @@
+{
+	"formatVersion": {
+		"major": 1,
+		"minor": 0,
+		"patch": 0,
+		"preRelease": "",
+		"buildMeta": ""
+	},
+	"guid": "ea42165c-3c85-43d8-891a-30a74a9569ee",
+	"structureFullName": "mystructure:base",
+	"structureNamespace": "mystructure",
+	"structureName": "base",
+	"displayName": "base",
+	"description": "",
+	"notes": "",
+	"source": "level",
+	"readOnly": true,
+	"tags": [],
+	"size": [
+		0.0,
+		0.0,
+		0.0
+	],
+	"offset": [
+		0.0,
+		0.0,
+		0.0
+	],
+	"origin": [
+		0.0,
+		-1.0,
+		0.0
+	],
+	"lastModifiedDateTime": 1750940851,
+	"creationDateTime": 1750940851,
+	"exportForScript": false,
+	"deletedDateTime": 0
+}
