@@ -619,14 +619,8 @@ def apply_addon_to_world(addon_info):
         if not world_config_manager.server_path:
             return {"success": False, "error": "Caminho do servidor nao definido"}
         
-        # Determinar tipo do addon baseado na pasta onde está
-        addon_type = "behavior"  # Padrão
-        
-        # Verificar se está na pasta de resource packs
-        rp_path = world_config_manager.resource_packs_path / addon_info.get("folder", "")
-        if rp_path.exists():
-            addon_type = "resource"
-        
+        # Determinar tipo do addon explicitamente
+        addon_type = addon_info.get("type", "behavior")
         result = world_config_manager.apply_addon_to_world(addon_info, addon_type)
         return result
     except Exception as e:
@@ -639,16 +633,8 @@ def remove_addon_from_world(addon_info):
         if not world_config_manager.server_path:
             return {"success": False, "error": "Caminho do servidor nao definido"}
         
-        # Determinar tipo do addon
-        addon_type = "behavior"  # Padrão
-        
-        # Verificar se está aplicado como resource pack
-        applied_addons = world_config_manager.get_world_addons()
-        for addon in applied_addons.get("resource_packs", []):
-            if addon["uuid"] == addon_info["uuid"]:
-                addon_type = "resource"
-                break
-        
+        # Determinar tipo do addon explicitamente
+        addon_type = addon_info.get("type", "behavior")
         result = world_config_manager.remove_addon_from_world(addon_info, addon_type)
         return result
     except Exception as e:

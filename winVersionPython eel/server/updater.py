@@ -296,30 +296,46 @@ class ServerUpdater:
                 print(f"⚠️ Erro ao remover {item}: {e}")
     
     def copy_new_server(self, source_path):
-        """Copia arquivos da nova versão"""
+        """Copia apenas o executável da nova versão"""
         try:
             source = Path(source_path)
-            
-            for item in source.iterdir():
-                dest = self.server_path / item.name
-                
-                # Pular se já existe e é um arquivo/pasta preservado
-                if dest.exists() and (item.name in self.preserve_files or 
-                                    item.name in self.preserve_folders or 
-                                    item.name in self.preserve_binaries):
-                    continue
-                
-                if item.is_file():
-                    shutil.copy2(item, dest)
-                elif item.is_dir():
-                    if dest.exists():
-                        shutil.rmtree(dest)
-                    shutil.copytree(item, dest)
-            
+            # Detectar sistema operacional
+            import platform
+            system = platform.system().lower()
+            if system == "windows":
+                exe_name = "bedrock_server.exe"
+            else:
+                exe_name = "bedrock_server"
+
+            # Procurar o executável na nova versão
+            exe_src = source / exe_name
+            if not exe_src.exists():
+                # Procurar em subpastas
+                for item in source.rglob(exe_name):
+                    exe_src = item
+                    break
+
+            if not exe_src.exists():
+                return {"success": False, "error": f"{exe_name} não encontrado na nova versão"}
+
+            exe_dst = self.server_path / exe_name
+
+            # Remover o antigo se existir
+            if exe_dst.exists():
+                exe_dst.unlink()
+
+            # Copiar novo executável
+            import shutil
+            shutil.copy2(exe_src, exe_dst)
+
+            # Dar permissão de execução no Linux
+            if system != "windows":
+                os.chmod(exe_dst, 0o755)
+
             return {"success": True}
-            
+
         except Exception as e:
-            return {"success": False, "error": f"Erro ao copiar arquivos: {str(e)}"}
+            return {"success": False, "error": f"Erro ao copiar executável: {str(e)}"}
     
     def get_server_info(self):
         """Obtém informações do servidor atual"""

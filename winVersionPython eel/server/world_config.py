@@ -185,6 +185,8 @@ class WorldConfigManager:
                 for pack in bp_data:
                     pack_info = self.get_addon_info_by_uuid(pack["pack_id"], "behavior")
                     if pack_info:
+                        # Garante que não mistura com resource mesmo nome
+                        pack_info["type"] = "behavior"
                         addons["behavior_packs"].append(pack_info)
             except Exception as e:
                 print(f"Erro ao ler behavior packs: {e}")
@@ -199,12 +201,13 @@ class WorldConfigManager:
                 for pack in rp_data:
                     pack_info = self.get_addon_info_by_uuid(pack["pack_id"], "resource")
                     if pack_info:
+                        pack_info["type"] = "resource"
                         addons["resource_packs"].append(pack_info)
             except Exception as e:
                 print(f"Erro ao ler resource packs: {e}")
         
         return addons
-    
+
     def get_available_addons(self):
         """Obter addons disponíveis na biblioteca"""
         addons = {
@@ -221,6 +224,7 @@ class WorldConfigManager:
                         addon_info = self.read_addon_manifest(manifest_path)
                         if addon_info:
                             addon_info["folder"] = addon_dir.name
+                            addon_info["type"] = "behavior"
                             addons["behavior_packs"].append(addon_info)
         
         # Listar resource packs
@@ -232,10 +236,11 @@ class WorldConfigManager:
                         addon_info = self.read_addon_manifest(manifest_path)
                         if addon_info:
                             addon_info["folder"] = addon_dir.name
+                            addon_info["type"] = "resource"
                             addons["resource_packs"].append(addon_info)
         
         return addons
-    
+
     def read_addon_manifest(self, manifest_path):
         """Ler manifest.json de um addon"""
         try:
@@ -257,7 +262,7 @@ class WorldConfigManager:
         return None
     
     def get_addon_info_by_uuid(self, uuid, addon_type):
-        """Obter informações de addon por UUID"""
+        """Obter informações de addon por UUID e tipo"""
         if addon_type == "behavior":
             search_path = self.behavior_packs_path
         else:
@@ -273,10 +278,11 @@ class WorldConfigManager:
                     addon_info = self.read_addon_manifest(manifest_path)
                     if addon_info and addon_info["uuid"] == uuid:
                         addon_info["folder"] = addon_dir.name
+                        addon_info["type"] = addon_type
                         return addon_info
         
         return None
-    
+
     def apply_addon_to_world(self, addon_info, addon_type):
         """Aplicar addon ao mundo atual"""
         world_path = self.get_current_world_path()
@@ -293,7 +299,7 @@ class WorldConfigManager:
         else:
             packs = []
         
-        # Verificar se já está aplicado
+        # Verificar se já está aplicado (por UUID e tipo)
         for pack in packs:
             if pack.get("pack_id") == addon_info["uuid"]:
                 return {"success": False, "error": "Addon já está aplicado ao mundo"}
@@ -310,7 +316,7 @@ class WorldConfigManager:
             json.dump(packs, f, indent=2, ensure_ascii=False)
         
         return {"success": True, "message": f"Addon '{addon_info['name']}' aplicado ao mundo"}
-    
+
     def remove_addon_from_world(self, addon_info, addon_type):
         """Remover addon do mundo atual"""
         world_path = self.get_current_world_path()
@@ -327,7 +333,7 @@ class WorldConfigManager:
         with open(json_file, 'r', encoding='utf-8') as f:
             packs = json.load(f)
         
-        # Remover addon
+        # Remover addon (por UUID e tipo)
         original_count = len(packs)
         packs = [pack for pack in packs if pack.get("pack_id") != addon_info["uuid"]]
         
