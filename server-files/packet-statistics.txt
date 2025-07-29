@@ -1,5 +1,5 @@
 
-Network Stats for the last 38 seconds:
+Network Stats for the last 81 seconds:
 
 Total Sent Spatial Packets: 0
 Total Requested to Send Spatial Packets: 0
