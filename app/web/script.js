@@ -589,21 +589,21 @@ function setupWorldConfigTab() {
 
 async function loadWorldConfigPreview() {
     if (!currentServerPath) return;
-    
+
     const worldInfo = document.getElementById('worldInfo');
     const appliedAddonsPreview = document.getElementById('appliedAddonsPreview');
-    
+
     if (!worldInfo || !appliedAddonsPreview) return;
-    
+
     showLoading();
     try {
         // Carregar informações do mundo
         const worldSettingsResult = await window.electronAPI.getWorldSettings();
-        
+
         if (worldSettingsResult.success) {
             const worldName = worldSettingsResult.world_name || 'Mundo Atual';
             const settings = worldSettingsResult.settings;
-            
+
             worldInfo.innerHTML = `
                 <div class="world-info-item">
                     <strong>Nome do Mundo:</strong> ${worldName}
@@ -627,32 +627,51 @@ async function loadWorldConfigPreview() {
         } else {
             worldInfo.innerHTML = '<p class="text-error">Erro ao carregar informações do mundo</p>';
         }
-        
+
         // Carregar addons aplicados
         const appliedAddonsResult = await window.electronAPI.getAppliedWorldAddons();
-        
+
         if (appliedAddonsResult.success) {
             const addons = appliedAddonsResult.addons;
             let addonsHtml = '';
-            
+
+            // Função para tentar pegar o nome real do manifest, se disponível
+            function getAddonDisplayName(addon) {
+                // Se já veio do backend, use displayName
+                if (addon.displayName) return addon.displayName;
+                // Se backend já trouxe o header.name do manifest, use
+                if (addon.header && addon.header.name) return addon.header.name;
+                // Se backend trouxe o manifest inteiro, tente manifest.header.name
+                if (addon.manifest && addon.manifest.header && addon.manifest.header.name) return addon.manifest.header.name;
+                // Se backend trouxe o nome como name, mas não é "Behavior Pack"/"Resource Pack", use
+                if (addon.name && addon.name !== "Behavior Pack" && addon.name !== "Resource Pack") return addon.name;
+                // Se só tem name genérico, tente folder
+                if (addon.folder) return addon.folder;
+                // Fallback
+                return 'Sem nome';
+            }
+
             if (addons.behavior_packs && addons.behavior_packs.length > 0) {
                 addonsHtml += '<h5><i class="fas fa-code"></i> Behavior Packs</h5>';
                 addons.behavior_packs.forEach(addon => {
-                    addonsHtml += `<div class="addon-preview-item">📦 ${addon.name || addon.folder}</div>`;
+                    const addonName = getAddonDisplayName(addon);
+                    addonsHtml += `<div class="addon-preview-item">📦 ${addonName}</div>`;
+                    console.log('Addon Behavior Pack:', addonName, addon);
                 });
             }
-            
+
             if (addons.resource_packs && addons.resource_packs.length > 0) {
                 addonsHtml += '<h5><i class="fas fa-image"></i> Resource Packs</h5>';
                 addons.resource_packs.forEach(addon => {
-                    addonsHtml += `<div class="addon-preview-item">🎨 ${addon.name || addon.folder}</div>`;
+                    const addonName = getAddonDisplayName(addon);
+                    addonsHtml += `<div class="addon-preview-item">🎨 ${addonName}</div>`;
                 });
             }
-            
+
             if (addonsHtml === '') {
                 addonsHtml = '<p class="text-center">Nenhum addon aplicado ao mundo</p>';
             }
-            
+
             appliedAddonsPreview.innerHTML = addonsHtml;
         } else {
             appliedAddonsPreview.innerHTML = '<p class="text-error">Erro ao carregar addons aplicados</p>';

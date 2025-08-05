@@ -204,14 +204,29 @@ async function loadWorldAddons() {
         }
 
         // Carregar addons aplicados
-        const applied = await window.electronAPI.getAppliedWorldAddons();
-        if (applied.success) {
-            renderAddonList('appliedAddonsBehaviorList', applied.addons.behavior_packs, 'behavior', true);
-            renderAddonList('appliedAddonsResourceList', applied.addons.resource_packs, 'resource', true);
-        } else {
-            document.getElementById('appliedAddonsBehaviorList').innerHTML = '<p>Erro ao carregar behavior packs aplicados</p>';
-            document.getElementById('appliedAddonsResourceList').innerHTML = '<p>Erro ao carregar resource packs aplicados</p>';
-        }
+            const applied = await window.electronAPI.getAppliedWorldAddons();
+
+            if (applied.success) {
+                // Enriquecer dados aplicados com informações da biblioteca
+                const enrichAddons = (appliedList, availableList) => {
+                    return appliedList.map(appliedAddon => {
+                        const match = availableList.find(av =>
+                            av.uuid === appliedAddon.uuid || av.folder === appliedAddon.folder
+                        );
+                        return match ? { ...appliedAddon, ...match } : appliedAddon;
+                    });
+                };
+
+                const appliedBehavior = enrichAddons(applied.addons.behavior_packs, available.addons.behavior_packs);
+                const appliedResource = enrichAddons(applied.addons.resource_packs, available.addons.resource_packs);
+
+                renderAddonList('appliedAddonsBehaviorList', appliedBehavior, 'behavior', true);
+                renderAddonList('appliedAddonsResourceList', appliedResource, 'resource', true);
+            } else {
+                document.getElementById('appliedAddonsBehaviorList').innerHTML = '<p>Erro ao carregar behavior packs aplicados</p>';
+                document.getElementById('appliedAddonsResourceList').innerHTML = '<p>Erro ao carregar resource packs aplicados</p>';
+            }
+
     } catch (e) {
         console.error('Erro ao carregar addons do mundo:', e);
         document.getElementById('availableAddonsBehaviorList').innerHTML = '<p>Erro ao carregar addons</p>';
@@ -225,56 +240,56 @@ async function loadWorldAddons() {
 function renderAddonList(containerId, addons, type, applied = false) {
     const container = document.getElementById(containerId);
     if (!container) return;
-    
+
     container.innerHTML = '';
     if (!addons || addons.length === 0) {
         container.innerHTML = `<p class="text-center">${applied ? 'Nenhum addon aplicado' : 'Nenhum addon disponível'}</p>`;
         return;
     }
-    
+
     addons.forEach(addon => {
         const div = document.createElement('div');
-        div.className = 'addon-preview-item';
-        
-        const icon = type === 'behavior' ? '📦' : '🎨';
+        div.className = 'addon-item'; // 🔥 Usa o mesmo estilo da biblioteca
+
+        const icon = type === 'behavior' ? '<i class="fas fa-code"></i>' : '<i class="fas fa-image"></i>';
         const name = addon.name || addon.folder || 'Addon sem nome';
         const version = Array.isArray(addon.version) ? addon.version.join('.') : (addon.version || '1.0.0');
-        
+
         div.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span>${icon} ${name}</span>
-                <small style="color: #90a4ae;">v${version}</small>
+            <div class="addon-info">
+                <div class="addon-name">${icon} ${name}</div>
+                ${addon.description ? `<div class="addon-description">${addon.description}</div>` : ''}
             </div>
-            ${addon.description ? `<div style="font-size: 0.8em; color: #b0bec5; margin-top: 0.25rem;">${addon.description}</div>` : ''}
+            <small style="color: #90a4ae;">v${version}</small>
         `;
-        
+
+        // Dados do addon
         div.dataset.uuid = addon.uuid;
         div.dataset.type = type;
         div.dataset.name = name;
-        
-        // Permite seleção para aplicar/remover
-        div.onclick = function() {
-            document.querySelectorAll(`#${containerId} .addon-preview-item.selected`).forEach(el => el.classList.remove('selected'));
+
+        // Evento de seleção
+        div.onclick = function () {
+            document.querySelectorAll(`#${containerId} .addon-item.selected`).forEach(el => el.classList.remove('selected'));
             div.classList.add('selected');
-            
-            // Atualizar botões
             updateAddonButtons();
         };
-        
+
         container.appendChild(div);
     });
 }
+
 
 // Função para atualizar estado dos botões
 function updateAddonButtons() {
     const applyBtn = document.getElementById('applyAddonBtn');
     const removeBtn = document.getElementById('removeAddonBtn');
     
-    const availableSelected = document.querySelector('#availableAddonsBehaviorList .addon-preview-item.selected') ||
-                             document.querySelector('#availableAddonsResourceList .addon-preview-item.selected');
+    const availableSelected = document.querySelector('#availableAddonsBehaviorList .addon-item.selected') ||
+                             document.querySelector('#availableAddonsResourceList .addon-item.selected');
     
-    const appliedSelected = document.querySelector('#appliedAddonsBehaviorList .addon-preview-item.selected') ||
-                           document.querySelector('#appliedAddonsResourceList .addon-preview-item.selected');
+    const appliedSelected = document.querySelector('#appliedAddonsBehaviorList .addon-item.selected') ||
+                           document.querySelector('#appliedAddonsResourceList .addon-item.selected');
     
     if (applyBtn) applyBtn.disabled = !availableSelected;
     if (removeBtn) removeBtn.disabled = !appliedSelected;
@@ -283,8 +298,8 @@ function updateAddonButtons() {
 // Eventos para aplicar/remover addons
 document.getElementById('applyAddonBtn').onclick = async function() {
     // Verifica seleção em behavior/resource disponíveis
-    let selected = document.querySelector('#availableAddonsBehaviorList .addon-preview-item.selected') ||
-                   document.querySelector('#availableAddonsResourceList .addon-preview-item.selected');
+    let selected = document.querySelector('#availableAddonsBehaviorList .addon-item.selected') ||
+                   document.querySelector('#availableAddonsResourceList .addon-item.selected');
     if (!selected) {
         showModal('Aviso', 'Selecione um addon disponível para aplicar.');
         return;
@@ -330,8 +345,8 @@ document.getElementById('applyAddonBtn').onclick = async function() {
 
 document.getElementById('removeAddonBtn').onclick = async function() {
     // Verifica seleção em behavior/resource aplicados
-    let selected = document.querySelector('#appliedAddonsBehaviorList .addon-preview-item.selected') ||
-                   document.querySelector('#appliedAddonsResourceList .addon-preview-item.selected');
+    let selected = document.querySelector('#appliedAddonsBehaviorList .addon-item.selected') ||
+                   document.querySelector('#appliedAddonsResourceList .addon-item.selected');
     if (!selected) {
         showModal('Aviso', 'Selecione um addon aplicado para remover.');
         return;

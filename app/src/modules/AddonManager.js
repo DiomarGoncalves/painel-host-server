@@ -303,18 +303,65 @@ class AddonManager {
                 resource_packs: []
             };
 
+            // Função auxiliar para buscar nome real do addon pelo UUID
+            async function getAddonRealName(serverPath, uuid, type) {
+                const baseDir = type === 'behavior'
+                    ? path.join(serverPath, 'development_behavior_packs')
+                    : path.join(serverPath, 'development_resource_packs');
+                if (!await fs.pathExists(baseDir)) return null;
+                const folders = await fs.readdir(baseDir);
+                for (const folder of folders) {
+                    const manifestPath = path.join(baseDir, folder, 'manifest.json');
+                    if (await fs.pathExists(manifestPath)) {
+                        try {
+                            const manifest = await fs.readJson(manifestPath);
+                            // Comparar UUID ignorando caixa e traços
+                            if (
+                                manifest.header &&
+                                manifest.header.uuid &&
+                                manifest.header.uuid.replace(/-/g, '').toLowerCase() === uuid.replace(/-/g, '').toLowerCase()
+                            ) {
+                                // Só retorna se o nome não for igual ao UUID
+                                if (
+                                    manifest.header.name &&
+                                    manifest.header.name.replace(/§./g, '').replace(/\s/g, '').toLowerCase() !== uuid.replace(/-/g, '').toLowerCase()
+                                ) {
+                                    return manifest.header.name;
+                                }
+                            }
+                        } catch (e) { /* ignorar erro */ }
+                    }
+                }
+                return null;
+            }
+
             // Ler behavior packs aplicados
             const behaviorPacksPath = path.join(worldPath, 'world_behavior_packs.json');
             if (await fs.pathExists(behaviorPacksPath)) {
                 try {
                     const behaviorPacks = await fs.readJson(behaviorPacksPath);
                     if (Array.isArray(behaviorPacks)) {
-                        appliedAddons.behavior_packs = behaviorPacks.map(pack => ({
-                            uuid: pack.pack_id || pack.uuid,
-                            version: pack.version || [1, 0, 0],
-                            name: pack.name || 'Behavior Pack',
-                            folder: pack.pack_id || pack.uuid
-                        }));
+                        for (const pack of behaviorPacks) {
+                            const uuid = pack.pack_id || pack.uuid;
+                            let name = pack.name || 'Behavior Pack';
+                            // Buscar nome real no manifest
+                            const realName = await getAddonRealName(this.serverPath, uuid, 'behavior');
+                            // Se não for possível obter um nome real, mas o nome é igual ao UUID, mostra vazio
+                            if (realName) {
+                                name = realName;
+                            } else if (
+                                name.replace(/§./g, '').replace(/\s/g, '').toLowerCase() === uuid.replace(/-/g, '').toLowerCase()
+                                || name === uuid
+                            ) {
+                                name = '';
+                            }
+                            appliedAddons.behavior_packs.push({
+                                uuid: uuid,
+                                version: pack.version || [1, 0, 0],
+                                name: name || uuid, // Se não achou nome, mostra o uuid
+                                folder: uuid
+                            });
+                        }
                     }
                 } catch (e) {
                     console.error('Erro ao ler behavior packs do mundo:', e);
@@ -327,12 +374,26 @@ class AddonManager {
                 try {
                     const resourcePacks = await fs.readJson(resourcePacksPath);
                     if (Array.isArray(resourcePacks)) {
-                        appliedAddons.resource_packs = resourcePacks.map(pack => ({
-                            uuid: pack.pack_id || pack.uuid,
-                            version: pack.version || [1, 0, 0],
-                            name: pack.name || 'Resource Pack',
-                            folder: pack.pack_id || pack.uuid
-                        }));
+                        for (const pack of resourcePacks) {
+                            const uuid = pack.pack_id || pack.uuid;
+                            let name = pack.name || 'Resource Pack';
+                            // Buscar nome real no manifest
+                            const realName = await getAddonRealName(this.serverPath, uuid, 'resource');
+                            if (realName) {
+                                name = realName;
+                            } else if (
+                                name.replace(/§./g, '').replace(/\s/g, '').toLowerCase() === uuid.replace(/-/g, '').toLowerCase()
+                                || name === uuid
+                            ) {
+                                name = '';
+                            }
+                            appliedAddons.resource_packs.push({
+                                uuid: uuid,
+                                version: pack.version || [1, 0, 0],
+                                name: name || uuid,
+                                folder: uuid
+                            });
+                        }
                     }
                 } catch (e) {
                     console.error('Erro ao ler resource packs do mundo:', e);
