@@ -1,11 +1,20 @@
 const { FusesPlugin } = require('@electron-forge/plugin-fuses');
 const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 
+const path = require('path');
+
+const isWin = process.platform === 'win32';
+const isLinux = process.platform === 'linux';
+const isMac = process.platform === 'darwin';
+
 module.exports = {
   packagerConfig: {
     name: 'Minecraft Bedrock Panel',
     executableName: 'minecraft-bedrock-panel',
-    icon: './web/icon', // Electron Forge adiciona a extensão automaticamente
+    // Forçar o caminho do ícone conforme plataforma
+    icon: isWin
+      ? path.resolve(__dirname, 'web/icon.ico')
+      : path.resolve(__dirname, 'web/icon.png'),
     asar: { unpackDir: '**/node_modules/*' }, // Corrigido para funcionar com AutoUnpackNatives
     extraResource: ['./web'],
     ignore: [
@@ -34,8 +43,8 @@ module.exports = {
         name: 'minecraft_bedrock_panel',
         authors: 'Minecraft Bedrock Panel',
         description: 'Painel de gerenciamento para servidor Minecraft Bedrock',
-        setupIcon: './web/icon.ico',
-        iconUrl: './web/icon.ico',
+        setupIcon: path.resolve(__dirname, 'web/icon.ico'),
+        iconUrl: path.resolve(__dirname, 'web/icon.ico'),
         noMsi: true,
         setupExe: 'minecraft-bedrock-panel-setup.exe'
       }
@@ -52,7 +61,7 @@ module.exports = {
           categories: ['Game', 'Utility'],
           priority: 'optional',
           section: 'games',
-          icon: './web/icon.png'
+          icon: path.resolve(__dirname, 'web/icon.png')
         }
       }
     },
@@ -65,7 +74,7 @@ module.exports = {
           description: 'Painel de gerenciamento para servidor Minecraft Bedrock',
           productDescription: 'Uma ferramenta completa para gerenciar servidores Minecraft Bedrock Edition',
           categories: ['Game', 'Utility'],
-          icon: './web/icon.png',
+          icon: path.resolve(__dirname, 'web/icon.png'),
           license: 'MIT'
         }
       }
