@@ -24,3 +24,4 @@ dist-ssr
 *.sln
 *.sw?
 .env
+server-files/bedrock_server
