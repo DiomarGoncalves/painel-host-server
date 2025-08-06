@@ -1,9 +1,0 @@
-{
-  "resource_pack_name": "protection_addon",
-  "texture_name": "atlas.items",
-  "texture_data": {
-    "protection_block": {
-      "textures": "textures/blocks/bedrock"
-    }
-  }
-}

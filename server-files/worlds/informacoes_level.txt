@@ -1,2 +1,0 @@
-=== Dump do objeto NBT ===
-<File '': {}>

@@ -1,6 +1,0 @@
-{
-	"texture_name": "atlas.items",
-	"texture_data": {
-		"ots_simred:guidebook": {"textures": ["textures/ots/simred/items/guidebook"]}
-	}
-}
