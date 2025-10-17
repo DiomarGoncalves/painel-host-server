@@ -38,20 +38,7 @@ Uma interface gráfica moderna e completa para gerenciar servidores Minecraft Be
 
 ## 🚀 Instalação Rápida
 
-1. **Clone/Baixe o projeto**
-2. **Instale dependências:**
-   ```bash
-   pip install -r requirements.txt
-
-
-   para buiild:pip install -r requirements_build.txt
-
-   rodar o build :python build_exe.py
-   ```
-3. **Execute:**
-   ```bash
-   python main.py
-   ```
+baixe o .exe nas releases e instale
 
 ## 📁 Estrutura do Servidor
 
